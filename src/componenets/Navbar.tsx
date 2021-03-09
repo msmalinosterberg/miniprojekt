@@ -34,7 +34,9 @@ const layoutStyle: CSSProperties = {
 }
 
 const logoStyle: CSSProperties = {
-    padding: '2rem',
+    margin: '0', 
+    padding: '2.3rem'
+    
    
  
 }
@@ -42,7 +44,7 @@ const iconStyle: CSSProperties = {
     color: 'white', 
     fontSize: '2.8rem',
     float: 'right', 
-    margin: '2.5rem', 
+    margin: '2.8rem', 
     background: 'black'
     
 
@@ -51,11 +53,11 @@ const iconStyle: CSSProperties = {
 const pStyle: CSSProperties = {
     fontWeight: 'bold',
     color: 'white', 
-    fontSize: '1.6rem', 
+    fontSize: '1.4rem', 
     float: 'right',
-   // margin: '2.7rem',
-    padding: '1.5rem',
-    alignItems: 'center'
+    margin: '2.3rem',
+   
+    
     
 }
 
