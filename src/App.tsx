@@ -1,11 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ProductCard from './componenets/StartPage/ProductCard';
+import StartPageView from './componenets/StartPage/StartPageView';
+
 
 function App() {
   return (
-    <ProductCard />
+    <StartPageView />
   );
 }
 
