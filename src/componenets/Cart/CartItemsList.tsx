@@ -12,9 +12,8 @@ export interface CartItem {
 interface State {
     cartItems?: CartItem[];
 }
-
 class CartItemsList extends Component<State> {
-
+   
     state: State = {
         cartItems: []
     }
@@ -51,7 +50,7 @@ class CartItemsList extends Component<State> {
                                 avatar={<Avatar src={item.imageUrl} />}
                                 title={<a href="#">{item.title}</a>}
                                 description={[item.description.split('.')[0], 
-                                <span style={{marginLeft: '15rem'}}>1</span>]}
+                                <span style={{ marginLeft: '15rem' }}>1</span>]}
                             />
                         </List.Item>
                         )}

@@ -20,19 +20,20 @@ class CartView extends Component<State> {
     
     
     render() {
-        
+
         const { current } = this.state;
 
         return(
             <Row style={cartViewContainerStyle}>
                 <Col span={24} style={columnStyle}>
+                    <CartItemsList/>
                     <Steps current={current} onChange={() => this.onChange} direction="vertical">
-                        <Step title="Step 1" description={<CartItemsList/>} /> 
-                        <Step title="Step 2" description={<InformationForm />} />
+                        <Step title="Step 1" description={<InformationForm />} /> 
+                        <Step title="Step 2" description={'Delivery Selection goes here'} />
+                        <Step title="Step 3" description={'Payment method goes here'} />
                     </Steps>
                 </Col>
             </Row>
-
         )
     }
 }
