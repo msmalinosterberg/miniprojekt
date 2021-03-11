@@ -1,6 +1,5 @@
 import { Avatar, Col, List, Row } from 'antd';
-import React, { Component, CSSProperties } from 'react';
-import { productList } from '../ProductItemsList';
+import { Component, CSSProperties } from 'react';
 
 export interface CartItem {
     id: number;
@@ -23,6 +22,18 @@ class CartItemsList extends Component<State> {
     componentDidMount() {
         this.setState({ cartItems: JSON.parse(localStorage.getItem('cartItems') as string) || []});
     }
+    
+    deleteItemFromList(id: number) {
+        let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
+        const newCartItemsList = cartItems.filter((item: CartItem) => item.id !== id);
+        localStorage.setItem('cartItems', JSON.stringify(newCartItemsList));
+    }
+
+    handleDelete = (id: number) => {
+        const updatedCartItems = [...this.state.cartItems || []];
+        this.setState({ cartList: updatedCartItems.filter(item => item.id !== id)});
+        this.deleteItemFromList(id as number);
+    }
 
     render() {
         return(
@@ -33,12 +44,14 @@ class CartItemsList extends Component<State> {
                         dataSource={this.state.cartItems}
                         renderItem={item => (
                         <List.Item
-                            actions={[<a key="list-loadmore-delete" 
-                            style={{color: 'red'}}>delete</a>]}>
+                            actions={[<a key="delete-item" 
+                            style={{color: 'red'}}
+                            onClick={() => this.handleDelete(item.id)}>delete</a>]}>
                             <List.Item.Meta                    
-                            avatar={<Avatar src={item.imageUrl} />}
-                            title={<a href="#">{item.title}</a>}
-                            description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                                avatar={<Avatar src={item.imageUrl} />}
+                                title={<a href="#">{item.title}</a>}
+                                description={[item.description.split('.')[0], 
+                                <span style={{marginLeft: '15rem'}}>1</span>]}
                             />
                         </List.Item>
                         )}
