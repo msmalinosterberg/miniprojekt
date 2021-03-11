@@ -1,4 +1,4 @@
-import { Form, Input, InputNumber, Button, Row, Col } from 'antd';
+import { Form, Input, Button, Row, Col } from 'antd';
 import { Component, CSSProperties } from 'react';
 
 const layout = {
