@@ -7,20 +7,21 @@ export interface CartItem {
     title: string;
     description: string;
     price: number;
-    imgUrl?: string;
-}
-interface Props {
-    data: CartItem[];
+    imageUrl: string;
 }
 
 interface State {
-    cartItems: CartItem[];
+    cartItems?: CartItem[];
 }
 
-class CartItemsList extends Component {
+class CartItemsList extends Component<State> {
 
     state: State = {
         cartItems: []
+    }
+
+    componentDidMount() {
+        this.setState({ cartItems: JSON.parse(localStorage.getItem('cartItems') as string) || []});
     }
 
     render() {
@@ -29,7 +30,7 @@ class CartItemsList extends Component {
                 <Col span={24} style={columnStyle}>
                     <List
                         itemLayout="horizontal"
-                        dataSource={productList}
+                        dataSource={this.state.cartItems}
                         renderItem={item => (
                         <List.Item
                             actions={[<a key="list-loadmore-delete" 

@@ -9,8 +9,8 @@ function App() {
   return (
     <>
       <Navbar /> 
-      <StartPageView />
-      {/* <CartView /> */}
+      {/* <StartPageView /> */}
+      <CartView />
       <Footer2 /> 
     </>
   );
