@@ -2,13 +2,16 @@ import React, { Component, CSSProperties } from 'react';
 import { Card, Col, List, Row } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { productList } from '../ProductItemsList';
+import { Link } from 'react-router-dom';
 
 const { Meta } = Card;
 
 class ProductCard extends Component {
     
     render() {
-        return(
+        return( 
+
+            
             <Row style={cardContainer}>
                 <Col span={24} style={columnStyle}>
                     <List
@@ -24,6 +27,8 @@ class ProductCard extends Component {
                         dataSource={productList}
                         renderItem={item => (
                             <List.Item>
+                                <Link to={'/product/' + item.id}>
+
                                 <Card
                                     hoverable
                                     cover={<img src={item.imageUrl} />}
@@ -33,11 +38,14 @@ class ProductCard extends Component {
                                 >
                                     <Meta title={item.title} description={item.price + ' kr'} />
                                 </Card>
+                                </Link>
                             </List.Item>
                         )}    
                     />
                 </Col>
             </Row>
+      
+       
         )
     }
 }

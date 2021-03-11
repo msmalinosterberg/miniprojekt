@@ -1,4 +1,6 @@
+
 import React from 'react';
+import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import './App.css'
 import Footer2 from './componenets/Footer';
 import Navbar from './componenets/Navbar';
@@ -8,11 +10,14 @@ import StartPageView from './componenets/StartPage/StartPageView';
 function App() {
   return (
     <>
+    <BrowserRouter> 
       <Navbar /> 
-     {/* <StartPageView /> */}
-     <ProductDetails /> 
-
+      <Switch> 
+        <Route path = '/products/:id' component={ProductDetails} />
+      </Switch>
+      <StartPageView /> 
       <Footer2 /> 
+      </BrowserRouter> 
     </>
   );
 }
