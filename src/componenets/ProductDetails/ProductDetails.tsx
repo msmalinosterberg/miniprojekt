@@ -54,8 +54,8 @@ class ProductDetails extends Component <Props, State> {
                     <Col lg={{span: 12}}>
                         <h2 style={titleStyle}>{this.state.product.title}</h2>
                         <h3 style={descriptionStyle}>{this.state.product.description} </h3>
-                        <h2 style={price}>{this.state.product.price}</h2>
-                        <button style={{marginTop: '1rem'}}onClick={() => this.saveToCart(this.state.product)}>Add to cart </button>
+                        <h2 style={price}>{this.state.product.price + ' kr'} </h2>
+                        <button style={{marginTop: '1rem'}}onClick={() => this.saveToCart(this.state.product) }>Add to cart </button>
                     </Col>
                 </Row>
         </Layout>
