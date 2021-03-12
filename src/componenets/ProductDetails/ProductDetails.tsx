@@ -2,18 +2,11 @@ import { Layout, Row, Col } from 'antd';
 import { Component, CSSProperties } from 'react'; 
 import { Image } from 'antd';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-
+import { productList} from "../ProductItemsList"
 
 
 interface State {
-    productDetails: IProductList | undefined
-}
-interface IProductList {
-    id: number; 
-    title: string;
-    description: string;
-    price: number; 
-    imageUrl: string;
+    product: any
 }
 
 interface Props extends RouteComponentProps {
@@ -22,13 +15,14 @@ interface Props extends RouteComponentProps {
 class ProductDetails extends Component <Props, State> {
 
     state: State = {
-        productDetails: undefined
+        product: {}
     }
     
 
     componentDidMount() {   
         const productId = (this.props.match.params as any).id
-
+        const product = productList.find((p) => p.id == productId);
+        this.setState({product: product})
     }
 
     render () {
@@ -41,17 +35,14 @@ class ProductDetails extends Component <Props, State> {
                     <Image
                         width={450} 
                         style={imageStyle}
-                        src='https://github.com/msmalinosterberg/miniprojekt/blob/master/src/assets/prod6.png?raw=true'/>          
+                        src={this.state.product.imageUrl}/>          
                      </Col>
                 </div>
 
                     <Col lg={{span: 12}}>
-                        <h2 style={titleStyle}> Dress </h2>
-                        <h3 style={descriptionStyle}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi eaque ipsa asperiores blanditiis amet nisi, 
-                            culpa reiciendis excepturi eos voluptas quia provident nostrum minus dolore sequi recusandae nihil reprehenderit iure? Lorem ipsum dolor
-                             sit amet consectetur adipisicing elit. Quia sequi expedita voluptates libero autem odit tempora assumenda accusamus iure,
-                             exercitationem, impedit, quidem eaque. Deleniti odit quos neque officia, inventore veniam! </h3>
-                        <h2 style={price}>429:-</h2>
+                        <h2 style={titleStyle}>{this.state.product.title}</h2>
+                        <h3 style={descriptionStyle}>{this.state.product.description} </h3>
+                        <h2 style={price}>{this.state.product.price}</h2>
                         <button style={{marginTop: '1rem'}}>Add to cart </button>
                     </Col>
                 </Row>

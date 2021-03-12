@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import './App.css'
 import Footer2 from './componenets/Footer';
@@ -13,7 +12,7 @@ function App() {
     <BrowserRouter> 
       <Navbar /> 
       <Switch> 
-        <Route path = '/products/:id' component={ProductDetails} />
+        <Route path = '/product/:id' component={ProductDetails} />
       </Switch>
       <StartPageView /> 
       <Footer2 /> 
