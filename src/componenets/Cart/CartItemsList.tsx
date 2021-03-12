@@ -30,7 +30,7 @@ class CartItemsList extends Component<State> {
 
     handleDelete = (id: number) => {
         const updatedCartItems = [...this.state.cartItems || []];
-        this.setState({ cartList: updatedCartItems.filter(item => item.id !== id)});
+        this.setState({ cartItems: updatedCartItems.filter(item => item.id !== id) });
         this.deleteItemFromList(id as number);
     }
 
