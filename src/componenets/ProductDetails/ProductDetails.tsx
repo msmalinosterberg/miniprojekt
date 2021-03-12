@@ -2,7 +2,8 @@ import { Layout, Row, Col } from 'antd';
 import { Component, CSSProperties } from 'react'; 
 import { Image } from 'antd';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { productList} from "../ProductItemsList"
+import { productList} from "../ProductItemsList";
+import CartItemsList, { CartItem } from '../Cart/CartItemsList';
 
 
 interface State {
@@ -18,12 +19,23 @@ class ProductDetails extends Component <Props, State> {
         product: {}
     }
     
+    saveToCart(record: CartItem) {
+        console.log('hej')
+        let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
+        cartItems.push(record);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+    
+
+
 
     componentDidMount() {   
         const productId = (this.props.match.params as any).id
         const product = productList.find((p) => p.id == productId);
         this.setState({product: product})
     }
+
+    
 
     render () {
 
@@ -43,7 +55,7 @@ class ProductDetails extends Component <Props, State> {
                         <h2 style={titleStyle}>{this.state.product.title}</h2>
                         <h3 style={descriptionStyle}>{this.state.product.description} </h3>
                         <h2 style={price}>{this.state.product.price}</h2>
-                        <button style={{marginTop: '1rem'}}>Add to cart </button>
+                        <button style={{marginTop: '1rem'}}onClick={() => this.saveToCart(this.state.product)}>Add to cart </button>
                     </Col>
                 </Row>
         </Layout>
@@ -94,4 +106,12 @@ const price: CSSProperties = {
     fontWeight: 'bold'
 }
 
+
+function item(item: any): void {
+    throw new Error('Function not implemented.');
+}
+
+function product(product: any): void {
+    throw new Error('Function not implemented.');
+}
 
