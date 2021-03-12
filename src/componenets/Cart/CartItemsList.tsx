@@ -1,4 +1,4 @@
-import { Avatar, Col, List, Row } from 'antd';
+import { Avatar, Col, List, Row, InputNumber } from 'antd';
 import { Component, CSSProperties } from 'react';
 
 export interface CartItem {
@@ -34,6 +34,10 @@ class CartItemsList extends Component<State> {
         this.deleteItemFromList(id as number);
     }
 
+    onChange(value: number) {
+        console.log('changed', value);
+      }
+
     render() {
         return(
             <Row style={listContainerStyle}>
@@ -50,7 +54,7 @@ class CartItemsList extends Component<State> {
                                 avatar={<Avatar src={item.imageUrl} />}
                                 title={<a href="#">{item.title}</a>}
                                 description={[item.description.split('.')[0], 
-                                <span style={{ marginLeft: '15rem' }}>1</span>]}
+                                <InputNumber min={1} max={10} defaultValue={1} onChange={this.onChange} style={numberInputStyle} />]}
                             />
                         </List.Item>
                         )}
@@ -72,6 +76,10 @@ const listContainerStyle: CSSProperties = {
 const columnStyle: CSSProperties = {
     marginTop: '3rem',
     marginBottom: '3rem',
+}
+
+const numberInputStyle: CSSProperties = {
+    marginLeft: '15rem'
 }
 
 export default CartItemsList;
