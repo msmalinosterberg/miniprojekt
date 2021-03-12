@@ -1,6 +1,7 @@
 import { Steps, Row, Col } from 'antd';
-import { Component, CSSProperties } from 'react';
+import React, { Component, CSSProperties } from 'react';
 import CartItemsList from './CartItemsList';
+import DeliverySelection from './DeliverySelection';
 import InformationForm from './InformationForm';
 
 interface State {
@@ -29,7 +30,7 @@ class CartView extends Component<State> {
                     <CartItemsList/>
                     <Steps current={current} onChange={() => this.onChange} direction="vertical">
                         <Step title="Step 1" description={<InformationForm />} /> 
-                        <Step title="Step 2" description={'Delivery Selection goes here'} />
+                        <Step title="Step 2" description={<DeliverySelection />} />
                         <Step title="Step 3" description={'Payment method goes here'} />
                     </Steps>
                 </Col>
