@@ -21,7 +21,7 @@ class DeliverySection extends React.Component {
   render() {
     const { value } = this.state;
     return (
-        <Content>
+        <Content style={contentStyle}>
             <h2>
                 Delivery
             </h2>
@@ -36,3 +36,7 @@ class DeliverySection extends React.Component {
 }
 
 export default DeliverySection;
+
+const contentStyle: CSSProperties = {
+  padding: '4rem'
+}

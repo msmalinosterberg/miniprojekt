@@ -34,7 +34,7 @@ class CartItemsList extends Component<State> {
         this.deleteItemFromList(id as number);
     }
 
-    onChange(value: number) {
+    onChangeQuantity(value: number) {
         console.log('changed', value);
       }
 
@@ -48,13 +48,14 @@ class CartItemsList extends Component<State> {
                         renderItem={item => (
                         <List.Item
                             actions={[<a key="delete-item" 
-                            style={{color: 'red'}}
+                            style={deleteStyle}
                             onClick={() => this.handleDelete(item.id)}>delete</a>]}>
                             <List.Item.Meta                    
                                 avatar={<Avatar src={item.imageUrl} />}
                                 title={<a href="#">{item.title}</a>}
                                 description={[item.description.split('.')[0], 
-                                <InputNumber min={1} max={10} defaultValue={1} onChange={this.onChange} style={numberInputStyle} />]}
+                                <InputNumber min={1} max={10} defaultValue={1} onChange={this.onChangeQuantity} style={numberInputStyle} />,
+                                item.price + ' kr']}
                             />
                         </List.Item>
                         )}
@@ -79,7 +80,12 @@ const columnStyle: CSSProperties = {
 }
 
 const numberInputStyle: CSSProperties = {
-    marginLeft: '15rem'
+    margin: '0 8rem'
+}
+
+const deleteStyle: CSSProperties = {
+    color: 'red',
+    marginTop: '1rem'
 }
 
 export default CartItemsList;
