@@ -3,11 +3,19 @@ import { Card, Col, List, Row } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { productList } from '../ProductItemsList';
 import { Link } from 'react-router-dom';
+import { CartItem } from '../Cart/CartItemsList';
 
 const { Meta } = Card;
-
 class ProductCard extends Component {
     
+    saveToCart(record: CartItem) {
+        console.log('hej')
+        let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
+        cartItems.push(record);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+    
+
     render() {
         return( 
 
@@ -33,7 +41,9 @@ class ProductCard extends Component {
                                     hoverable
                                     cover={<img src={item.imageUrl} />}
                                     actions={[
-                                        <ShoppingCartOutlined style={{ fontSize: '2rem' }}/>
+                                        <ShoppingCartOutlined 
+                                            style={{ fontSize: '2rem' }}
+                                            onClick={() => this.saveToCart(item)}/>
                                     ]}
                                 >
                                     <Meta title={item.title} description={item.price + ' kr'} />

@@ -22,7 +22,6 @@ function Footer2() {
 
 
 const logoStyle2: CSSProperties = {
-     
     display: 'flex', 
     alignItems: 'center', 
     justifyContent:'center',
