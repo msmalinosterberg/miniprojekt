@@ -2,9 +2,7 @@ import { Radio } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import React, { CSSProperties } from 'react';
 
-interface State {
-        value?: any;
-  }
+
  
 const RadioGroup = Radio.Group;
 
