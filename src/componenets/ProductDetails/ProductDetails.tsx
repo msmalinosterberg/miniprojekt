@@ -2,14 +2,11 @@ import { Layout, Row, Col } from 'antd';
 import { Component, CSSProperties } from 'react'; 
 import { Image } from 'antd';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { productList} from "../ProductItemsList";
-import CartItemsList, { CartItem } from '../Cart/CartItemsList';
-
-
+import { Product, productList} from "../ProductItemsList";
+import { CartItem } from '../Cart/CartItemsList';
 interface State {
     product: any
 }
-
 interface Props extends RouteComponentProps {
     id: number
 }
@@ -19,15 +16,24 @@ class ProductDetails extends Component <Props, State> {
         product: {}
     }
     
-    saveToCart(record: CartItem) {
-        console.log('hej')
+    saveToCart(product: Product, quantity: number | undefined) {
         let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
-        cartItems.push(record);
+        const existingCartItem = cartItems.filter((item: CartItem) => item.product.id === product.id);
+        if (existingCartItem.length === 0) {
+            const cartItem = {product: product, quantity: 1};
+            cartItems.push(cartItem);
+        } else if (quantity) {
+            const cartItem = {product: product, quantity: quantity};
+            cartItems = cartItems.filter((item: CartItem) => item.product.id !== product.id);
+            cartItems.push(cartItem);
+        } else {
+            const cartItem = {product: product, quantity: existingCartItem[0].quantity + 1};
+            cartItems = cartItems.filter((item: CartItem) => item.product.id !== product.id);
+            cartItems.push(cartItem);
+        }
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        return cartItems;
     }
-    
-
-
 
     componentDidMount() {   
         const productId = (this.props.match.params as any).id
@@ -35,36 +41,29 @@ class ProductDetails extends Component <Props, State> {
         this.setState({product: product})
     }
 
-    
-
     render () {
-
         return (
             <Layout style={detailContainer}>
                 <Row justify="center" align="top" style={{marginTop:'0.5rem'}}>
-                <div style = {divStyle}>
-                    <Col lg={{span: 12}}>
-                    <Image
-                        width={450} 
-                        style={imageStyle}
-                        src={this.state.product.imageUrl}/>          
-                     </Col>
-                </div>
+                    <div style = {divStyle}>
+                        <Col lg={{span: 12}}>
+                        <Image
+                            width={450} 
+                            style={imageStyle}
+                            src={this.state.product.imageUrl}/>          
+                        </Col>
+                    </div>
 
                     <Col lg={{span: 12}}>
                         <h2 style={titleStyle}>{this.state.product.title}</h2>
                         <h3 style={descriptionStyle}>{this.state.product.description} </h3>
                         <h2 style={price}>{this.state.product.price + ' kr'} </h2>
-                        <button style={{marginTop: '1rem'}}onClick={() => this.saveToCart(this.state.product) }>Add to cart </button>
+                        <button style={{marginTop: '1rem'}}onClick={() => this.saveToCart(this.state.product, undefined) }>Add to cart </button>
                     </Col>
                 </Row>
-        </Layout>
-    
-    
+            </Layout> 
         ); 
-
-    }
-    
+    }    
 }
 
 export default withRouter(ProductDetails as any); 

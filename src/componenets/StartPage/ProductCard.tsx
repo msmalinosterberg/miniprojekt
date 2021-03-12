@@ -1,25 +1,33 @@
 import React, { Component, CSSProperties } from 'react';
 import { Card, Col, List, Row } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import { productList } from '../ProductItemsList';
+import { Product, productList } from '../ProductItemsList';
 import { Link } from 'react-router-dom';
 import { CartItem } from '../Cart/CartItemsList';
 
 const { Meta } = Card;
 class ProductCard extends Component {
     
-    saveToCart(record: CartItem) {
-        console.log('hej')
+    saveToCart(product: Product, quantity: number | undefined) {
         let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
-        cartItems.push(record);
+        const existingCartItem = cartItems.filter((item: CartItem) => item.product.id === product.id);
+        if (existingCartItem.length === 0) {
+            const cartItem = {product: product, quantity: 1};
+            cartItems.push(cartItem);
+        } else if (quantity) {
+            const cartItem = {product: product, quantity: quantity};
+            cartItems = cartItems.filter((item: CartItem) => item.product.id !== product.id);
+            cartItems.push(cartItem);
+        } else {
+            const cartItem = {product: product, quantity: existingCartItem[0].quantity + 1};
+            cartItems = cartItems.filter((item: CartItem) => item.product.id !== product.id);
+            cartItems.push(cartItem);
+        }
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
     
-
     render() {
-        return( 
-
-            
+        return(    
             <Row style={cardContainer}>
                 <Col span={24} style={columnStyle}>
                     <List
@@ -43,7 +51,7 @@ class ProductCard extends Component {
                                     actions={[
                                         <ShoppingCartOutlined 
                                             style={{ fontSize: '2rem' }}
-                                            onClick={() => this.saveToCart(item)}/>
+                                            onClick={() => this.saveToCart(item, undefined)} />
                                     ]}
                                 >
                                     <Meta title={item.title} description={item.price + ' kr'} />
