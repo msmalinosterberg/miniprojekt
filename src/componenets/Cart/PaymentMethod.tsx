@@ -22,23 +22,23 @@ class PaymentMethod extends React.Component {
     });
   };
 
-  creditCard = (e: any) => {
+  creditCard (e: any) {
     if (e.target.value === 1) {
         console.log('Kort')
-    };
-}
-  swish = (e: any) => {
+        return <DeliverySection/>
+    }
+  }   
+swish (e: any) {
     if (e.target.value === 2) {
         console.log('Swish')
-        return(
-            <h1>Hej</h1>
-        ) 
-    };
+        return <h1>Hej</h1>
+        
+    }
 }
-  klarna = (e: any) => {
+klarna (e: any) {
     if (e.target.value === 3) {
         console.log('Klarna')
-        return <DeliverySection />
+        return <CarouselStart />
     }
 }
     
