@@ -1,14 +1,11 @@
-import { Badge, Col, Row } from "antd";
+import { Badge } from "antd";
 import React, { Component } from "react";
 import { CSSProperties } from "react";
-
-
 
 interface State {
     quantity: number;
 }
-
-class AddToBadge extends Component <State> { 
+class AddToBadge extends Component  { 
 
     state: State = {
        quantity: 0
@@ -16,31 +13,28 @@ class AddToBadge extends Component <State> {
 
     getBadgeQuantity() {
         let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
-        let quantity = (cartItems
-            .map((item: any) => item.quantity)
-            .reduce((a: number, b: number) => a + b, 0)
+        let quantity = (cartItems.map((item: any) => item.quantity).reduce((a: number, b: number) => a + b, 0)
             ); 
             return quantity;
-
     } 
         
     render() { 
         return (
-            <Row>
-                <Col span={24}>
-                <Badge count={0} showZero style={badgeStyle}>
+                  <div>
+                <Badge count={this.getBadgeQuantity()}  style={badgeStyle}>
                     <a href="#" className="head-example" />
                  </Badge>
-                </Col>
-            </Row>
-           
+                 </div> 
         )
     }              
 }
 
 const badgeStyle: CSSProperties = {
-    background: 'red',
-
+    background: 'black',
+    color: 'white', 
+    fontSize: '0.8rem',
+    marginRight:'3rem',
+    marginTop: '-1rem'
 }
 
 export default AddToBadge;
