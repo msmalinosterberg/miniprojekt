@@ -30,8 +30,9 @@ class AddToBadge extends Component  {
 }
 
 const badgeStyle: CSSProperties = {
-    background: 'black',
+    background: 'red',
     color: 'white', 
+    borderColor: 'red',
     fontSize: '0.8rem',
     marginRight:'3rem',
     marginTop: '-1rem'
