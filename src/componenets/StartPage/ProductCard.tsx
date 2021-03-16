@@ -1,25 +1,16 @@
-import React, { Component, CSSProperties } from 'react';
+import { Component, CSSProperties } from 'react';
 import { Card, Col, List, Row } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { productList } from '../ProductItemsList';
 import { Link } from 'react-router-dom';
-import { CartItem } from '../Cart/CartItemsList';
+import saveToCart from '../CartUtils';
 
 const { Meta } = Card;
+
 class ProductCard extends Component {
-    
-    saveToCart(record: CartItem) {
-        console.log('hej')
-        let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
-        cartItems.push(record);
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    }
-    
-
+        
     render() {
-        return( 
-
-            
+        return(    
             <Row style={cardContainer}>
                 <Col span={24} style={columnStyle}>
                     <List
@@ -36,26 +27,23 @@ class ProductCard extends Component {
                         renderItem={item => (
                             <List.Item>
                                 <Link to={'/product/' + item.id}>
-
-                                <Card
-                                    hoverable
-                                    cover={<img src={item.imageUrl} />}
-                                    actions={[
-                                        <ShoppingCartOutlined 
-                                            style={{ fontSize: '2rem' }}
-                                            onClick={() => this.saveToCart(item)}/>
-                                    ]}
-                                >
-                                    <Meta title={item.title} description={item.price + ' kr'} />
-                                </Card>
+                                    <Card
+                                        hoverable
+                                        cover={<img src={item.imageUrl} />}
+                                        actions={[
+                                            <ShoppingCartOutlined 
+                                                style={{ fontSize: '2rem' }}
+                                                onClick={(e) => { e.preventDefault(); saveToCart(item, undefined)}} />
+                                        ]}
+                                    >
+                                        <Meta title={item.title} description={item.price + ' kr'} />
+                                    </Card>
                                 </Link>
                             </List.Item>
                         )}    
                     />
                 </Col>
             </Row>
-      
-       
         )
     }
 }

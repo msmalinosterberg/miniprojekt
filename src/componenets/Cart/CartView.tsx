@@ -4,6 +4,7 @@ import CartItemsList from './CartItemsList';
 import DeliverySelection from './DeliverySelection';
 import InformationForm from './InformationForm';
 import PaymentMethod from './PaymentMethod';
+import TotalPrice from './TotalPrice';
 
 interface State {
     current?: number;
@@ -33,6 +34,8 @@ class CartView extends Component<State> {
                         <Step title="Step 1" description={<InformationForm />} /> 
                         <Step title="Step 2" description={<DeliverySelection />} />
                         <Step title="Step 3" description={<PaymentMethod />} />
+                        <Step title="Step 3" description={<TotalPrice />} />
+                        <Step title="Step 4" description={'Payment method'} />
                     </Steps>
                 </Col>
             </Row>

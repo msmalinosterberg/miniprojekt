@@ -2,7 +2,7 @@ import { Form, Input, Button, Row, Col } from 'antd';
 import { Component, CSSProperties } from 'react';
 
 const layout = {
-  labelCol: { span: 2 },
+  labelCol: { span: 3 },
   wrapperCol: { span: 16 },
 };
 
@@ -45,7 +45,7 @@ class InformationForm extends Component {
                     rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name={['user', 'zipcode']} label="Zip-code" 
+                <Form.Item name={['user', 'zipcode']} label="Zipcode" 
                     rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
@@ -54,7 +54,7 @@ class InformationForm extends Component {
                     <Input />
                 </Form.Item>
                 
-                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 2}}>
+                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 3 }}>
                     <Button type="primary" htmlType="submit">
                     Submit
                     </Button>
