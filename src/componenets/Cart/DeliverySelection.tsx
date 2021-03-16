@@ -2,13 +2,10 @@ import { Radio } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import React, { CSSProperties } from 'react';
 
-
- 
 const RadioGroup = Radio.Group;
-
 class DeliverySection extends React.Component {
   state = {
-    value: 1,
+    value: 145,
   };
   
   onChange = (e: any) => {
@@ -21,16 +18,16 @@ class DeliverySection extends React.Component {
   render() {
     const { value } = this.state;
     return (
-        <Content style={contentStyle}>
-            <h2>
-                Delivery
-            </h2>
-            <RadioGroup onChange={this.onChange} value={value}>
-                <Radio value={1}>Postnord, <strong>24h - 145 kr</strong></Radio>
-                <Radio value={2}>Bring, <strong>48h - 129 kr</strong></Radio>
-                <Radio value={3}>DB Schenker, <strong>72h - 89 kr</strong></Radio>
-            </RadioGroup>
-        </Content>
+      <Content style={contentStyle}>
+          <h2>
+              Delivery
+          </h2>
+          <RadioGroup onChange={this.onChange} value={value}>
+              <Radio value={145}>Postnord, <strong>24h - 145 kr</strong></Radio>
+              <Radio value={129}>Bring, <strong>48h - 129 kr</strong></Radio>
+              <Radio value={89}>DB Schenker, <strong>72h - 89 kr</strong></Radio>
+          </RadioGroup>
+      </Content>
     );
   }
 }
