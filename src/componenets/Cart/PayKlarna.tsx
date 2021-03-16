@@ -1,7 +1,7 @@
 import React, { Component, CSSProperties } from 'react'
 import { Form, Input, Button, Row, Col } from 'antd';
 const layout = {
-    labelCol: { span: 2 },
+    labelCol: { span: 4 },
     wrapperCol: { span: 16 },
   };
   
@@ -30,7 +30,7 @@ class PayKlarna extends Component {
             <Col span={24} style={columnStyle}>
             <h2>Billing information</h2>
                 <Form {...layout} name="nest-messages" onFinish={this.onFinish} validateMessages={validateMessages}>
-                <Form.Item name={['user', 'ssn']} label="Social security number" 
+                <Form.Item name={['user', 'ssn']} label="SSN" 
                     rules={[{ required: true }]}>
                     <Input placeholder="YYMMDDXXXX"/>
                 </Form.Item>

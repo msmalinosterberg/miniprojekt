@@ -33,9 +33,8 @@ class CartView extends Component<State> {
                     <Steps current={current} onChange={() => this.onChange} direction="vertical">
                         <Step title="Step 1" description={<InformationForm />} /> 
                         <Step title="Step 2" description={<DeliverySelection />} />
-                        <Step title="Step 3" description={<PaymentMethod />} />
                         <Step title="Step 3" description={<TotalPrice />} />
-                        <Step title="Step 4" description={'Payment method'} />
+                        <Step title="Step 4" description={<PaymentMethod />} />
                     </Steps>
                 </Col>
             </Row>

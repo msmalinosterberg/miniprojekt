@@ -1,7 +1,7 @@
 import React, { Component, CSSProperties } from 'react'
 import { Form, Input, Button, Row, Col } from 'antd';
 const layout = {
-    labelCol: { span: 2 },
+    labelCol: { span: 4 },
     wrapperCol: { span: 16 },
   };
   

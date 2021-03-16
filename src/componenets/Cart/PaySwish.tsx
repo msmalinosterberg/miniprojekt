@@ -1,7 +1,7 @@
 import React, { Component, CSSProperties } from 'react'
 import { Form, Input, Button, Row, Col } from 'antd';
 const layout = {
-    labelCol: { span: 2 },
+    labelCol: { span: 4 },
     wrapperCol: { span: 16 },
   };
   
@@ -50,13 +50,13 @@ class PaySwish extends Component {
 export default PaySwish;
 
 const formContainerStyle: CSSProperties = {
-    display: 'flex',
-    justifyContent: 'space-around',
-    alignItems: 'space-around',
-    width: '80%',
-    margin: 'auto'
+  display: 'flex',
+  justifyContent: 'space-around',
+  alignItems: 'space-around',
+  width: '80%',
+  margin: 'auto'
 }
 const columnStyle: CSSProperties = {
-    marginTop: '3rem',
-    marginBottom: '3rem',
+  marginTop: '3rem',
+  marginBottom: '3rem',
 }
