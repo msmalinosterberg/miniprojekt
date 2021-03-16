@@ -4,6 +4,7 @@ import { Image } from 'antd';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Product, productList} from "../ProductItemsList";
 import { CartItem } from '../Cart/CartItemsList';
+import saveToCart from '../CartUtils';
 interface State {
     product: any
 }
@@ -16,24 +17,6 @@ class ProductDetails extends Component <Props, State> {
         product: {}
     }
     
-    saveToCart(product: Product, quantity: number | undefined) {
-        let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
-        const existingCartItem = cartItems.filter((item: CartItem) => item.product.id === product.id);
-        if (existingCartItem.length === 0) {
-            const cartItem = {product: product, quantity: 1};
-            cartItems.push(cartItem);
-        } else if (quantity) {
-            const cartItem = {product: product, quantity: quantity};
-            cartItems = cartItems.filter((item: CartItem) => item.product.id !== product.id);
-            cartItems.push(cartItem);
-        } else {
-            const cartItem = {product: product, quantity: existingCartItem[0].quantity + 1};
-            cartItems = cartItems.filter((item: CartItem) => item.product.id !== product.id);
-            cartItems.push(cartItem);
-        }
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        return cartItems;
-    }
 
     componentDidMount() {   
         const productId = (this.props.match.params as any).id
@@ -58,7 +41,7 @@ class ProductDetails extends Component <Props, State> {
                         <h2 style={titleStyle}>{this.state.product.title}</h2>
                         <h3 style={descriptionStyle}>{this.state.product.description} </h3>
                         <h2 style={price}>{this.state.product.price + ' kr'} </h2>
-                        <button style={{marginTop: '1rem'}}onClick={() => this.saveToCart(this.state.product, undefined) }>Add to cart </button>
+                        <button style={{marginTop: '1rem'}}onClick={() => saveToCart(this.state.product, undefined) }>Add to cart </button>
                     </Col>
                 </Row>
             </Layout> 

@@ -1,5 +1,6 @@
 import { Avatar, Col, List, Row, InputNumber } from 'antd';
 import { Component, CSSProperties } from 'react';
+import saveToCart from '../CartUtils';
 import { Product } from '../ProductItemsList';
 
 export interface CartItem {
@@ -33,29 +34,11 @@ class CartItemsList extends Component<State> {
     }
 
     onChangeQuantity(quantity: number, product: Product) {
-        const cartItems = this.saveToCart(product, quantity);
+        const cartItems = saveToCart(product, quantity);
         this.setState({ cartItems: cartItems });
     }
 
-    saveToCart(product: Product, quantity: number | undefined) {
-        let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
-        const existingCartItem = cartItems.filter((item: CartItem) => item.product.id === product.id);
-        if (existingCartItem.length === 0) {
-            const cartItem = {product: product, quantity: 1};
-            cartItems.push(cartItem);
-        } else if (quantity) {
-            const cartItem = {product: product, quantity: quantity};
-            cartItems = cartItems.filter((item: CartItem) => item.product.id !== product.id);
-            cartItems.push(cartItem);
-        } else {
-            const cartItem = {product: product, quantity: existingCartItem[0].quantity + 1};
-            cartItems = cartItems.filter((item: CartItem) => item.product.id !== product.id);
-            cartItems.push(cartItem);
-        }
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        return cartItems;
-    }
-
+    
     render() {
         return(
             <Row style={listContainerStyle}>
