@@ -13,7 +13,11 @@ class TotalPrice extends Component {
 
     getTotalPrice() {
         let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
-        let totalPrice = cartItems.map((item: any) => item.product.price * item.quantity).reduce((a: number, b: number) => a + b, 0);
+        let totalPrice = (
+            cartItems
+            .map((item: any) => item.product.price * item.quantity)
+            .reduce((a: number, b: number) => a + b, 0)
+        );
         return totalPrice;
     }
 
