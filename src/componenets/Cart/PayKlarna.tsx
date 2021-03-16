@@ -35,7 +35,7 @@ class PayKlarna extends Component {
                     <Input placeholder="YYMMDDXXXX"/>
                 </Form.Item>
                 <Form.Item name={['user', 'name']} label="Name" 
-                    rules={[{min: 10, max: 10, required: true }]}>
+                    rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
                 <Form.Item name={['user', 'email']} label="Email" 

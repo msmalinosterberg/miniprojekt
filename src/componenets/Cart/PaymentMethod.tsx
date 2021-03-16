@@ -30,7 +30,7 @@ class PaymentMethod extends React.Component {
 
   render() {
     const { value } = this.state;
-      if (value === 3) {
+      if (value === 1) {
           console.log('mm')
           return    (
             <div>
@@ -44,12 +44,11 @@ class PaymentMethod extends React.Component {
                       <Radio onChange={this.klarna} value={3}>Klarna</Radio>
                   </RadioGroup>
                 </Content>
-                <PayKlarna/>
+                <PayCard/>
             </div>
           )     
       }
       if (value === 2) {
-        console.log('mm')
         return    (
           <div>
               <Content>
@@ -66,8 +65,7 @@ class PaymentMethod extends React.Component {
           </div>
         )     
     }
-    if (value === 1) {
-      console.log('mm')
+    if (value === 3) {
       return    (
         <div>
             <Content>
@@ -80,23 +78,10 @@ class PaymentMethod extends React.Component {
                   <Radio onChange={this.klarna} value={3}>Klarna</Radio>
               </RadioGroup>
             </Content>
-            <PayCard/>
+            <PayKlarna/>
         </div>
       )     
-  }
-    return (
-        <Content>
-            <h2>
-                Payment
-            </h2>
-            <RadioGroup onChange={this.onChange} value={value}>
-                <Radio onChange={this.creditCard} value={1}>Credit card</Radio>
-                <Radio onChange={this.swish} value={2}>Swish</Radio>
-                <Radio onChange={this.klarna} value={3}>Klarna</Radio>
-            </RadioGroup>
-        </Content>
-    );
-  
+  }  
   }
 }
  
