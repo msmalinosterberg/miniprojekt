@@ -37,7 +37,6 @@ class CartItemsList extends Component<State> {
         const cartItems = saveToCart(product, quantity);
         this.setState({ cartItems: cartItems });
     }
-
     
     render() {
         return(

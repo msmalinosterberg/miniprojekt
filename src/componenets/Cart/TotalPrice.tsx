@@ -3,6 +3,11 @@ import { Component, CSSProperties } from 'react';
 
 class TotalPrice extends Component {
 
+    getTotalPrice() {
+        let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
+
+    }
+
     render() {
         return(
             <Row style={totalPriceContainer}>

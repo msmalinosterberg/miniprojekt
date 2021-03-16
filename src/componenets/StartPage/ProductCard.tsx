@@ -1,12 +1,12 @@
-import React, { Component, CSSProperties } from 'react';
+import { Component, CSSProperties } from 'react';
 import { Card, Col, List, Row } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import { Product, productList } from '../ProductItemsList';
+import { productList } from '../ProductItemsList';
 import { Link } from 'react-router-dom';
-import { CartItem } from '../Cart/CartItemsList';
 import saveToCart from '../CartUtils';
 
 const { Meta } = Card;
+
 class ProductCard extends Component {
         
     render() {
@@ -27,18 +27,17 @@ class ProductCard extends Component {
                         renderItem={item => (
                             <List.Item>
                                 <Link to={'/product/' + item.id}>
-
-                                <Card
-                                    hoverable
-                                    cover={<img src={item.imageUrl} />}
-                                    actions={[
-                                        <ShoppingCartOutlined 
-                                            style={{ fontSize: '2rem' }}
-                                            onClick={() => saveToCart(item, undefined)} />
-                                    ]}
-                                >
-                                    <Meta title={item.title} description={item.price + ' kr'} />
-                                </Card>
+                                    <Card
+                                        hoverable
+                                        cover={<img src={item.imageUrl} />}
+                                        actions={[
+                                            <ShoppingCartOutlined 
+                                                style={{ fontSize: '2rem' }}
+                                                onClick={(e) => { e.preventDefault(); saveToCart(item, undefined)}} />
+                                        ]}
+                                    >
+                                        <Meta title={item.title} description={item.price + ' kr'} />
+                                    </Card>
                                 </Link>
                             </List.Item>
                         )}    
