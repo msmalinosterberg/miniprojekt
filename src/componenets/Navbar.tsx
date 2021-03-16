@@ -4,7 +4,6 @@ import React, { CSSProperties } from "react";
 import logo from '../assets/logga.png'; 
 import { ShoppingCartOutlined} from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import BadgeIcon from "./Badge";
 
 function Navbar() {
   return (
@@ -19,7 +18,7 @@ function Navbar() {
             <Menu.Item key="1"><Link to='/cart' style={{ color: 'white' }} >
            
             <ShoppingCartOutlined style={iconStyle}/></Link></Menu.Item>
-            <BadgeIcon /> 
+           
             <Menu.Item key="2"><Link to='/admin'><p style={{ color: 'white', marginTop: '2rem' }}>Admin</p></Link></Menu.Item>
           </Menu>
         </Col>
