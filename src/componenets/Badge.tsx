@@ -1,19 +1,23 @@
 
 import { Badge } from 'antd';
-import { CSSProperties } from 'react';
-
-function BadgeIcon () {
-    return (
-<div>
-    <Badge style={badgeStyle}
-        count={1}>
-      <a href="#" />
-    </Badge>
-  </div>
-    )
-}
+import { Component, CSSProperties } from 'react';
 
 
+class BadgeIcon extends Component {
+    
+    
+    render() {
+        return (
+            <div>
+                <Badge style={badgeStyle}
+                    count={1}>
+                </Badge>
+              </div>
+                )
+            }
+    }
+    
+    
 const badgeStyle: CSSProperties = {
     background: 'black',
     border: 'white',
