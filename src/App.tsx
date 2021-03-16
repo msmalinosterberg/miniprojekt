@@ -6,6 +6,7 @@ import Footer2 from './componenets/Footer';
 import Navbar from './componenets/Navbar';
 import ProductDetails from './componenets/ProductDetails/ProductDetails';
 import StartPageView from './componenets/StartPage/StartPageView';
+import CartProvider from './contexts/CartContext';
 
 function App() {
   return (
@@ -19,7 +20,9 @@ function App() {
         <StartPageView />
       </Route>
         <Route path='/cart'>
-          <CartView />
+          <CartProvider>
+            <CartView />
+          </CartProvider>
         </Route>
         <Footer2 /> 
       </Router>

@@ -1,35 +1,53 @@
 import { Component, createContext } from 'react';
 import { CartItem } from '../componenets/Cart/CartItemsList';
+import { DeliveryMethod } from '../componenets/Cart/DeliverySelection';
+import { Product } from '../componenets/ProductItemsList';
+
 
 interface State {
-    cart: CartItem[]
+    cart: CartItem[];
+    deliveryMethod: DeliveryMethod | undefined;
 }
 
 interface ContextValue extends State {
-    addToCart: (product: string) => void;
+    saveToCart: (product: Product) => void;
+    setDeliveryMethod: (method: DeliveryMethod) => void;
 }
 
 export const CartContext = createContext<ContextValue>({
     cart: [],
-    addToCart: () => {}
+    deliveryMethod: undefined,
+    saveToCart: () => {},
+    setDeliveryMethod: () => {},
 });
 
 class CartProvider extends Component<{}, State> {
     state: State = {
-        cart: []
+        cart: [],
+        deliveryMethod: undefined,
     }
 
-    addProductToCart = (product: CartItem) => {
-        const updatedCart = [...this.state.cart, product];
-        this.setState({ cart: updatedCart });
+    addProductToCart = (product: Product) => {
+        //const updatedCart = [...this.state.cart, product];
+        //this.setState({ cart: updatedCart });
+    }
+
+    setDeliveryMethod = (method: DeliveryMethod) => {
+        this.setState({ deliveryMethod: method });
+    } 
+
+    getTotalPrice = () => {
+        
     }
 
     render() {
-        console.log('CONTEXT RENDER');
+        console.log(this.state);
         return (
             <CartContext.Provider value={{
                 cart: this.state.cart,
-                addToCart: this.addProductToCart
+                deliveryMethod: this.state.deliveryMethod,
+                saveToCart: this.addProductToCart,
+                setDeliveryMethod: this.setDeliveryMethod
             }}>
                 {this.props.children}
             </CartContext.Provider>
