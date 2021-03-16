@@ -1,12 +1,12 @@
 import { Avatar, Col, List, Row, InputNumber } from 'antd';
 import { Component, CSSProperties } from 'react';
+import saveToCart from '../CartUtils';
+import { Product } from '../ProductItemsList';
+import { Link } from 'react-router-dom';
 
 export interface CartItem {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    imageUrl: string;
+    product: Product;
+    quantity: number;
 }
 
 interface State {
@@ -24,20 +24,21 @@ class CartItemsList extends Component<State> {
     
     deleteItemFromList(id: number) {
         let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
-        const newCartItemsList = cartItems.filter((item: CartItem) => item.id !== id);
+        const newCartItemsList = cartItems.filter((item: CartItem) => item.product.id !== id);
         localStorage.setItem('cartItems', JSON.stringify(newCartItemsList));
     }
 
     handleDelete = (id: number) => {
         const updatedCartItems = [...this.state.cartItems || []];
-        this.setState({ cartList: updatedCartItems.filter(item => item.id !== id)});
+        this.setState({ cartItems: updatedCartItems.filter(item => item.product.id !== id) });
         this.deleteItemFromList(id as number);
     }
 
-    onChange(value: number) {
-        console.log('changed', value);
-      }
-
+    onChangeQuantity(quantity: number, product: Product) {
+        const cartItems = saveToCart(product, quantity);
+        this.setState({ cartItems: cartItems });
+    }
+    
     render() {
         return(
             <Row style={listContainerStyle}>
@@ -48,13 +49,14 @@ class CartItemsList extends Component<State> {
                         renderItem={item => (
                         <List.Item
                             actions={[<a key="delete-item" 
-                            style={{color: 'red'}}
-                            onClick={() => this.handleDelete(item.id)}>delete</a>]}>
+                            style={deleteStyle}
+                            onClick={() => this.handleDelete(item.product.id)}>delete</a>]}>
                             <List.Item.Meta                    
-                                avatar={<Avatar src={item.imageUrl} />}
-                                title={<a href="#">{item.title}</a>}
-                                description={[item.description.split('.')[0], 
-                                <InputNumber min={1} max={10} defaultValue={1} onChange={this.onChange} style={numberInputStyle} />]}
+                                avatar={<Avatar src={item.product.imageUrl} />}
+                                title={<Link to={'/product/' + item.product.id}>{item.product.title}</Link>}
+                                description={[item.product.description.split('.')[0], 
+                                <InputNumber min={1} max={10} defaultValue={item.quantity} onChange={(value) => this.onChangeQuantity(value, item.product)} style={numberInputStyle} />,
+                                item.product.price * item.quantity + ' kr']}
                             />
                         </List.Item>
                         )}
@@ -79,7 +81,12 @@ const columnStyle: CSSProperties = {
 }
 
 const numberInputStyle: CSSProperties = {
-    marginLeft: '15rem'
+    margin: '0 8rem'
+}
+
+const deleteStyle: CSSProperties = {
+    color: 'red',
+    marginTop: '1rem'
 }
 
 export default CartItemsList;
