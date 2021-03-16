@@ -10,8 +10,7 @@ export default function saveToCart(product: Product, quantity: number | undefine
         cartItems.push(cartItem);
     } else if (quantity) {
         const cartItem = {product: product, quantity: quantity};
-        cartItems = cartItems.filter((item: CartItem) => item.product.id !== product.id);
-        cartItems.push(cartItem);
+        cartItems = cartItems.map((item: CartItem) => item.product.id === product.id ? cartItem : item);
     } else {
         const cartItem = {product: product, quantity: existingCartItem[0].quantity + 1};
         cartItems = cartItems.filter((item: CartItem) => item.product.id !== product.id);
