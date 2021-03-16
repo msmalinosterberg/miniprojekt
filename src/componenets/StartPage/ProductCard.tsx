@@ -44,8 +44,6 @@ class ProductCard extends Component {
                     />
                 </Col>
             </Row>
-      
-       
         )
     }
 }

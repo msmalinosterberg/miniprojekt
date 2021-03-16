@@ -2,6 +2,7 @@ import { Avatar, Col, List, Row, InputNumber } from 'antd';
 import { Component, CSSProperties } from 'react';
 import saveToCart from '../CartUtils';
 import { Product } from '../ProductItemsList';
+import { Link } from 'react-router-dom';
 
 export interface CartItem {
     product: Product;
@@ -52,7 +53,7 @@ class CartItemsList extends Component<State> {
                             onClick={() => this.handleDelete(item.product.id)}>delete</a>]}>
                             <List.Item.Meta                    
                                 avatar={<Avatar src={item.product.imageUrl} />}
-                                title={<a href="#">{item.product.title}</a>}
+                                title={<Link to={'/product/' + item.product.id}>{item.product.title}</Link>}
                                 description={[item.product.description.split('.')[0], 
                                 <InputNumber min={1} max={10} defaultValue={item.quantity} onChange={(value) => this.onChangeQuantity(value, item.product)} style={numberInputStyle} />,
                                 item.product.price * item.quantity + ' kr']}
