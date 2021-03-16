@@ -3,21 +3,20 @@ import { CartItem } from '../componenets/Cart/CartItemsList';
 import { DeliveryMethod } from '../componenets/Cart/DeliverySelection';
 import { Product } from '../componenets/ProductItemsList';
 
-
 interface State {
     cart: CartItem[];
     deliveryMethod: DeliveryMethod | undefined;
 }
 
 interface ContextValue extends State {
-    saveToCart: (product: Product) => void;
+    addProductToCart: (product: Product, quantity: number | undefined) => void;
     setDeliveryMethod: (method: DeliveryMethod) => void;
 }
 
 export const CartContext = createContext<ContextValue>({
     cart: [],
     deliveryMethod: undefined,
-    saveToCart: () => {},
+    addProductToCart: () => {},
     setDeliveryMethod: () => {},
 });
 
@@ -27,9 +26,27 @@ class CartProvider extends Component<{}, State> {
         deliveryMethod: undefined,
     }
 
-    addProductToCart = (product: Product) => {
-        //const updatedCart = [...this.state.cart, product];
-        //this.setState({ cart: updatedCart });
+    componentDidMount() {
+        this.setState({ cart: JSON.parse(localStorage.getItem('cartItems') as string) || []});
+    }
+
+    addProductToCart = (product: Product, quantity: number | undefined) => {
+        let cartItems = this.state.cart;
+        const existingCartItem = cartItems.filter((item: CartItem) => item.product.id === product.id);
+        if (existingCartItem.length === 0) {
+            const cartItem = {product: product, quantity: 1};
+            cartItems.push(cartItem);
+        } else if (quantity) {
+            const cartItem = {product: product, quantity: quantity};
+            cartItems = cartItems.map((item: CartItem) => item.product.id === product.id ? cartItem : item);
+        } else {
+            const cartItem = {product: product, quantity: existingCartItem[0].quantity + 1};
+            cartItems = cartItems.filter((item: CartItem) => item.product.id !== product.id);
+            cartItems.push(cartItem);
+        }
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        this.setState({ cart: cartItems });
+        return cartItems;
     }
 
     setDeliveryMethod = (method: DeliveryMethod) => {
@@ -37,7 +54,7 @@ class CartProvider extends Component<{}, State> {
     } 
 
     getTotalPrice = () => {
-        
+
     }
 
     render() {
@@ -46,7 +63,7 @@ class CartProvider extends Component<{}, State> {
             <CartContext.Provider value={{
                 cart: this.state.cart,
                 deliveryMethod: this.state.deliveryMethod,
-                saveToCart: this.addProductToCart,
+                addProductToCart: this.addProductToCart,
                 setDeliveryMethod: this.setDeliveryMethod
             }}>
                 {this.props.children}

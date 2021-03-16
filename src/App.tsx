@@ -11,21 +11,23 @@ import CartProvider from './contexts/CartContext';
 function App() {
   return (
     <>
+    <CartProvider>
       <Router>
       <Navbar /> 
       <Switch> 
         <Route path = '/product/:id' component={ProductDetails} />
       </Switch>
       <Route exact path='/'>
+        
         <StartPageView />
       </Route>
         <Route path='/cart'>
-          <CartProvider>
             <CartView />
-          </CartProvider>
+          
         </Route>
         <Footer2 /> 
       </Router>
+      </CartProvider>
       
     </>
   );
