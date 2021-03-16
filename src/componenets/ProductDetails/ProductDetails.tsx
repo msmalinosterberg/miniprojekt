@@ -1,4 +1,4 @@
-import { Layout, Row, Col } from 'antd';
+import { Layout, Row, Col, message } from 'antd';
 import { Component, CSSProperties } from 'react'; 
 import { Image } from 'antd';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
@@ -11,6 +11,9 @@ interface State {
 interface Props extends RouteComponentProps {
     id: number
 }
+const success = () => {
+    message.success('The product was added to the cart', 5);
+};
 class ProductDetails extends Component <Props, State> {
 
     state: State = {
@@ -41,7 +44,7 @@ class ProductDetails extends Component <Props, State> {
                         <h2 style={titleStyle}>{this.state.product.title}</h2>
                         <h3 style={descriptionStyle}>{this.state.product.description} </h3>
                         <h2 style={price}>{this.state.product.price + ' kr'} </h2>
-                        <button style={{marginTop: '1rem'}}onClick={() => saveToCart(this.state.product, undefined) }>Add to cart </button>
+                        <button style={{marginTop: '1rem'}}onClick={(e) => { success(); saveToCart(this.state.product, undefined)}} >Add to cart </button>
                     </Col>
                 </Row>
             </Layout> 

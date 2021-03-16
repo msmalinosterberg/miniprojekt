@@ -1,11 +1,14 @@
 import { Component, CSSProperties } from 'react';
-import { Card, Col, List, Row } from 'antd';
+import { Card, Col, List, Row, message } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { productList } from '../ProductItemsList';
 import { Link } from 'react-router-dom';
 import saveToCart from '../CartUtils';
 
 const { Meta } = Card;
+const success = () => {
+    message.success('The product was added to the cart', 5);
+};
 
 class ProductCard extends Component {
         
@@ -33,7 +36,7 @@ class ProductCard extends Component {
                                         actions={[
                                             <ShoppingCartOutlined 
                                                 style={{ fontSize: '2rem' }}
-                                                onClick={(e) => { e.preventDefault(); saveToCart(item, undefined)}} />
+                                                onClick={(e) => { success(); e.preventDefault(); saveToCart(item, undefined)}} />
                                         ]}
                                     >
                                         <Meta title={item.title} description={item.price + ' kr'} />
