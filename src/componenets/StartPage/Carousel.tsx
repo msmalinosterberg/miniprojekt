@@ -15,8 +15,8 @@ class CarouselStart extends Component {
                 </div>
                 <div>
                     <img 
-                        src="https://github.com/msmalinosterberg/miniprojekt/blob/master/src/assets/carousel1.png?raw=true" 
-                        alt="girl with sunglasses" 
+                        src="https://github.com/msmalinosterberg/miniprojekt/blob/carousel-picture/src/assets/carousel2.png?raw=true" 
+                        alt="three girls smiling and holding flowers" 
                         style={caoruselPic} 
                     />
                 </div>

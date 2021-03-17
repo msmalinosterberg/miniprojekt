@@ -31,7 +31,7 @@ class PayKlarna extends Component {
             <h2>Billing information</h2>
                 <Form {...layout} name="nest-messages" onFinish={this.onFinish} validateMessages={validateMessages}>
                 <Form.Item name={['user', 'ssn']} label="SSN" 
-                    rules={[{ required: true }]}>
+                    rules={[{ min: 10, max: 10, required: true }]}>
                     <Input placeholder="YYMMDDXXXX"/>
                 </Form.Item>
                 <Form.Item name={['user', 'name']} label="Name" 
