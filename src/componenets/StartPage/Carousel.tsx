@@ -15,15 +15,22 @@ class CarouselStart extends Component {
                 </div>
                 <div>
                     <img 
-                        src="https://github.com/msmalinosterberg/miniprojekt/blob/master/src/assets/carousel1.png?raw=true" 
-                        alt="girl with sunglasses" 
+                        src="https://github.com/msmalinosterberg/miniprojekt/blob/carousel-picture/src/assets/carousel2.png?raw=true" 
+                        alt="three girls smiling and holding flowers" 
                         style={caoruselPic} 
                     />
                 </div>
                 <div>
                     <img 
-                        src="https://github.com/msmalinosterberg/miniprojekt/blob/master/src/assets/carousel1.png?raw=true" 
-                        alt="girl with sunglasses" 
+                        src="https://github.com/msmalinosterberg/miniprojekt/blob/carousel-picture/src/assets/carousel3.png?raw=true" 
+                        alt="girl with sunglasses sitting" 
+                        style={caoruselPic} 
+                    />
+                </div>
+                <div>
+                    <img 
+                        src="https://github.com/msmalinosterberg/miniprojekt/blob/carousel-picture/src/assets/carousel4.png?raw=true" 
+                        alt="girl with sunglasses in a car" 
                         style={caoruselPic} 
                     />
                 </div>
@@ -31,7 +38,6 @@ class CarouselStart extends Component {
         )
     }
 }
-
 export default CarouselStart;
 
 const caoruselPic: CSSProperties = {
