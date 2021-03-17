@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import CarouselStart from './Carousel';
 import ProductCard from './ProductCard';
 

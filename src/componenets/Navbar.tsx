@@ -1,6 +1,6 @@
 import { Row, Col, Menu, Badge } from "antd";
 import { Header} from "antd/lib/layout/layout";
-import React, { CSSProperties } from "react";
+import { CSSProperties } from "react";
 import logo from '../assets/logga.png'; 
 import { ShoppingCartOutlined} from '@ant-design/icons';
 import { Link } from 'react-router-dom';
