@@ -38,7 +38,6 @@ class CarouselStart extends Component {
         )
     }
 }
-
 export default CarouselStart;
 
 const caoruselPic: CSSProperties = {
