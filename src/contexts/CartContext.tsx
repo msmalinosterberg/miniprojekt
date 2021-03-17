@@ -1,6 +1,7 @@
 import { Component, createContext } from 'react';
 import { CartItem } from '../componenets/Cart/CartItemsList';
 import { DeliveryMethod } from '../componenets/Cart/DeliverySelection';
+import { deliveryMethods } from '../componenets/deliveryMethods';
 import { Product } from '../componenets/ProductItemsList';
 
 interface State {
@@ -23,25 +24,18 @@ export const CartContext = createContext<ContextValue>({
     setDeliveryMethod: () => {},
     deleteProductFromCart: () => {},
     getTotalPrice: () => {},
-    getBadgeQuantity: () => { return 0; },
+    getBadgeQuantity: () => 0,
 });
 
 class CartProvider extends Component<{}, State> {
     state: State = {
         cart: [],
-        deliveryMethod: undefined,
+        deliveryMethod: deliveryMethods[0],
     }
 
     componentDidMount() {
-        const method = {
-            id: 1,
-            company: 'PostNord',
-            time: 24,
-            price: 145,
-          }
         this.setState({ 
             cart: JSON.parse(localStorage.getItem('cartItems') as string) || [],
-            deliveryMethod: method
         });
     }
 

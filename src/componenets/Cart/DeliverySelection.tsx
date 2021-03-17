@@ -2,6 +2,7 @@ import { Radio } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import React, { ContextType, CSSProperties } from 'react';
 import { CartContext } from '../../contexts/CartContext';
+import { deliveryMethods } from '../deliveryMethods';
 
 export interface DeliveryMethod {
   id: number;
@@ -9,27 +10,6 @@ export interface DeliveryMethod {
   time: number;
   price: number;
 }
-
-export const deliveryMethods: DeliveryMethod[] = [
-  {
-    id: 1,
-    company: 'PostNord',
-    time: 24,
-    price: 145,
-  },
-  {
-    id: 2,
-    company: 'Bring',
-    time: 48,
-    price: 129,
-  },
-  {
-    id: 3,
-    company: 'DB Schenker',
-    time: 72,
-    price: 89,
-  }
-];
 
 const RadioGroup = Radio.Group;
 class DeliverySection extends React.Component {
