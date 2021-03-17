@@ -24,17 +24,12 @@ class CartItemsList extends Component<State> {
     componentDidMount() {
         this.setState({ cartItems: JSON.parse(localStorage.getItem('cartItems') as string) || []});
     }
-    
-    deleteItemFromList(id: number) {
-        let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
-        const newCartItemsList = cartItems.filter((item: CartItem) => item.product.id !== id);
-        localStorage.setItem('cartItems', JSON.stringify(newCartItemsList));
-    }
-
+      
     handleDelete = (id: number) => {
+        const { deleteProductFromCart } = this.context;
         const updatedCartItems = [...this.state.cartItems || []];
         this.setState({ cartItems: updatedCartItems.filter(item => item.product.id !== id) });
-        this.deleteItemFromList(id as number);
+        deleteProductFromCart(id as number);
     }
 
     onChangeQuantity(quantity: number, product: Product) {

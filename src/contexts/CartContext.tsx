@@ -11,6 +11,8 @@ interface State {
 interface ContextValue extends State {
     addProductToCart: (product: Product, quantity: number | undefined) => void;
     setDeliveryMethod: (method: DeliveryMethod) => void;
+    deleteProductFromCart: (id: number) => void;
+    getTotalPrice: () => void;
 }
 
 export const CartContext = createContext<ContextValue>({
@@ -18,6 +20,8 @@ export const CartContext = createContext<ContextValue>({
     deliveryMethod: undefined,
     addProductToCart: () => {},
     setDeliveryMethod: () => {},
+    deleteProductFromCart: () => {},
+    getTotalPrice: () => {},
 });
 
 class CartProvider extends Component<{}, State> {
@@ -27,7 +31,16 @@ class CartProvider extends Component<{}, State> {
     }
 
     componentDidMount() {
-        this.setState({ cart: JSON.parse(localStorage.getItem('cartItems') as string) || []});
+        const method = {
+            id: 1,
+            company: 'PostNord',
+            time: 24,
+            price: 145,
+          }
+        this.setState({ 
+            cart: JSON.parse(localStorage.getItem('cartItems') as string) || [],
+            deliveryMethod: method
+        });
     }
 
     addProductToCart = (product: Product, quantity: number | undefined) => {
@@ -53,8 +66,22 @@ class CartProvider extends Component<{}, State> {
         this.setState({ deliveryMethod: method });
     } 
 
-    getTotalPrice = () => {
+    deleteProductFromCart = (id: number) => {
+        let cartItems = this.state.cart;
+        const newCartItemsList = cartItems.filter((item: CartItem) => item.product.id !== id);
+        localStorage.setItem('cartItems', JSON.stringify(newCartItemsList));
+        this.setState({ cart: newCartItemsList });
+    }
 
+    getTotalPrice = () => {
+        let cartItems = this.state.cart;
+        let totalPriceProducts = (
+            cartItems
+            .map((item: any) => item.product.price * item.quantity)
+            .reduce((a: number, b: number) => a + b, 0)
+        );
+        let deliveryPrice = this.state.deliveryMethod?.price;
+        return totalPriceProducts + (deliveryPrice as number);
     }
 
     render() {
@@ -64,7 +91,9 @@ class CartProvider extends Component<{}, State> {
                 cart: this.state.cart,
                 deliveryMethod: this.state.deliveryMethod,
                 addProductToCart: this.addProductToCart,
-                setDeliveryMethod: this.setDeliveryMethod
+                setDeliveryMethod: this.setDeliveryMethod,
+                deleteProductFromCart: this.deleteProductFromCart,
+                getTotalPrice: this.getTotalPrice,
             }}>
                 {this.props.children}
             </CartContext.Provider>

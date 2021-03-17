@@ -10,7 +10,7 @@ export interface DeliveryMethod {
   price: number;
 }
 
-const deliveryMethods: DeliveryMethod[] = [
+export const deliveryMethods: DeliveryMethod[] = [
   {
     id: 1,
     company: 'PostNord',
