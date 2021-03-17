@@ -1,31 +1,17 @@
 import { Col, Row } from 'antd';
-import { Component, CSSProperties } from 'react';
-
-interface State {
-    totalPrice: number;
-}
+import { Component, ContextType, CSSProperties } from 'react';
+import { CartContext } from '../../contexts/CartContext';
 
 class TotalPrice extends Component {
-
-    state: State = {
-        totalPrice: 0
-    }
-
-    getTotalPrice() {
-        let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
-        let totalPrice = (
-            cartItems
-            .map((item: any) => item.product.price * item.quantity)
-            .reduce((a: number, b: number) => a + b, 0)
-        );
-        return totalPrice;
-    }
+    context!: ContextType<typeof CartContext>
+    static contextType = CartContext;
 
     render() {
+        const { getTotalPrice } = this.context;
         return(
             <Row style={totalPriceContainer}>
                 <Col span={24}>
-                    <h2>Total price: <span style={priceStyle}>{this.getTotalPrice() + ' kr'}</span></h2>
+                    <h2>Total price: <span style={priceStyle}>{getTotalPrice() + ' kr'}</span></h2>
                 </Col>
             </Row>
         )

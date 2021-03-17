@@ -1,9 +1,9 @@
-import { Component, CSSProperties } from 'react';
+import { Component, ContextType, CSSProperties } from 'react';
 import { Card, Col, List, Row, message } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { productList } from '../ProductItemsList';
 import { Link } from 'react-router-dom';
-import saveToCart from '../CartUtils';
+import { CartContext } from '../../contexts/CartContext';
 
 const { Meta } = Card;
 const success = () => {
@@ -11,8 +11,11 @@ const success = () => {
 };
 
 class ProductCard extends Component {
+    context!: ContextType<typeof CartContext>
+    static contextType = CartContext;
         
     render() {
+        const { addProductToCart } = this.context;
         return(    
             <Row style={cardContainer}>
                 <Col span={24} style={columnStyle}>
@@ -36,7 +39,7 @@ class ProductCard extends Component {
                                         actions={[
                                             <ShoppingCartOutlined 
                                                 style={{ fontSize: '2rem' }}
-                                                onClick={(e) => { success(); e.preventDefault(); saveToCart(item, undefined)}} />
+                                                onClick={(e) => {success(); e.preventDefault(); addProductToCart(item, undefined)}} />
                                         ]}
                                     >
                                         <Meta title={item.title} description={item.price + ' kr'} />
@@ -60,6 +63,7 @@ const cardContainer: CSSProperties = {
     width: '80%',
     margin: 'auto'
 }
+
 const columnStyle: CSSProperties = {
     display: 'flex',
     justifyContent: 'center',

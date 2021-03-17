@@ -1,5 +1,5 @@
 import { Steps, Row, Col } from 'antd';
-import React, { Component, CSSProperties } from 'react';
+import { Component, CSSProperties } from 'react';
 import OrderSuccessMessage from '../OrderSuccess/OrderSuccessMessage';
 import CartItemsList from './CartItemsList';
 import DeliverySelection from './DeliverySelection';
@@ -24,9 +24,7 @@ class CartView extends Component<State> {
     
     
     render() {
-
         const { current } = this.state;
-
         return(
             <Row style={cartViewContainerStyle}>
                 <Col span={24} style={columnStyle}>

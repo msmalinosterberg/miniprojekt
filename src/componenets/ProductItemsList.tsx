@@ -90,4 +90,4 @@ export const productList: Product[] = [{
     price: 429,
     imageUrl: 'https://github.com/msmalinosterberg/miniprojekt/blob/master/src/assets/prod8.png?raw=true',
 },
-]
+];
