@@ -13,6 +13,7 @@ interface ContextValue extends State {
     setDeliveryMethod: (method: DeliveryMethod) => void;
     deleteProductFromCart: (id: number) => void;
     getTotalPrice: () => void;
+    getBadgeQuantity: () => number;
 }
 
 export const CartContext = createContext<ContextValue>({
@@ -22,6 +23,7 @@ export const CartContext = createContext<ContextValue>({
     setDeliveryMethod: () => {},
     deleteProductFromCart: () => {},
     getTotalPrice: () => {},
+    getBadgeQuantity: () => { return 0; },
 });
 
 class CartProvider extends Component<{}, State> {
@@ -84,6 +86,16 @@ class CartProvider extends Component<{}, State> {
         return totalPriceProducts + (deliveryPrice as number);
     }
 
+    getBadgeQuantity = () => {
+        let cartItems = this.state.cart;
+        let quantity = (
+            cartItems
+            .map((item: CartItem) => item.quantity)
+            .reduce((a: number, b: number) => a + b, 0)
+        );
+        return quantity;
+    } 
+
     render() {
         console.log(this.state);
         return (
@@ -94,6 +106,7 @@ class CartProvider extends Component<{}, State> {
                 setDeliveryMethod: this.setDeliveryMethod,
                 deleteProductFromCart: this.deleteProductFromCart,
                 getTotalPrice: this.getTotalPrice,
+                getBadgeQuantity: this.getBadgeQuantity,
             }}>
                 {this.props.children}
             </CartContext.Provider>

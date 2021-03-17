@@ -1,29 +1,25 @@
 import { Badge } from "antd";
-import { Component } from "react";
+import { Component, ContextType } from "react";
 import { CSSProperties } from "react";
+import { CartContext } from "../contexts/CartContext";
 
-interface State {
-    quantity: number;
-}
 class AddToBadge extends Component  { 
-
-    state: State = {
-       quantity: 0
-    }
-
-    getBadgeQuantity() {
-        let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
-        let quantity = (cartItems.map((item: any) => item.quantity).reduce((a: number, b: number) => a + b, 0)); 
-            return quantity;
-    } 
-        
+    context!: ContextType<typeof CartContext>
+    static contextType = CartContext;
+ 
     render() { 
         return (
-            <div>
-                <Badge count={this.getBadgeQuantity()}  style={badgeStyle}>
-                    <a href="#" className="head-example" />
-                 </Badge>
-            </div> 
+            <CartContext.Consumer>
+                {({ getBadgeQuantity }) => {
+                    return (
+                        <div>
+                            <Badge count={getBadgeQuantity()} style={badgeStyle}>
+                                <a href="#" className="head-example" />
+                            </Badge>
+                        </div>
+                    )
+                }}
+            </CartContext.Consumer>
         )
     }              
 }
