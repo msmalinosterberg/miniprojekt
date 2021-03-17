@@ -2,27 +2,9 @@ import { Col, Row } from 'antd';
 import { Component, ContextType, CSSProperties } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 
-interface State {
-    totalPrice: number;
-}
-
 class TotalPrice extends Component {
     context!: ContextType<typeof CartContext>
     static contextType = CartContext;
-
-    // state: State = {
-    //     totalPrice: 0
-    // }
-
-    // getTotalPrice() {
-    //     let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
-    //     let totalPrice = (
-    //         cartItems
-    //         .map((item: any) => item.product.price * item.quantity)
-    //         .reduce((a: number, b: number) => a + b, 0)
-    //     );
-    //     return totalPrice;
-    // }
 
     render() {
         const { getTotalPrice } = this.context;

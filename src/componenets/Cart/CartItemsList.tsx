@@ -1,6 +1,5 @@
 import { Avatar, Col, List, Row, InputNumber } from 'antd';
 import { Component, ContextType, CSSProperties } from 'react';
-import saveToCart from '../CartUtils';
 import { Product } from '../ProductItemsList';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../contexts/CartContext';
@@ -9,7 +8,6 @@ export interface CartItem {
     product: Product;
     quantity: number;
 }
-
 interface State {
     cartItems?: CartItem[];
 }

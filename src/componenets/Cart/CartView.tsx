@@ -1,8 +1,10 @@
 import { Steps, Row, Col } from 'antd';
-import React, { Component, CSSProperties } from 'react';
+import { Component, CSSProperties } from 'react';
+import OrderSuccessMessage from '../OrderSuccess/OrderSuccessMessage';
 import CartItemsList from './CartItemsList';
 import DeliverySelection from './DeliverySelection';
 import InformationForm from './InformationForm';
+import PaymentMethod from './PaymentMethod';
 import TotalPrice from './TotalPrice';
 
 interface State {
@@ -22,9 +24,7 @@ class CartView extends Component<State> {
     
     
     render() {
-
         const { current } = this.state;
-
         return(
             <Row style={cartViewContainerStyle}>
                 <Col span={24} style={columnStyle}>
@@ -33,7 +33,8 @@ class CartView extends Component<State> {
                         <Step title="Step 1" description={<InformationForm />} /> 
                         <Step title="Step 2" description={<DeliverySelection />} />
                         <Step title="Step 3" description={<TotalPrice />} />
-                        <Step title="Step 4" description={'Payment method'} />
+                        <Step title="Step 4" description={<PaymentMethod />} />
+                        <Step title="Step 5" description={<OrderSuccessMessage />} /> 
                     </Steps>
                 </Col>
             </Row>
