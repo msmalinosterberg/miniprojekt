@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css'
+import AdminLogIn from './componenets/Admin/AdminLogIn';
 import CartView from './componenets/Cart/CartView';
 import Footer2 from './componenets/Footer';
 import Navbar from './componenets/Navbar';
@@ -21,6 +22,11 @@ function App() {
         <Route path='/cart'>
           <CartView />
         </Route>
+      
+        <Route path='/admin'>
+          <AdminLogIn />
+        </Route>
+
         <Footer2 /> 
       </Router>
       

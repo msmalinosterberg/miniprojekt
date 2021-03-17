@@ -1,5 +1,6 @@
 import { Steps, Row, Col } from 'antd';
 import React, { Component, CSSProperties } from 'react';
+import OrderSuccessMessage from '../OrderSuccess/OrderSuccessMessage';
 import CartItemsList from './CartItemsList';
 import DeliverySelection from './DeliverySelection';
 import InformationForm from './InformationForm';
@@ -35,6 +36,7 @@ class CartView extends Component<State> {
                         <Step title="Step 2" description={<DeliverySelection />} />
                         <Step title="Step 3" description={<TotalPrice />} />
                         <Step title="Step 4" description={<PaymentMethod />} />
+                        <Step title="Step 5" description={<OrderSuccessMessage />} /> 
                     </Steps>
                 </Col>
             </Row>
