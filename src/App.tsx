@@ -7,20 +7,24 @@ import Footer2 from './componenets/Footer';
 import Navbar from './componenets/Navbar';
 import ProductDetails from './componenets/ProductDetails/ProductDetails';
 import StartPageView from './componenets/StartPage/StartPageView';
+import CartProvider from './contexts/CartContext';
 
 function App() {
   return (
     <>
+    <CartProvider>
       <Router>
       <Navbar /> 
       <Switch> 
         <Route path = '/product/:id' component={ProductDetails} />
       </Switch>
       <Route exact path='/'>
+        
         <StartPageView />
       </Route>
         <Route path='/cart'>
-          <CartView />
+            <CartView />
+          
         </Route>
       
         <Route path='/admin'>
@@ -29,6 +33,7 @@ function App() {
 
         <Footer2 /> 
       </Router>
+      </CartProvider>
       
     </>
   );

@@ -1,5 +1,5 @@
 import { Badge } from "antd";
-import React, { Component } from "react";
+import { Component } from "react";
 import { CSSProperties } from "react";
 
 interface State {
@@ -13,18 +13,17 @@ class AddToBadge extends Component  {
 
     getBadgeQuantity() {
         let cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
-        let quantity = (cartItems.map((item: any) => item.quantity).reduce((a: number, b: number) => a + b, 0)
-            ); 
+        let quantity = (cartItems.map((item: any) => item.quantity).reduce((a: number, b: number) => a + b, 0)); 
             return quantity;
     } 
         
     render() { 
         return (
-                  <div>
+            <div>
                 <Badge count={this.getBadgeQuantity()}  style={badgeStyle}>
                     <a href="#" className="head-example" />
                  </Badge>
-                 </div> 
+            </div> 
         )
     }              
 }
