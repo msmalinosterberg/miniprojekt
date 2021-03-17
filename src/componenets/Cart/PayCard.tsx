@@ -30,9 +30,9 @@ class PayCard extends Component {
             <Col span={24} style={columnStyle}>
               <h2>Card details</h2>
                 <Form {...layout} name="nest-messages" onFinish={this.onFinish} validateMessages={validateMessages}>
-                <Form.Item style={formStyle} name={['user', 'cardno']} label="Card number" 
-                    rules={[{ required: true }]}>
-                    <Input />
+                <Form.Item style={formStyle} name={['user', 'cardno']} label="Card number"  
+                    rules={[{ min: 13, max: 19, required: true }]}>
+                    <Input placeholder="XXXX XXXX XXXX XXXX"/>
                 </Form.Item>
                 <Form.Item style={formStyle} name={['user', 'expdate']} label="Expiry date" 
                     rules={[{ required: true }]}>

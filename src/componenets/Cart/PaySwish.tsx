@@ -1,5 +1,7 @@
 import React, { Component, CSSProperties } from 'react'
 import { Form, Input, Button, Row, Col } from 'antd';
+// import InformationForm from 'InformationForm.tsx'
+
 const layout = {
     labelCol: { span: 4 },
     wrapperCol: { span: 16 },
@@ -8,10 +10,6 @@ const layout = {
   /* eslint-disable no-template-curly-in-string */
   const validateMessages = {
     required: '${label} is required!',
-    types: {
-      email: '${label} is not a valid email!',
-      number: '${label} is not a valid number!',
-    },
     number: {
       range: '${label} must be between ${min} and ${max}',
     },
