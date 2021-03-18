@@ -5,6 +5,7 @@ import { PaymentCard } from '../componenets/Cart/PayCard';
 import { PaymentKlarna } from '../componenets/Cart/PayKlarna';
 import { PaymentSwish } from '../componenets/Cart/PaySwish';
 import { DeliveryMethod, deliveryMethods } from '../componenets/deliveryMethods';
+import { IReceipt } from '../componenets/OrderSuccess/Reciept';
 import { Product } from '../componenets/ProductItemsList';
 
 const emptyUser: UserInfo = {
@@ -22,11 +23,19 @@ const emptyPayment: PaymentCard = {
     cardName: '',
     cvc: '',
 }
+
+const emptyReceipt: IReceipt = {
+    products: [],
+    deliveryMethod: '',
+    totalPrice: 0,
+    paymentMethod: '',
+}
 interface State {
     cart: CartItem[];
-    deliveryMethod: DeliveryMethod | undefined;
+    deliveryMethod: DeliveryMethod;
     userInfo: UserInfo | undefined;
-    paymentInfo: PaymentCard | PaymentSwish | PaymentKlarna | undefined;
+    paymentInfo: PaymentCard | PaymentSwish | PaymentKlarna;
+    receipt: IReceipt;
 }
 
 interface ContextValue extends State {
@@ -37,13 +46,15 @@ interface ContextValue extends State {
     getBadgeQuantity: () => number;
     updateUserInfo: (userInfo: UserInfo) => void;
     updatePaymentInfo: (paymentInfo: PaymentCard | PaymentSwish | PaymentKlarna) => void;
+    handlePlaceOrder: () => void;
 }
 
 export const CartContext = createContext<ContextValue>({
     cart: [],
-    deliveryMethod: undefined,
-    userInfo: undefined,
-    paymentInfo: undefined,
+    deliveryMethod: deliveryMethods[0],
+    userInfo: emptyUser,
+    paymentInfo: emptyPayment,
+    receipt: emptyReceipt,
     addProductToCart: () => {},
     setDeliveryMethod: () => {},
     deleteProductFromCart: () => {},
@@ -51,6 +62,7 @@ export const CartContext = createContext<ContextValue>({
     getBadgeQuantity: () => 0,
     updateUserInfo: () => {},
     updatePaymentInfo: () => {},
+    handlePlaceOrder: () => {},
 });
 
 class CartProvider extends Component<{}, State> {
@@ -59,6 +71,7 @@ class CartProvider extends Component<{}, State> {
         deliveryMethod: deliveryMethods[0],
         userInfo: emptyUser,
         paymentInfo: emptyPayment,
+        receipt: emptyReceipt,
     }
 
     componentDidMount() {
@@ -126,6 +139,15 @@ class CartProvider extends Component<{}, State> {
         this.setState({ paymentInfo: paymentInfo });
     }
 
+    handlePlaceOrder = () => {
+        this.state.receipt.products = [...this.state.cart].map((item) => item.product.title.concat(', ') + item.quantity + ' , ');
+        this.state.cart = [];
+        this.state.receipt.deliveryMethod = this.state.deliveryMethod.company;
+        this.state.deliveryMethod = deliveryMethods[0];
+        this.state.receipt.totalPrice = this.getTotalPrice();
+        //this.state.receipt.paymentMethod = this.state.paymentInfo;
+    }
+
     render() {
         console.log(this.state);
         return (
@@ -134,6 +156,7 @@ class CartProvider extends Component<{}, State> {
                 deliveryMethod: this.state.deliveryMethod,
                 userInfo: this.state.userInfo,
                 paymentInfo: this.state.paymentInfo,
+                receipt: this.state.receipt,
                 addProductToCart: this.addProductToCart,
                 setDeliveryMethod: this.setDeliveryMethod,
                 deleteProductFromCart: this.deleteProductFromCart,
@@ -141,6 +164,7 @@ class CartProvider extends Component<{}, State> {
                 getBadgeQuantity: this.getBadgeQuantity,
                 updateUserInfo: this.updateUserInfo,
                 updatePaymentInfo: this.updatePaymentInfo,
+                handlePlaceOrder: this.handlePlaceOrder,
             }}>
                 {this.props.children}
             </CartContext.Provider>

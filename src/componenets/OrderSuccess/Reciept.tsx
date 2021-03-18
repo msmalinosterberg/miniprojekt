@@ -1,18 +1,34 @@
-import React, { Component } from 'react';
+import { Component, ContextType } from 'react';
 import { Card } from 'antd';
+import { CartContext } from '../../contexts/CartContext';
+export interface IReceipt {
+    products: string[];
+    deliveryMethod: string;
+    totalPrice: number;
+    paymentMethod: string;
+}
 
-
-class Reciept extends Component {
+class Receipt extends Component {
+    context!: ContextType<typeof CartContext>
+    static contextType = CartContext;
     
     render() {
         return(
-            <Card title="Reciept" extra={<a href="#">More</a>} style={{ width: '80%' }}>
-                <p>Card content {}</p>
-                <p>Card content</p>
-                <p>Card content</p>
-            </Card>
+            <CartContext.Consumer>
+                {({ receipt }) => {
+                console.log(receipt)
+                    return (
+                        <Card title="Reciept" style={{ width: '60%' }}>
+                            <p>Products: {receipt.products}</p>
+                            <p>Delivery: {receipt.deliveryMethod}</p>
+                            <p>Total price: {receipt.totalPrice + ' kr, incl delivery and VAT'}</p>
+                            <p>Payed with: {receipt.paymentMethod}</p>
+                        </Card>
+                    );    
+                }}
+          </CartContext.Consumer>
         )
     }
 }
 
-export default Reciept;
+export default Receipt;

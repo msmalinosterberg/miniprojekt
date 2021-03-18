@@ -25,9 +25,6 @@ class CartView extends Component<State> {
         this.setState({ current });
       };
     
-    handlePlaceOrder() {
-
-    }
 
     render() {
         const { currentStep } = this.state;
@@ -42,7 +39,7 @@ class CartView extends Component<State> {
                         <Step title="Step 4" description={<PaymentMethod />} />
                     </Steps>
                     <Col span={24} style={buttonContainerStyle}>
-                        <Button type="primary" icon={<CheckCircleOutlined />} size={'large'} onClick={() => this.handlePlaceOrder}><strong> Place order</strong></Button>
+                        <Button type="primary" icon={<CheckCircleOutlined />} size={'large'}><strong> Place order</strong></Button>
                     </Col>
                     <OrderSuccessMessage />
                 </Col>
