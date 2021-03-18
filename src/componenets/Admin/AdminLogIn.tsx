@@ -2,6 +2,7 @@ import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
 import React, { CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import AdminEditDetails from './AdminEditDetails';
+import GetAdminList from './AdminList';
 
 
 const layout = {
@@ -88,7 +89,7 @@ class AdminLogIn extends React.Component {
 
             </Col>
            </Row>
-           <AdminEditDetails /> 
+           <GetAdminList /> 
 
 </div> 
 
