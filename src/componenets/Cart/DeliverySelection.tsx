@@ -2,14 +2,8 @@ import { Radio } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import React, { ContextType, CSSProperties } from 'react';
 import { CartContext } from '../../contexts/CartContext';
-import { deliveryMethods } from '../deliveryMethods';
+import { DeliveryMethod, deliveryMethods } from '../deliveryMethods';
 
-export interface DeliveryMethod {
-  id: number;
-  company: string;
-  time: number;
-  price: number;
-}
 
 const RadioGroup = Radio.Group;
 class DeliverySection extends React.Component {
@@ -32,7 +26,7 @@ class DeliverySection extends React.Component {
   mapMethodToRadio() {
     return deliveryMethods.map(
       (item: DeliveryMethod) => (
-        {label: item.company + ' ' + item.time + 'h ' + item.price + ' kr', value: item.id}))
+        {label: item.company + ' will deliver on ' + item.time + ' – ' + item.price + ' kr ', value: item.id}))
   }
 
   render() {

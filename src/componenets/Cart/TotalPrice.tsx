@@ -11,7 +11,7 @@ class TotalPrice extends Component {
         return(
             <Row style={totalPriceContainer}>
                 <Col span={24}>
-                    <h2>Total price: <span style={priceStyle}>{getTotalPrice() + ' kr'}</span></h2>
+                    <h2>Total price: <span style={priceStyle}>{getTotalPrice() + ' kr '}</span></h2><p>including delivery and VAT</p>
                 </Col>
             </Row>
         )

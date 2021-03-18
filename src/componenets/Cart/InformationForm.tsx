@@ -1,5 +1,6 @@
 import { Form, Input, Button, Row, Col } from 'antd';
-import { Component, CSSProperties } from 'react';
+import { Component, ContextType, CSSProperties } from 'react';
+import { CartContext } from '../../contexts/CartContext';
 
 const layout = {
   labelCol: { span: 3 },
@@ -19,16 +20,34 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
+export interface UserInfo {
+  name: string;
+  email: string;
+  phone: string;
+  street: string;
+  zipcode: string;
+  city: string;
+}
+
 class InformationForm extends Component {
-  onFinish = (values: any) => {
-    console.log(values);
+  context!: ContextType<typeof CartContext>
+  static contextType = CartContext;
+
+  // onFieldsChange = (values: any, allFields: any) => {
+  //   console.log(allFields);
+  // };
+
+  onValuesChange = (allValues: any) => {
+    console.log(allValues);
+    const { updateUserInfo } = this.context;
+    updateUserInfo(allValues.user);
   };
 
   render() {
       return (
           <Row style={formContainerStyle}>
             <Col span={24} style={columnStyle}>
-                <Form {...layout} name="nest-messages" onFinish={this.onFinish} validateMessages={validateMessages}>
+                <Form {...layout} name="nest-messages" onValuesChange={this.onValuesChange} validateMessages={validateMessages}>
                 <Form.Item name={['user', 'name']} label="Name" 
                     rules={[{ required: true }]}>
                     <Input />

@@ -18,7 +18,15 @@ const layout = {
   };
   /* eslint-enable no-template-curly-in-string */
   
-  
+  export interface PaymentKlarna {
+    ssn: string;
+    name: string;
+    email: string;
+    phone: string;
+    street: string;
+    zipcode: string;
+    city: string;
+  }
 
 class PayKlarna extends Component {
     onFinish = (values: any) => {
@@ -30,31 +38,31 @@ class PayKlarna extends Component {
             <Col span={24} style={columnStyle}>
             <h2>Billing information</h2>
                 <Form {...layout} name="nest-messages" onFinish={this.onFinish} validateMessages={validateMessages}>
-                <Form.Item name={['user', 'ssn']} label="SSN" 
+                <Form.Item name={['klarna', 'ssn']} label="SSN" 
                     rules={[{ min: 10, max: 10, required: true }]}>
                     <Input placeholder="YYMMDDXXXX"/>
                 </Form.Item>
-                <Form.Item name={['user', 'name']} label="Name" 
+                <Form.Item name={['klarna', 'name']} label="Name" 
                     rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name={['user', 'email']} label="Email" 
+                <Form.Item name={['klarna', 'email']} label="Email" 
                     rules={[{ type: 'email', required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name={['user', 'phone']} label="Phone" 
+                <Form.Item name={['klarna', 'phone']} label="Phone" 
                     rules={[{ min: 10, max: 10, required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name={['user', 'steet']} label="Street" 
+                <Form.Item name={['klarna', 'steet']} label="Street" 
                     rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name={['user', 'zipcode']} label="Zip-code" 
+                <Form.Item name={['klarna', 'zipcode']} label="Zip-code" 
                     rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name={['user', 'city']} label="City" 
+                <Form.Item name={['klarna', 'city']} label="City" 
                     rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>

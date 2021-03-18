@@ -1,12 +1,32 @@
 import { Component, createContext } from 'react';
 import { CartItem } from '../componenets/Cart/CartItemsList';
-import { DeliveryMethod } from '../componenets/Cart/DeliverySelection';
-import { deliveryMethods } from '../componenets/deliveryMethods';
+import { UserInfo } from '../componenets/Cart/InformationForm';
+import { PaymentCard } from '../componenets/Cart/PayCard';
+import { PaymentKlarna } from '../componenets/Cart/PayKlarna';
+import { PaymentSwish } from '../componenets/Cart/PaySwish';
+import { DeliveryMethod, deliveryMethods } from '../componenets/deliveryMethods';
 import { Product } from '../componenets/ProductItemsList';
 
+const emptyUser: UserInfo = {
+    name: '',
+    email: '',
+    phone: '',
+    street: '',
+    zipcode: '',
+    city: '',
+}
+
+const emptyPayment: PaymentCard = {
+    cardNumber: '',
+    expDate: '',
+    cardName: '',
+    cvc: '',
+}
 interface State {
     cart: CartItem[];
     deliveryMethod: DeliveryMethod | undefined;
+    userInfo: UserInfo | undefined;
+    paymentInfo: PaymentCard | PaymentSwish | PaymentKlarna | undefined;
 }
 
 interface ContextValue extends State {
@@ -15,22 +35,28 @@ interface ContextValue extends State {
     deleteProductFromCart: (id: number) => void;
     getTotalPrice: () => void;
     getBadgeQuantity: () => number;
+    updateUserInfo: (userInfo: UserInfo) => void;
 }
 
 export const CartContext = createContext<ContextValue>({
     cart: [],
     deliveryMethod: undefined,
+    userInfo: undefined,
+    paymentInfo: undefined,
     addProductToCart: () => {},
     setDeliveryMethod: () => {},
     deleteProductFromCart: () => {},
     getTotalPrice: () => {},
     getBadgeQuantity: () => 0,
+    updateUserInfo: () => {},
 });
 
 class CartProvider extends Component<{}, State> {
     state: State = {
         cart: [],
         deliveryMethod: deliveryMethods[0],
+        userInfo: emptyUser,
+        paymentInfo: emptyPayment,
     }
 
     componentDidMount() {
@@ -88,7 +114,15 @@ class CartProvider extends Component<{}, State> {
             .reduce((a: number, b: number) => a + b, 0)
         );
         return quantity;
-    } 
+    }
+
+    updateUserInfo = (userInfo: UserInfo) => {
+        this.setState({ userInfo: userInfo });
+    }
+
+    updatePaymentInfo = (paymentInfo: PaymentCard | PaymentSwish | PaymentKlarna) => {
+        this.setState({ paymentInfo: paymentInfo });
+    }
 
     render() {
         console.log(this.state);
@@ -96,11 +130,14 @@ class CartProvider extends Component<{}, State> {
             <CartContext.Provider value={{
                 cart: this.state.cart,
                 deliveryMethod: this.state.deliveryMethod,
+                userInfo: this.state.userInfo,
+                paymentInfo: this.state.paymentInfo,
                 addProductToCart: this.addProductToCart,
                 setDeliveryMethod: this.setDeliveryMethod,
                 deleteProductFromCart: this.deleteProductFromCart,
                 getTotalPrice: this.getTotalPrice,
                 getBadgeQuantity: this.getBadgeQuantity,
+                updateUserInfo: this.updateUserInfo,
             }}>
                 {this.props.children}
             </CartContext.Provider>

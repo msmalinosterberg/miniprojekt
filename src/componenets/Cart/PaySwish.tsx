@@ -16,8 +16,9 @@ const layout = {
   };
   /* eslint-enable no-template-curly-in-string */
   
-  
-
+  export interface PaymentSwish {
+    phone: string;
+  }
 class PaySwish extends Component {
     onFinish = (values: any) => {
         console.log(values);
@@ -29,7 +30,7 @@ class PaySwish extends Component {
                 <h2>Payment information</h2>
                 <Form {...layout} name="nest-messages" onFinish={this.onFinish} validateMessages={validateMessages}>
             
-                <Form.Item name={['user', 'phone']} label="Phone" 
+                <Form.Item name={['swish', 'phone']} label="Phone" 
                     rules={[{ min: 10, max: 10, required: true }]}>
                     <Input />
                 </Form.Item>

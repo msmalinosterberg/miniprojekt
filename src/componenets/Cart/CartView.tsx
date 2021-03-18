@@ -1,4 +1,4 @@
-import { Steps, Row, Col } from 'antd';
+import { Steps, Row, Col, Button } from 'antd';
 import { Component, CSSProperties } from 'react';
 import OrderSuccessMessage from '../OrderSuccess/OrderSuccessMessage';
 import CartItemsList from './CartItemsList';
@@ -7,14 +7,16 @@ import InformationForm from './InformationForm';
 import PaymentMethod from './PaymentMethod';
 import TotalPrice from './TotalPrice';
 
+//Place order function state, utloggningen av info sker i promisebaserade funktionen
+
 interface State {
-    current?: number;
+    currentStep?: number;
 }
 
 const { Step } = Steps;
 class CartView extends Component<State> { 
     state: State = {
-        current: 0,
+        currentStep: 0,
       };
     
       onChange = (current: State) => {
@@ -22,20 +24,24 @@ class CartView extends Component<State> {
         this.setState({ current });
       };
     
-    
+    handlePlaceOrder() {
+
+      }
+
     render() {
-        const { current } = this.state;
+        const { currentStep } = this.state;
         return(
             <Row style={cartViewContainerStyle}>
                 <Col span={24} style={columnStyle}>
                     <CartItemsList/>
-                    <Steps current={current} onChange={() => this.onChange} direction="vertical">
+                    <Steps current={currentStep} onChange={() => this.onChange} direction="vertical">
                         <Step title="Step 1" description={<InformationForm />} /> 
                         <Step title="Step 2" description={<DeliverySelection />} />
                         <Step title="Step 3" description={<TotalPrice />} />
                         <Step title="Step 4" description={<PaymentMethod />} />
-                        <Step title="Step 5" description={<OrderSuccessMessage />} /> 
                     </Steps>
+                    <Button type="primary" onClick={() => this.handlePlaceOrder}><strong>Place order</strong></Button>
+                    <OrderSuccessMessage />
                 </Col>
             </Row>
         )
