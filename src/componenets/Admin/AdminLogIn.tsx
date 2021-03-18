@@ -1,5 +1,7 @@
 import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
 import React, { CSSProperties } from 'react';
+import { Link } from 'react-router-dom';
+import AdminEditDetails from './AdminEditDetails';
 
 
 const layout = {
@@ -31,7 +33,7 @@ class AdminLogIn extends React.Component {
     render() {
        
         return (
-
+          <div> 
         <Row style={ContainerStyle}>
             <Col span={24} style={columnStyle}>
             <h1 style={{display: 'flex', justifyContent: 'center', fontWeight: 'bold'}}>LOG IN </h1>
@@ -75,13 +77,20 @@ class AdminLogIn extends React.Component {
               </Form.Item>
         
               <Form.Item {...tailLayout}>
+               
                 <Button type="primary" htmlType="submit">
                  Log in 
-                </Button>
+                </Button> 
+            
+
               </Form.Item>
             </Form>
+
             </Col>
            </Row>
+           <AdminEditDetails /> 
+
+</div> 
 
           );
         }
