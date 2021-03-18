@@ -34,55 +34,60 @@ class PayKlarna extends Component {
     static contextType = CartContext;
 
     onValuesChange = (values: any, allValues: any) => {
-        //console.log(allValues);
         const { updatePaymentInfo } = this.context;
         updatePaymentInfo(allValues.klarna);
       };
 
     render() {
         return (
-          <Row style={formContainerStyle}>
-            <Col span={24} style={columnStyle}>
-            <h2>Billing information</h2>
-                <Form {...layout} name="nest-messages" onValuesChange={this.onValuesChange} validateMessages={validateMessages}>
-                <Form.Item name={['klarna', 'ssn']} label="SSN" 
-                    rules={[{ min: 10, max: 10, required: true }]}>
-                    <Input placeholder="YYMMDDXXXX"/>
-                </Form.Item>
-                <Form.Item name={['klarna', 'name']} label="Name" 
-                    rules={[{ required: true }]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item name={['klarna', 'email']} label="Email" 
-                    rules={[{ type: 'email', required: true }]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item name={['klarna', 'phone']} label="Phone" 
-                    rules={[{ min: 10, max: 10, required: true }]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item name={['klarna', 'steet']} label="Street" 
-                    rules={[{ required: true }]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item name={['klarna', 'zipcode']} label="Zip-code" 
-                    rules={[{ required: true }]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item name={['klarna', 'city']} label="City" 
-                    rules={[{ required: true }]}>
-                    <Input />
-                </Form.Item>
-                
-                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 2}}>
-                    {/* <Button type="primary" htmlType="submit">
-                    Submit
-                    </Button> */}
-                </Form.Item>
-                </Form>
-            </Col>
-        </Row>
-        );
+            <CartContext.Consumer>
+                {({ userInfo }) => {
+                    return (
+                        <Row style={formContainerStyle}>
+                            <Col span={24} style={columnStyle}>
+                            <h2>Billing information</h2>
+                                <Form {...layout} name="nest-messages" onValuesChange={this.onValuesChange} validateMessages={validateMessages}>
+                                <Form.Item name={['klarna', 'ssn']} label="SSN" 
+                                    rules={[{ min: 10, max: 10, required: true }]}>
+                                    <Input placeholder="YYMMDDXXXX"/>
+                                </Form.Item>
+                                <Form.Item name={['klarna', 'name']} label="Name" 
+                                    rules={[{ required: true }]}>
+                                    <Input defaultValue={userInfo?.name}/>
+                                </Form.Item>
+                                <Form.Item name={['klarna', 'email']} label="Email" 
+                                    rules={[{ type: 'email', required: true }]}>
+                                    <Input defaultValue={userInfo?.email}/>
+                                </Form.Item>
+                                <Form.Item name={['klarna', 'phone']} label="Phone" 
+                                    rules={[{ min: 10, max: 10, required: true }]}>
+                                    <Input defaultValue={userInfo?.phone}/>
+                                </Form.Item>
+                                <Form.Item name={['klarna', 'street']} label="Street" 
+                                    rules={[{ required: true }]}>
+                                    <Input defaultValue={userInfo?.street}/>
+                                </Form.Item>
+                                <Form.Item name={['klarna', 'zipcode']} label="Zip-code" 
+                                    rules={[{ required: true }]}>
+                                    <Input defaultValue={userInfo?.zipcode}/>
+                                </Form.Item>
+                                <Form.Item name={['klarna', 'city']} label="City" 
+                                    rules={[{ required: true }]}>
+                                    <Input defaultValue={userInfo?.city}/>
+                                </Form.Item>
+                                
+                                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 2}}>
+                                    {/* <Button type="primary" htmlType="submit">
+                                    Submit
+                                    </Button> */}
+                                </Form.Item>
+                                </Form>
+                            </Col>
+                        </Row>
+                    );
+                }}
+            </CartContext.Consumer>
+        )
     }
 }
 
