@@ -36,6 +36,7 @@ interface ContextValue extends State {
     getTotalPrice: () => void;
     getBadgeQuantity: () => number;
     updateUserInfo: (userInfo: UserInfo) => void;
+    updatePaymentInfo: (paymentInfo: PaymentCard | PaymentSwish | PaymentKlarna) => void;
 }
 
 export const CartContext = createContext<ContextValue>({
@@ -49,6 +50,7 @@ export const CartContext = createContext<ContextValue>({
     getTotalPrice: () => {},
     getBadgeQuantity: () => 0,
     updateUserInfo: () => {},
+    updatePaymentInfo: () => {},
 });
 
 class CartProvider extends Component<{}, State> {
@@ -138,6 +140,7 @@ class CartProvider extends Component<{}, State> {
                 getTotalPrice: this.getTotalPrice,
                 getBadgeQuantity: this.getBadgeQuantity,
                 updateUserInfo: this.updateUserInfo,
+                updatePaymentInfo: this.updatePaymentInfo,
             }}>
                 {this.props.children}
             </CartContext.Provider>

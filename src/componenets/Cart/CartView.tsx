@@ -1,4 +1,5 @@
 import { Steps, Row, Col, Button } from 'antd';
+import { CheckCircleOutlined } from '@ant-design/icons';
 import { Component, CSSProperties } from 'react';
 import OrderSuccessMessage from '../OrderSuccess/OrderSuccessMessage';
 import CartItemsList from './CartItemsList';
@@ -26,7 +27,7 @@ class CartView extends Component<State> {
     
     handlePlaceOrder() {
 
-      }
+    }
 
     render() {
         const { currentStep } = this.state;
@@ -40,7 +41,9 @@ class CartView extends Component<State> {
                         <Step title="Step 3" description={<TotalPrice />} />
                         <Step title="Step 4" description={<PaymentMethod />} />
                     </Steps>
-                    <Button type="primary" onClick={() => this.handlePlaceOrder}><strong>Place order</strong></Button>
+                    <Col span={24} style={buttonContainerStyle}>
+                        <Button type="primary" icon={<CheckCircleOutlined />} size={'large'} onClick={() => this.handlePlaceOrder}><strong> Place order</strong></Button>
+                    </Col>
                     <OrderSuccessMessage />
                 </Col>
             </Row>
@@ -61,4 +64,10 @@ const cartViewContainerStyle: CSSProperties = {
 const columnStyle: CSSProperties = {
     marginTop: '3rem',
     marginBottom: '3rem',
+}
+
+const buttonContainerStyle: CSSProperties = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
 }

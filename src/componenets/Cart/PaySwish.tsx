@@ -1,5 +1,6 @@
-import React, { Component, CSSProperties } from 'react'
+import React, { Component, ContextType, CSSProperties } from 'react'
 import { Form, Input, Button, Row, Col } from 'antd';
+import { CartContext } from '../../contexts/CartContext';
 // import InformationForm from 'InformationForm.tsx'
 
 const layout = {
@@ -20,29 +21,42 @@ const layout = {
     phone: string;
   }
 class PaySwish extends Component {
-    onFinish = (values: any) => {
-        console.log(values);
-      };
+  context!: ContextType<typeof CartContext>
+  static contextType = CartContext;
+
+  onValuesChange = (values: any, allValues: any) => {
+      //console.log(allValues);
+      const { updatePaymentInfo } = this.context;
+      updatePaymentInfo(allValues.swish);
+    };
+    
     render() {
         return (
-          <Row style={formContainerStyle}>
-            <Col span={24} style={columnStyle}>
-                <h2>Payment information</h2>
-                <Form {...layout} name="nest-messages" onFinish={this.onFinish} validateMessages={validateMessages}>
-            
-                <Form.Item name={['swish', 'phone']} label="Phone" 
-                    rules={[{ min: 10, max: 10, required: true }]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 2}}>
-                    <Button type="primary" htmlType="submit">
-                    Submit
-                    </Button>
-                </Form.Item>
-                </Form>
-            </Col>
-        </Row>
-        );
+          <CartContext.Consumer>
+                {({ userInfo }) => {
+                  return (
+                    <Row style={formContainerStyle}>
+                      <Col span={24} style={columnStyle}>
+                          <h2>Payment information</h2>
+                          <Form {...layout} name="nest-messages" onValuesChange={this.onValuesChange} validateMessages={validateMessages}>
+                      
+                          <Form.Item name={['swish', 'phone']} label="Phone" 
+                              rules={[{ min: 10, max: 10, required: true }]}>
+                              <Input defaultValue={userInfo?.phone}/>
+                          </Form.Item>
+                          <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 2}}>
+                              {/* <Button type="primary" htmlType="submit">
+                              Submit
+                              </Button> */}
+                          </Form.Item>
+                          </Form>
+                      </Col>
+                  </Row>
+                  );
+                  
+                }}
+          </CartContext.Consumer>
+        )
     }
 }
 

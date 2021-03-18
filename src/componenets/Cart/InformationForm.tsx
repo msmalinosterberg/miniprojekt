@@ -33,12 +33,8 @@ class InformationForm extends Component {
   context!: ContextType<typeof CartContext>
   static contextType = CartContext;
 
-  // onFieldsChange = (values: any, allFields: any) => {
-  //   console.log(allFields);
-  // };
-
-  onValuesChange = (allValues: any) => {
-    console.log(allValues);
+  onValuesChange = (values: any, allValues: any) => {
+    //console.log(allValues);
     const { updateUserInfo } = this.context;
     updateUserInfo(allValues.user);
   };
@@ -74,9 +70,9 @@ class InformationForm extends Component {
                 </Form.Item>
                 
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 3 }}>
-                    <Button type="primary" htmlType="submit">
+                    {/* <Button type="primary" htmlType="submit">
                     Submit
-                    </Button>
+                    </Button> */}
                 </Form.Item>
                 </Form>
             </Col>
