@@ -79,17 +79,18 @@ class AdminLogIn extends React.Component {
         
               <Form.Item {...tailLayout}>
                
+              <Link to={'/admin-list'}>
                 <Button type="primary" htmlType="submit">
                  Log in 
                 </Button> 
-            
+              </Link> 
 
               </Form.Item>
             </Form>
 
             </Col>
            </Row>
-           <GetAdminList /> 
+          
 
 </div> 
 

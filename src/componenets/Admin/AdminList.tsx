@@ -1,4 +1,5 @@
-import { Avatar, Col, List, Row } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import { Avatar, Button, Col, List, Row, } from "antd";
 import React, { Component, CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { productList } from "../ProductItemsList";
@@ -29,8 +30,15 @@ class GetAdminList extends Component <State>{
         return (
             <Row style={containerStyle}>
                 <Col style={columnStyle}>
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems:'center', marginTop: '2rem'}}>
+                <h1 style={{fontWeight: 'bold'}}>ADMIN </h1>
+                <Button type="primary" icon={<PlusOutlined />}>
+                 Add product
+                 </Button>
+                 </div>    
+
                 <List   grid={{
-                            gutter: 25,
+                            gutter: 12,
                             xs: 1,
                             sm: 1,
                             md: 1,
@@ -44,7 +52,7 @@ class GetAdminList extends Component <State>{
                                 <Link to={'/edit-product/' + item.id}>
                                    
                                 <List.Item.Meta                    
-                                        avatar={<Avatar src={item.imageUrl} />} 
+                                        avatar={<Avatar size={64} src={item.imageUrl} />} 
                                         title={<Link to={'/edit-product/' + item.id}>{item.title}</Link>}
                                         description={[item.description.split('.')[0],  
                                         ]}
@@ -63,18 +71,25 @@ class GetAdminList extends Component <State>{
 
 const containerStyle: CSSProperties ={
     display: 'flex', 
-   justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: '2rem'
 
 }
 
 const columnStyle: CSSProperties = {
-    
+  
+   
     
 }
 
 
 const editStyle: CSSProperties = {
-    color: 'red'
+    color: 'red', 
+    display: 'flex', 
+    justifyContent: 'flex-end',
+    borderBottom: '1px solid lightgrey',
+
+
 }
 
 
