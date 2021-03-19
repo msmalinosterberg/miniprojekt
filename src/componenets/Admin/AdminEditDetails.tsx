@@ -21,14 +21,33 @@ const layout = {
     },
     };
 
+    interface Products {
+      product: any; 
+  }
+  
+  interface State {
+      products: Products[]; 
+  }
+class AdminEditDetails extends Component <State> {   
+ 
+ 
+  state: State = {
+    products: []
+}
 
-class AdminEditDetails extends Component {   
-            onFinish = (values: any) => {
+componentDidMount() {
+    this.setState({ products: JSON.parse(localStorage.getItem('products') as string) || []});
+}
+
+  
+  onFinish = (values: any) => {
             console.log(values);
             }
             
     
             render () { 
+
+              console.log(this.state.products)
                 return (  
                     <div> 
                     <Row style={ContainerStyle}>
@@ -37,31 +56,27 @@ class AdminEditDetails extends Component {
                     <Form {...layout} name="nest-messages" onFinish={this.onFinish} validateMessages={validateMessages}>
                         <h1 style={{display: 'flex', justifyContent: 'center', fontWeight: 'bold'}}>EDIT </h1>
                     <Form.Item
-                        name={['user', 'name']}
+                        name={['product', 'name']}
                         label="Title"
                     >
-                    <Input />
+                    <Input  />
                     </Form.Item>
                     <Form.Item
-                        name={['user', 'description']}
+                        name={['product', 'description']}
                         label="Description"
-                            
+
                     >
-                    <Input.TextArea/>
+                    <Input.TextArea />
                     </Form.Item>
                     
                     <Form.Item
-                        name={['user', 'price']}
+                        name={['product', 'price']}
                         label="Price"
-                        rules={[
-                        {
-                            type: 'number', 
-                        }
-                        ]}
+                        
                         >
-                    <InputNumber />
+                    <Input />
                     </Form.Item>
-                <Form.Item name={['user', 'imageUrl']}
+                <Form.Item name={['product', 'imageUrl']}
                     label="ImageUrl">
                     <Input />
                 </Form.Item>
@@ -78,10 +93,12 @@ class AdminEditDetails extends Component {
                 </div> 
                     </Form.Item>
                 </Form>
+                
+
                 </Col>
                 </Row>
+
                 </div> 
-                
                 
             );
     }

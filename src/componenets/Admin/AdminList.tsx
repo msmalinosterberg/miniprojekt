@@ -24,23 +24,32 @@ class GetAdminList extends Component <State>{
 
  
     render() {
-
+    
 
         return (
-            <Row>
-                <Col>
-                <List
+            <Row style={containerStyle}>
+                <Col style={columnStyle}>
+                <List   grid={{
+                            gutter: 25,
+                            xs: 1,
+                            sm: 1,
+                            md: 1,
+                            lg: 1,
+                            xl: 1,
+                            xxl: 1,
+                        }}
                         dataSource={productList}
                         renderItem={item => (
                             <List.Item>
                                 <Link to={'/edit-product/' + item.id}>
-                                    <p style={editStyle}>edit</p>
+                                   
                                 <List.Item.Meta                    
                                         avatar={<Avatar src={item.imageUrl} />} 
                                         title={<Link to={'/edit-product/' + item.id}>{item.title}</Link>}
                                         description={[item.description.split('.')[0],  
                                         ]}
-                                /> 
+                                />  
+                                <p style={editStyle}>edit</p>
                                 </Link>
                                 
                             </List.Item>
@@ -52,6 +61,16 @@ class GetAdminList extends Component <State>{
     }
 }
 
+const containerStyle: CSSProperties ={
+    display: 'flex', 
+   justifyContent: 'center'
+
+}
+
+const columnStyle: CSSProperties = {
+    
+    
+}
 
 
 const editStyle: CSSProperties = {
