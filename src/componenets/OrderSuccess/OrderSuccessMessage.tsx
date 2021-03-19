@@ -10,14 +10,13 @@ function OrderSuccessMessage() {
             <Result
                     status="success"
                     title="You successfully purchased from FashionStore"
-                    subTitle="Order number: 20171828029"
+                    subTitle={'Your order number is: ' + Math.floor(Math.random() * 1000000000000)}
                     extra={[
                     <Link to='/'><Button type="primary" key="console">Continue shopping </Button></Link>
                 ]}
             />
             <Reciept />
         </Row>
-
     ) 
 }
 
@@ -28,4 +27,5 @@ const containerStyle: CSSProperties = {
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
+    height: '100vh',
 }

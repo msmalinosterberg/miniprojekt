@@ -29,7 +29,7 @@ class PayCard extends Component {
     static contextType = CartContext;
 
     onValuesChange = (values: any, allValues: any) => {
-        //console.log(allValues);
+        console.log('pay', allValues);
         const { updatePaymentInfo } = this.context;
         updatePaymentInfo(allValues.card);
       };

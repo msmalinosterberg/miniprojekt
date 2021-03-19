@@ -1,14 +1,13 @@
 import { Steps, Row, Col, Button } from 'antd';
 import { CheckCircleOutlined } from '@ant-design/icons';
-import { Component, CSSProperties } from 'react';
-import OrderSuccessMessage from '../OrderSuccess/OrderSuccessMessage';
+import { Component, ContextType, CSSProperties } from 'react';
 import CartItemsList from './CartItemsList';
 import DeliverySelection from './DeliverySelection';
 import InformationForm from './InformationForm';
 import PaymentMethod from './PaymentMethod';
 import TotalPrice from './TotalPrice';
-
-//Place order function state, utloggningen av info sker i promisebaserade funktionen
+import { Link } from 'react-router-dom';
+import { CartContext } from '../../contexts/CartContext';
 
 interface State {
     currentStep?: number;
@@ -16,6 +15,9 @@ interface State {
 
 const { Step } = Steps;
 class CartView extends Component<State> { 
+    context!: ContextType<typeof CartContext>
+    static contextType = CartContext;
+    
     state: State = {
         currentStep: 0,
       };
@@ -24,6 +26,11 @@ class CartView extends Component<State> {
         console.log('onChange:', current);
         this.setState({ current });
       };
+
+      onPlaceOrderClick = () => {
+        const { handlePlaceOrder } = this.context;
+        handlePlaceOrder();
+      }
     
 
     render() {
@@ -38,10 +45,9 @@ class CartView extends Component<State> {
                         <Step title="Step 3" description={<TotalPrice />} />
                         <Step title="Step 4" description={<PaymentMethod />} />
                     </Steps>
-                    <Col span={24} style={buttonContainerStyle}>
-                        <Button type="primary" icon={<CheckCircleOutlined />} size={'large'}><strong> Place order</strong></Button>
-                    </Col>
-                    <OrderSuccessMessage />
+                </Col>
+                <Col span={24} style={buttonContainerStyle}>
+                <Link to='/ordersuccess'><Button type="primary" icon={<CheckCircleOutlined />} size={'large'} onClick={this.onPlaceOrderClick}><strong> Place order</strong></Button></Link>
                 </Col>
             </Row>
         )
@@ -66,5 +72,7 @@ const columnStyle: CSSProperties = {
 const buttonContainerStyle: CSSProperties = {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: '-3rem',
+    marginBottom: '8rem'
 }

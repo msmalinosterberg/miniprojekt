@@ -29,6 +29,12 @@ class PaySwish extends Component {
       const { updatePaymentInfo } = this.context;
       updatePaymentInfo(allValues.swish);
     };
+
+    onFieldsChange = (values: any, allValues: any) => {
+      console.log(allValues);
+      const { updatePaymentInfo } = this.context;
+      updatePaymentInfo(allValues.swish);
+    }
     
     render() {
         return (
@@ -38,10 +44,10 @@ class PaySwish extends Component {
                     <Row style={formContainerStyle}>
                       <Col span={24} style={columnStyle}>
                           <h2>Payment information</h2>
-                          <Form {...layout} name="nest-messages" onValuesChange={this.onValuesChange} validateMessages={validateMessages}>
+                          <Form {...layout} name="nest-messages" onFieldsChange={this.onFieldsChange} validateMessages={validateMessages}>
                       
                           <Form.Item name={['swish', 'phone']} label="Phone" 
-                              rules={[{ min: 10, max: 10, required: true }]}>
+                              rules={[{ min: 10, max: 10, required: true }]} shouldUpdate>
                               <Input defaultValue={userInfo?.phone}/>
                           </Form.Item>
                           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 2}}>

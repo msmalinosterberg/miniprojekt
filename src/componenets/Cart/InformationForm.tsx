@@ -56,7 +56,7 @@ class InformationForm extends Component {
                     rules={[{ min: 10, max: 10, required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name={['user', 'steet']} label="Street" 
+                <Form.Item name={['user', 'street']} label="Street" 
                     rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>

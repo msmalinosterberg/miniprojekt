@@ -8,32 +8,18 @@ export interface CartItem {
     product: Product;
     quantity: number;
 }
-interface State {
-    cartItems?: CartItem[];
-}
-class CartItemsList extends Component<State> {
+class CartItemsList extends Component {
     context!: ContextType<typeof CartContext>
     static contextType = CartContext;
-   
-    state: State = {
-        cartItems: []
-    }
-
-    componentDidMount() {
-        this.setState({ cartItems: JSON.parse(localStorage.getItem('cartItems') as string) || []});
-    }
       
     handleDelete = (id: number) => {
         const { deleteProductFromCart } = this.context;
-        const updatedCartItems = [...this.state.cartItems || []];
-        this.setState({ cartItems: updatedCartItems.filter(item => item.product.id !== id) });
         deleteProductFromCart(id as number);
     }
 
     onChangeQuantity(quantity: number, product: Product) {
         const { addProductToCart } = this.context;
-        const cartItems = addProductToCart(product, quantity);
-        this.setState({ cartItems: cartItems });
+        addProductToCart(product, quantity);
     }
     
     render() {

@@ -1,4 +1,4 @@
-import React, { Component, ContextType, CSSProperties } from 'react'
+import { Component, ContextType, CSSProperties } from 'react'
 import { Form, Input, Button, Row, Col } from 'antd';
 import { CartContext } from '../../contexts/CartContext';
 const layout = {
@@ -34,9 +34,11 @@ class PayKlarna extends Component {
     static contextType = CartContext;
 
     onValuesChange = (values: any, allValues: any) => {
+        console.log('klarna', allValues)
         const { updatePaymentInfo } = this.context;
         updatePaymentInfo(allValues.klarna);
       };
+
 
     render() {
         return (
@@ -53,27 +55,27 @@ class PayKlarna extends Component {
                                 </Form.Item>
                                 <Form.Item name={['klarna', 'name']} label="Name" 
                                     rules={[{ required: true }]}>
-                                    <Input defaultValue={userInfo?.name}/>
+                                    <Input/>
                                 </Form.Item>
                                 <Form.Item name={['klarna', 'email']} label="Email" 
                                     rules={[{ type: 'email', required: true }]}>
-                                    <Input defaultValue={userInfo?.email}/>
+                                    <Input />
                                 </Form.Item>
                                 <Form.Item name={['klarna', 'phone']} label="Phone" 
                                     rules={[{ min: 10, max: 10, required: true }]}>
-                                    <Input defaultValue={userInfo?.phone}/>
+                                    <Input />
                                 </Form.Item>
                                 <Form.Item name={['klarna', 'street']} label="Street" 
                                     rules={[{ required: true }]}>
-                                    <Input defaultValue={userInfo?.street}/>
+                                    <Input />
                                 </Form.Item>
                                 <Form.Item name={['klarna', 'zipcode']} label="Zip-code" 
                                     rules={[{ required: true }]}>
-                                    <Input defaultValue={userInfo?.zipcode}/>
+                                    <Input />
                                 </Form.Item>
                                 <Form.Item name={['klarna', 'city']} label="City" 
                                     rules={[{ required: true }]}>
-                                    <Input defaultValue={userInfo?.city}/>
+                                    <Input />
                                 </Form.Item>
                                 
                                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 2}}>
