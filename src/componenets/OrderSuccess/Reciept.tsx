@@ -19,13 +19,11 @@ class Receipt extends Component {
         return(
             <CartContext.Consumer>
                 {({ receipt }) => {
-                //console.log(receipt)
                     return (
                         <Card title="Receipt" style={{ width: '60%' }}>
                             <p>Products: {receipt.cart.map((item) => item.product.title.concat(', ') + item.quantity + ', ')}</p>
                             <p>Delivery: {receipt.deliveryMethod}</p>
                             <p>Total price: {receipt.totalPrice + ' kr, incl delivery and VAT'}</p>
-                            {/* <p>Payed with: {Object.keys(receipt.paymentMethod).map((key) => (key))}</p> */}
                         </Card>
                     );    
                 }}

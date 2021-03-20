@@ -6,7 +6,6 @@ import DeliverySelection from './DeliverySelection';
 import InformationForm from './InformationForm';
 import PaymentMethod from './PaymentMethod';
 import TotalPrice from './TotalPrice';
-import { Link } from 'react-router-dom';
 import { CartContext } from '../../contexts/CartContext';
 import { Route } from 'react-router-dom';
 
@@ -47,14 +46,16 @@ class CartView extends Component<State> {
                     </Steps>
                 </Col>
                 <Col span={24} style={buttonContainerStyle}>
-                <Route render={({ history}) => (
-                    <Button
-                        type="primary"
-                        icon={<CheckCircleOutlined />}
-                        size={'large'}
-                        onClick={() => this.onPlaceOrderClick(history)}
-                    ><strong> Place order</strong></Button>
-                )} />
+                    <Route render={({ history }) => (
+                        <Button
+                            type="primary"
+                            icon={<CheckCircleOutlined />}
+                            size={'large'}
+                            onClick={() => this.onPlaceOrderClick(history)}
+                        >
+                            <strong> Place order</strong>
+                        </Button>
+                    )}/>
                 </Col>
             </Row>
         )

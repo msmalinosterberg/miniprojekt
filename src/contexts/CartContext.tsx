@@ -5,10 +5,8 @@ import { PaymentCard } from '../componenets/Cart/PayCard';
 import { PaymentKlarna } from '../componenets/Cart/PayKlarna';
 import { PaymentSwish } from '../componenets/Cart/PaySwish';
 import { DeliveryMethod, deliveryMethods } from '../componenets/deliveryMethods';
-import OrderSuccessMessage from '../componenets/OrderSuccess/OrderSuccessMessage';
 import { IReceipt } from '../componenets/OrderSuccess/Reciept';
 import { Product } from '../componenets/ProductItemsList';
-import { Route } from 'react-router-dom';
 
 const emptyUser: UserInfo = {
     name: '',
@@ -167,12 +165,12 @@ class CartProvider extends Component<{}, State> {
     }
 
     handlePlaceOrder = async (history: any) => {
-        //this.state.receipt = this.createReceipt();
         try {
             await createOrderMockApi();
         } catch (error) {
             return console.log(error);
         }
+        //this.state.receipt = this.createReceipt();
         this.createReceipt();
         console.log('receipt', this.state.receipt);
         this.clearCart();
