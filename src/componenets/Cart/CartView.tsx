@@ -8,6 +8,7 @@ import PaymentMethod from './PaymentMethod';
 import TotalPrice from './TotalPrice';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../contexts/CartContext';
+import { Route } from 'react-router-dom';
 
 interface State {
     currentStep?: number;
@@ -20,18 +21,17 @@ class CartView extends Component<State> {
     
     state: State = {
         currentStep: 0,
-      };
+    };
     
-      onChange = (current: State) => {
+    onChange = (current: State) => {
         console.log('onChange:', current);
         this.setState({ current });
-      };
+    };
 
-      onPlaceOrderClick = () => {
+    onPlaceOrderClick = (history: any) => {
         const { handlePlaceOrder } = this.context;
-        handlePlaceOrder();
-      }
-    
+        handlePlaceOrder(history);
+    }
 
     render() {
         const { currentStep } = this.state;
@@ -47,7 +47,14 @@ class CartView extends Component<State> {
                     </Steps>
                 </Col>
                 <Col span={24} style={buttonContainerStyle}>
-                <Link to='/ordersuccess'><Button type="primary" icon={<CheckCircleOutlined />} size={'large'} onClick={this.onPlaceOrderClick}><strong> Place order</strong></Button></Link>
+                <Route render={({ history}) => (
+                    <Button
+                        type="primary"
+                        icon={<CheckCircleOutlined />}
+                        size={'large'}
+                        onClick={() => this.onPlaceOrderClick(history)}
+                    ><strong> Place order</strong></Button>
+                )} />
                 </Col>
             </Row>
         )

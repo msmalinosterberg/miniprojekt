@@ -5,8 +5,10 @@ import { PaymentCard } from '../componenets/Cart/PayCard';
 import { PaymentKlarna } from '../componenets/Cart/PayKlarna';
 import { PaymentSwish } from '../componenets/Cart/PaySwish';
 import { DeliveryMethod, deliveryMethods } from '../componenets/deliveryMethods';
+import OrderSuccessMessage from '../componenets/OrderSuccess/OrderSuccessMessage';
 import { IReceipt } from '../componenets/OrderSuccess/Reciept';
 import { Product } from '../componenets/ProductItemsList';
+import { Route } from 'react-router-dom';
 
 const emptyUser: UserInfo = {
     name: '',
@@ -49,7 +51,7 @@ interface ContextValue extends State {
     getBadgeQuantity: () => number;
     updateUserInfo: (userInfo: UserInfo) => void;
     updatePaymentInfo: (paymentInfo: PaymentMethod) => void;
-    handlePlaceOrder: () => void;
+    handlePlaceOrder: (history: any) => void;
 }
 
 export const CartContext = createContext<ContextValue>({
@@ -76,7 +78,7 @@ class CartProvider extends Component<{}, State> {
         paymentInfo: defaultPayment,
         receipt: emptyReceipt,
     }
-
+    
     componentDidMount() {
         this.setState({ 
             cart: JSON.parse(localStorage.getItem('cartItems') as string) || [],
@@ -142,17 +144,40 @@ class CartProvider extends Component<{}, State> {
         this.setState({ paymentInfo: paymentInfo });
     }
 
-    handlePlaceOrder = () => {
-        console.log(this.state.receipt)
-        this.state.receipt.cart = this.state.cart;
-        this.state.receipt.userInfo = this.state.userInfo;
+    createReceipt = () => {
+        this.state.receipt.cart = [...this.state.cart];
+        this.state.receipt.userInfo = {...this.state.userInfo};
         this.state.receipt.deliveryMethod = this.state.deliveryMethod.company;
         this.state.receipt.totalPrice = this.getTotalPrice();
         this.state.receipt.paymentMethod = {...this.state.paymentInfo};
         
+        // return {
+        //     cart: this.state.cart,
+        //     userInfo: this.state.userInfo,
+        //     deliveryMethod: this.state.deliveryMethod.company,
+        //     totalPrice: this.getTotalPrice(),
+        //     paymentMethod: {...this.state.paymentInfo},
+        // }
+    }
+
+    clearCart = () => {
         this.state.deliveryMethod = deliveryMethods[0];
         this.state.cart = [];
         localStorage.setItem('cartItems', JSON.stringify([]));
+    }
+
+    handlePlaceOrder = async (history: any) => {
+        //this.state.receipt = this.createReceipt();
+        try {
+            await createOrderMockApi();
+        } catch (error) {
+            return console.log(error);
+        }
+        this.createReceipt();
+        console.log('receipt', this.state.receipt);
+        this.clearCart();
+
+        history.push('/ordersuccess');
     }
 
     render() {
@@ -181,13 +206,6 @@ class CartProvider extends Component<{}, State> {
 
 export default CartProvider;
 
-async function fetchMockApi() {
-    try {
-        const url = '';
-        const result = await fetch(url);
-        const data = await result.json();
-        return data;
-    } catch (error) {
-        console.log(error)
-    }
-};
+async function createOrderMockApi() {
+    return new Promise((res) => setTimeout(() => res("success"), 2000));
+}
