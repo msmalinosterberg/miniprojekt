@@ -142,25 +142,21 @@ class CartProvider extends Component<{}, State> {
         this.setState({ paymentInfo: paymentInfo });
     }
 
-    createReceipt = () => {
-        this.state.receipt.cart = [...this.state.cart];
-        this.state.receipt.userInfo = {...this.state.userInfo};
-        this.state.receipt.deliveryMethod = this.state.deliveryMethod.company;
-        this.state.receipt.totalPrice = this.getTotalPrice();
-        this.state.receipt.paymentMethod = {...this.state.paymentInfo};
-        
-        // return {
-        //     cart: this.state.cart,
-        //     userInfo: this.state.userInfo,
-        //     deliveryMethod: this.state.deliveryMethod.company,
-        //     totalPrice: this.getTotalPrice(),
-        //     paymentMethod: {...this.state.paymentInfo},
-        // }
+    createReceipt = (): IReceipt => {  
+       return {
+            cart: this.state.cart,
+            userInfo: this.state.userInfo,
+            deliveryMethod: this.state.deliveryMethod.company,
+            totalPrice: this.getTotalPrice(),
+            paymentMethod: {...this.state.paymentInfo},
+        }
     }
 
     clearCart = () => {
-        this.state.deliveryMethod = deliveryMethods[0];
-        this.state.cart = [];
+        this.setState({ 
+            deliveryMethod: deliveryMethods[0],
+            cart: [],
+        });
         localStorage.setItem('cartItems', JSON.stringify([]));
     }
 
@@ -170,8 +166,9 @@ class CartProvider extends Component<{}, State> {
         } catch (error) {
             return console.log(error);
         }
-        //this.state.receipt = this.createReceipt();
-        this.createReceipt();
+        this.setState({
+            receipt: this.createReceipt()
+        });
         console.log('receipt', this.state.receipt);
         this.clearCart();
 
@@ -179,7 +176,6 @@ class CartProvider extends Component<{}, State> {
     }
 
     render() {
-        console.log(this.state);
         return (
             <CartContext.Provider value={{
                 cart: this.state.cart,
