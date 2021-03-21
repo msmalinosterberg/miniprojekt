@@ -22,10 +22,6 @@ const steps = [
     content: 'Second-content',
   },
   {
-    title: 'Total price',
-    content: 'Third-content',
-  },
-  {
     title: 'Payment',
     content: 'Fourth-content',
   },
@@ -54,25 +50,23 @@ class CartView extends Component<{}, State> {
         this.setState({ current: this.state.current - 1});
     }
 
-
-
     render() {
         const { current } = this.state;
         const stepsComponents: any = {
             0: InformationForm,
             1: DeliverySelection,
-            2: TotalPrice,
-            3: PaymentMethod,
-            4: CompleteOrder,
+            2: PaymentMethod,
+            3: CompleteOrder,
         };
         const StepsComponent = stepsComponents[current];
 
         return(
             <CartContext.Consumer>
-                {({ disablePlaceOrderButton }) => {
+                {({ getTotalPriceProducts }) => {
                     return (
                         <Row style={cartViewContainerStyle}>
-                            <CartItemsList/>
+                            <CartItemsList />
+                            <h3 style={priceTextStyle}>Price products: {getTotalPriceProducts()  + ' kr '}</h3>
                             <Steps current={this.state.current} style={{ marginTop: '7rem' }}>
                                 {steps.map(item => (
                                 <Step key={item.title} title={item.title} />
@@ -80,38 +74,6 @@ class CartView extends Component<{}, State> {
                             </Steps>
                             <StepsComponent 
                                 next={this.next} />
-                            {/* <div className="steps-action">
-                                {this.state.current < steps.length - 1 && (
-                                    <Col span={24}>
-                                        <Button type="primary" onClick={() => this.next()}>
-                                            Next
-                                        </Button>
-                                    </Col>
-                                )}
-                                {this.state.current === steps.length - 1 && (
-                                <Button type="primary" onClick={() => message.success('Processing complete!')}>
-                                    Done
-                                </Button>
-                                )}
-                                {this.state.current > 0 && (
-                                <Button style={{ margin: '0 8px' }} onClick={() => this.prev()}>
-                                    Previous
-                                </Button>
-                                )}
-                            </div> */}
-                            
-                            {/* {/* <Col span={24} style={columnStyle}>
-                                <CartItemsList/>
-                                <Divider />
-                                <InformationForm /> 
-                                <Divider />
-                                <DeliverySelection />
-                                <Divider />
-                                <TotalPrice />
-                                <Divider />
-                                <PaymentMethod />
-                            </Col> */}
-                            
                         </Row>
                     );    
                 }}
@@ -131,8 +93,7 @@ const cartViewContainerStyle: CSSProperties = {
     margin: 'auto'
 }
 
-const columnStyle: CSSProperties = {
-    marginTop: '3rem',
-    marginBottom: '3rem',
+const priceTextStyle: CSSProperties = {
+    textAlign: 'center',
+    marginTop: '1rem'
 }
-

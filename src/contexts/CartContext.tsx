@@ -47,6 +47,7 @@ interface ContextValue extends State {
     setDeliveryMethod: (method: DeliveryMethod) => void;
     deleteProductFromCart: (id: number) => void;
     getTotalPrice: () => void;
+    getTotalPriceProducts: () => void;
     getBadgeQuantity: () => number;
     updateUserInfo: (userInfo: UserInfo) => void;
     updatePaymentInfo: (paymentInfo: PaymentMethod) => void;
@@ -64,6 +65,7 @@ export const CartContext = createContext<ContextValue>({
     setDeliveryMethod: () => {},
     deleteProductFromCart: () => {},
     getTotalPrice: () => {},
+    getTotalPriceProducts: () => {},
     getBadgeQuantity: () => 0,
     updateUserInfo: () => {},
     updatePaymentInfo: () => {},
@@ -116,15 +118,19 @@ class CartProvider extends Component<{}, State> {
         this.setState({ cart: newCartItemsList });
     }
 
-    getTotalPrice = () => {
+    getTotalPriceProducts = () => {
         let cartItems = this.state.cart;
         let totalPriceProducts = (
             cartItems
             .map((item: any) => item.product.price * item.quantity)
             .reduce((a: number, b: number) => a + b, 0)
         );
+        return totalPriceProducts;
+    }
+
+    getTotalPrice = () => {
         let deliveryPrice = this.state.deliveryMethod?.price;
-        return totalPriceProducts + (deliveryPrice as number);
+        return this.getTotalPriceProducts() + (deliveryPrice as number);
     }
 
     getBadgeQuantity = () => {
@@ -194,6 +200,7 @@ class CartProvider extends Component<{}, State> {
                 setDeliveryMethod: this.setDeliveryMethod,
                 deleteProductFromCart: this.deleteProductFromCart,
                 getTotalPrice: this.getTotalPrice,
+                getTotalPriceProducts: this.getTotalPriceProducts,
                 getBadgeQuantity: this.getBadgeQuantity,
                 updateUserInfo: this.updateUserInfo,
                 updatePaymentInfo: this.updatePaymentInfo,

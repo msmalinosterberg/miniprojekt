@@ -40,7 +40,8 @@ class DeliverySection extends React.Component<Props> {
               Delivery
           </h2>
           <Radio.Group options={this.mapMethodToRadio()} onChange={this.onChange} value={value} />
-          <Button type="primary" onClick={this.props.next}>
+          <br/>
+          <Button type="primary" style={buttonStyle} onClick={this.props.next}>
             Next
           </Button>
       </Content>
@@ -52,4 +53,8 @@ export default DeliverySection;
 
 const contentStyle: CSSProperties = {
   padding: '4rem'
+}
+
+const buttonStyle: CSSProperties = {
+  marginTop: '3rem'
 }
