@@ -41,6 +41,8 @@ class PayKlarna extends Component<Props> {
     
     onFinish = (values: any) => {
         console.log('Success:', values);
+        const { updatePaymentInfo } = this.context;
+        updatePaymentInfo(values.klarna);
         this.props.next();
     };
 
@@ -53,10 +55,19 @@ class PayKlarna extends Component<Props> {
                             <Col span={24} style={columnStyle}>
                             <h2>Billing information</h2>
                                 <Form {...layout} 
-                                    name="nest-messages" 
-                                    onValuesChange={this.onValuesChange} 
+                                    name="nest-messages"  
                                     validateMessages={validateMessages}
-                                    onFinish={this.onFinish}>
+                                    onFinish={this.onFinish}
+                                    initialValues={{
+                                        klarna: {
+                                            name: userInfo?.name,
+                                            email: userInfo?.email,
+                                            phone: userInfo?.phone,
+                                            street: userInfo?.street,
+                                            zipcode: userInfo?.zipcode,
+                                            city: userInfo?.city,
+                                        }
+                                    }}>
                                 <Form.Item name={['klarna', 'ssn']} label="SSN" 
                                     rules={[{ min: 10, max: 10, required: true }]}>
                                     <Input placeholder="YYMMDDXXXX"/>

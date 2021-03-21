@@ -23,19 +23,10 @@ class PaySwish extends Component<Props> {
   context!: ContextType<typeof CartContext>
   static contextType = CartContext;
 
-  onValuesChange = (values: any, allValues: any) => {
-    const { updatePaymentInfo } = this.context;
-    updatePaymentInfo(allValues.swish);
-  };
-
-  onFieldsChange = (values: any, allValues: any) => {
-    console.log(allValues);
-    const { updatePaymentInfo } = this.context;
-    updatePaymentInfo(allValues.swish);
-  }
-
   onFinish = (values: any) => {
     console.log('Success:', values);
+    const { updatePaymentInfo } = this.context;
+    updatePaymentInfo(values.swish);
     this.props.next();
   };
 
@@ -49,13 +40,17 @@ class PaySwish extends Component<Props> {
                         <h2>Payment information</h2>
                         <Form {...layout} 
                           name="nest-messages" 
-                          onFieldsChange={this.onFieldsChange} 
                           validateMessages={validateMessages}
-                          onFinish={this.onFinish}>
+                          onFinish={this.onFinish}
+                          initialValues={{
+                            swish: {
+                              phone: userInfo?.phone
+                            }
+                          }}>
                     
                         <Form.Item name={['swish', 'phone']} label="Phone" 
-                            rules={[{ min: 10, max: 10, required: true }]} shouldUpdate>
-                            <Input defaultValue={userInfo?.phone}/>
+                            rules={[{ min: 10, max: 10, required: true }]}>
+                            <Input />
                         </Form.Item>
                         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 2}}>
                           <Button type="primary" htmlType="submit">
