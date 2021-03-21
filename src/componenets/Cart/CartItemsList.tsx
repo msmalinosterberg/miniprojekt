@@ -61,11 +61,11 @@ const listContainerStyle: CSSProperties = {
     justifyContent: 'space-around',
     alignItems: 'space-around',
     width: '80%',
-    margin: 'auto'
+    margin: 'auto',
 }
 
 const columnStyle: CSSProperties = {
-    marginTop: '3rem',
+    marginTop: '8rem',
     marginBottom: '3rem',
 }
 

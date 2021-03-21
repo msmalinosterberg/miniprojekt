@@ -1,6 +1,6 @@
 import { Radio } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import PayCard from './PayCard';
 import PayKlarna from './PayKlarna';
 import PaySwish from './PaySwish';
@@ -12,7 +12,6 @@ class PaymentMethod extends React.Component {
   };
 
   onChange = (e: any) => {
-    //console.log('radio checked', e.target.value);
     this.setState({
       value: e.target.value,
     });
@@ -24,58 +23,31 @@ class PaymentMethod extends React.Component {
       
   render() {
     const { value } = this.state;
-      if (value === 1) {
-        return(
-          <div>
-            <Content>
-              <h2>
-                  Payment
-              </h2>
-              <RadioGroup onChange={this.onChange} value={value}>
-                  <Radio onChange={this.creditCard} value={1}>Credit card</Radio>
-                  <Radio onChange={this.swish} value={2}>Swish</Radio>
-                  <Radio onChange={this.klarna} value={3}>Klarna</Radio>
-              </RadioGroup>
-            </Content>
-            <PayCard/>
-          </div>
-        )     
-      }
-      if (value === 2) {
-        return    (
-          <div>
-            <Content>
-              <h2>
-                  Payment
-              </h2>
-              <RadioGroup onChange={this.onChange} value={value}>
-                  <Radio onChange={this.creditCard} value={1}>Credit card</Radio>
-                  <Radio onChange={this.swish} value={2}>Swish</Radio>
-                  <Radio onChange={this.klarna} value={3}>Klarna</Radio>
-              </RadioGroup>
-            </Content>
-            <PaySwish/>
-          </div>
-        )     
-      }
-      if (value === 3) {
-        return    (
-          <div>
-            <Content>
-              <h2>
-                  Payment
-              </h2>
-              <RadioGroup onChange={this.onChange} value={value}>
-                  <Radio onChange={this.creditCard} value={1}>Credit card</Radio>
-                  <Radio onChange={this.swish} value={2}>Swish</Radio>
-                  <Radio onChange={this.klarna} value={3}>Klarna</Radio>
-              </RadioGroup>
-            </Content>
-            <PayKlarna/>
-          </div>
-        )     
-      }  
+    const paymentComponents: any = {
+      1: PayCard,
+      2: PaySwish,
+      3: PayKlarna,
+    };
+    const PaymentComponent = paymentComponents[value];
+    
+    return(
+      <Content style={paymentContainerStyle}>
+        <h2>Payment</h2>
+        <RadioGroup onChange={this.onChange} value={value}>
+            <Radio onChange={this.creditCard} value={1}>Credit card</Radio>
+            <Radio onChange={this.swish} value={2}>Swish</Radio>
+            <Radio onChange={this.klarna} value={3}>Klarna</Radio>
+        </RadioGroup>
+        <div>
+          <PaymentComponent/>
+        </div> 
+      </Content>
+    )  
   }
 }
  
 export default PaymentMethod;
+
+const paymentContainerStyle: CSSProperties = {
+  padding: '4rem',
+}

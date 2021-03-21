@@ -39,6 +39,7 @@ interface State {
     userInfo: UserInfo;
     paymentInfo: PaymentMethod;
     receipt: IReceipt;
+    disablePlaceOrderButton: boolean;
 }
 
 interface ContextValue extends State {
@@ -58,6 +59,7 @@ export const CartContext = createContext<ContextValue>({
     userInfo: emptyUser,
     paymentInfo: defaultPayment,
     receipt: emptyReceipt,
+    disablePlaceOrderButton: false,
     addProductToCart: () => {},
     setDeliveryMethod: () => {},
     deleteProductFromCart: () => {},
@@ -75,6 +77,7 @@ class CartProvider extends Component<{}, State> {
         userInfo: emptyUser,
         paymentInfo: defaultPayment,
         receipt: emptyReceipt,
+        disablePlaceOrderButton: false,
     }
     
     componentDidMount() {
@@ -161,10 +164,12 @@ class CartProvider extends Component<{}, State> {
     }
 
     handlePlaceOrder = async (history: any) => {
+        this.setState({ disablePlaceOrderButton: true });
         try {
             await createOrderMockApi();
         } catch (error) {
-            return console.log(error);
+            console.log(error);
+            return;
         }
         this.setState({
             receipt: this.createReceipt()
@@ -173,6 +178,7 @@ class CartProvider extends Component<{}, State> {
         this.clearCart();
 
         history.push('/ordersuccess');
+        this.setState({ disablePlaceOrderButton: false });
     }
 
     render() {
@@ -183,6 +189,7 @@ class CartProvider extends Component<{}, State> {
                 userInfo: this.state.userInfo,
                 paymentInfo: this.state.paymentInfo,
                 receipt: this.state.receipt,
+                disablePlaceOrderButton: this.state.disablePlaceOrderButton,
                 addProductToCart: this.addProductToCart,
                 setDeliveryMethod: this.setDeliveryMethod,
                 deleteProductFromCart: this.deleteProductFromCart,

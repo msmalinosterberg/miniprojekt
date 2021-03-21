@@ -1,4 +1,4 @@
-import { Row, Col, Menu, Badge } from "antd";
+import { Row, Col, Menu } from "antd";
 import { Header} from "antd/lib/layout/layout";
 import { CSSProperties } from "react";
 import logo from '../assets/logga.png'; 
@@ -38,7 +38,8 @@ const layoutStyle: CSSProperties = {
     justifyItems:'center',
     textDecoration: 'none',
     zIndex: 100,
-    borderBottom: 'none'
+    borderBottom: 'none',
+    position: 'fixed',
 }
 
 const logoStyle: CSSProperties = {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css'
 import AdminLogIn from './componenets/Admin/AdminLogIn';
@@ -9,11 +8,13 @@ import OrderSuccessMessage from './componenets/OrderSuccess/OrderSuccessMessage'
 import ProductDetails from './componenets/ProductDetails/ProductDetails';
 import StartPageView from './componenets/StartPage/StartPageView';
 import CartProvider from './contexts/CartContext';
+import ScrollToTop from './componenets/ScrollToTop'
 
 function App() {
   return (
     <CartProvider>
       <Router>
+      <ScrollToTop />
         <Navbar /> 
         <Switch> 
           <Route path = '/product/:id' component={ProductDetails} />
@@ -30,10 +31,9 @@ function App() {
         <Route path='/admin'>
           <AdminLogIn />
         </Route>
-        <Footer2 /> 
+        <Footer2 />
       </Router>
-    </CartProvider>
-      
+    </CartProvider>   
   );
 }
 

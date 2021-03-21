@@ -43,7 +43,8 @@ class InformationForm extends Component {
       return (
           <Row style={formContainerStyle}>
             <Col span={24} style={columnStyle}>
-                <Form {...layout} name="nest-messages" onValuesChange={this.onValuesChange} validateMessages={validateMessages}>
+              <h2>Your information</h2>
+              <Form {...layout} name="nest-messages" onValuesChange={this.onValuesChange} validateMessages={validateMessages}>
                 <Form.Item name={['user', 'name']} label="Name" 
                     rules={[{ required: true }]}>
                     <Input />
@@ -68,13 +69,12 @@ class InformationForm extends Component {
                     rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 3 }}>
                     {/* <Button type="primary" htmlType="submit">
                     Submit
                     </Button> */}
                 </Form.Item>
-                </Form>
+              </Form>
             </Col>
         </Row>
       );

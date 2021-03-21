@@ -43,7 +43,8 @@ export default CarouselStart;
 const caoruselPic: CSSProperties = {
     display: 'flex',
     height: 'auto',
-    width: '100%'
+    width: '100%',
+    marginTop: '4rem',
 };
 
 
