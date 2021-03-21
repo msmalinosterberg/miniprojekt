@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Reciept from '../OrderSuccess/Reciept';
 
 function OrderSuccessMessage() {
-
     return (
         <Row style={containerStyle}>
             <Result

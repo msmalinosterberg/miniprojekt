@@ -2,7 +2,6 @@ import { Badge } from "antd";
 import { Component, ContextType } from "react";
 import { CSSProperties } from "react";
 import { CartContext } from "../contexts/CartContext";
-
 class AddToBadge extends Component  { 
     context!: ContextType<typeof CartContext>
     static contextType = CartContext;

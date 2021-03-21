@@ -1,13 +1,10 @@
-import { Row, Col, Button, Divider, Steps, message } from 'antd';
-import { CheckCircleOutlined } from '@ant-design/icons';
+import { Row, Steps } from 'antd';
 import { Component, ContextType, CSSProperties } from 'react';
 import CartItemsList from './CartItemsList';
 import DeliverySelection from './DeliverySelection';
 import InformationForm from './InformationForm';
 import PaymentMethod from './PaymentMethod';
-import TotalPrice from './TotalPrice';
 import { CartContext } from '../../contexts/CartContext';
-import { Route } from 'react-router-dom';
 import CompleteOrder from './CompleteOrder';
 
 const { Step } = Steps;
@@ -15,19 +12,15 @@ const { Step } = Steps;
 const steps = [
   {
     title: 'Your information',
-    content: 'First-content',
   },
   {
     title: 'Delivery',
-    content: 'Second-content',
   },
   {
     title: 'Payment',
-    content: 'Fourth-content',
   },
   {
     title: 'Complete order',
-    content: 'Last-content',
   },
 ];
 

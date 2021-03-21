@@ -1,6 +1,5 @@
 import { Row, Col, Layout } from 'antd';
 
-
 function Footer() {
     const { Footer } = Layout;
     return (
@@ -8,7 +7,6 @@ function Footer() {
             <Col span={24}>
                 <Footer style={{ background: 'black', height: '6rem', padding: '2rem 4rem' }}>
                     <h3 style={{ color: 'white' }}>FashionStore | 2021</h3>
-                {/* <img src={logo} alt="logo" style={logoStyle2} /> */}
                 </Footer>
             </Col> 
         </Row>

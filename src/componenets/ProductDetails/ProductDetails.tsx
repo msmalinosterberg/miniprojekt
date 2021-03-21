@@ -1,4 +1,4 @@
-import { Layout, Row, Col, message, Button } from 'antd';
+import { Row, Col, message, Button } from 'antd';
 import { Component, ContextType, CSSProperties } from 'react'; 
 import { Image } from 'antd';
 import { RouteComponentProps, withRouter } from 'react-router-dom';

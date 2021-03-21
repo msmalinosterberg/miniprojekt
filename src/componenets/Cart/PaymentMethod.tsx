@@ -32,6 +32,7 @@ class PaymentMethod extends React.Component<Props> {
       2: PaySwish,
       3: PayKlarna,
     };
+    
     const PaymentComponent = paymentComponents[value];
     
     return(

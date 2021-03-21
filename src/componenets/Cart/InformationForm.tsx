@@ -37,7 +37,6 @@ class InformationForm extends Component<Props> {
   static contextType = CartContext;
 
   onValuesChange = (values: any, allValues: any) => {
-    //console.log(allValues);
     const { updateUserInfo } = this.context;
     updateUserInfo(allValues.user);
   };
@@ -102,6 +101,7 @@ class InformationForm extends Component<Props> {
     width: '80%',
     margin: 'auto'
 }
+
 const columnStyle: CSSProperties = {
     marginTop: '3rem',
     marginBottom: '3rem',

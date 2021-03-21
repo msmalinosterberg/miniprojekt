@@ -1,12 +1,12 @@
 import { Component, ContextType, CSSProperties } from 'react'
 import { Form, Input, Button, Row, Col } from 'antd';
 import { CartContext } from '../../contexts/CartContext';
+
 const layout = {
     labelCol: { span: 4 },
     wrapperCol: { span: 16 },
-  };
+};
   
-  /* eslint-disable no-template-curly-in-string */
 const validateMessages = {
     required: '${label} is required!',
     types: {
@@ -16,9 +16,7 @@ const validateMessages = {
     number: {
         range: '${label} must be between ${min} and ${max}',
     },
-};
-  /* eslint-enable no-template-curly-in-string */
-  
+}; 
 export interface PaymentKlarna {
     ssn: string;
     name: string;
@@ -112,6 +110,7 @@ const formContainerStyle: CSSProperties = {
     width: '80%',
     margin: 'auto'
 }
+
 const columnStyle: CSSProperties = {
     marginTop: '3rem',
     marginBottom: '3rem',
