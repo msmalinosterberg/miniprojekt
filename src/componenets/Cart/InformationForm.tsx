@@ -28,8 +28,11 @@ export interface UserInfo {
   zipcode: string;
   city: string;
 }
+interface Props {
+  next(): void;
+}
 
-class InformationForm extends Component {
+class InformationForm extends Component<Props> {
   context!: ContextType<typeof CartContext>
   static contextType = CartContext;
 
@@ -39,12 +42,21 @@ class InformationForm extends Component {
     updateUserInfo(allValues.user);
   };
 
+  onFinish = (values: any) => {
+    console.log('Success:', values);
+    this.props.next();
+  };
+
   render() {
       return (
           <Row style={formContainerStyle}>
             <Col span={24} style={columnStyle}>
               <h2>Your information</h2>
-              <Form {...layout} name="nest-messages" onValuesChange={this.onValuesChange} validateMessages={validateMessages}>
+              <Form {...layout} 
+                name="nest-messages" 
+                onValuesChange={this.onValuesChange} 
+                validateMessages={validateMessages}
+                onFinish={this.onFinish}>
                 <Form.Item name={['user', 'name']} label="Name" 
                     rules={[{ required: true }]}>
                     <Input />
@@ -70,9 +82,9 @@ class InformationForm extends Component {
                     <Input />
                 </Form.Item>
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 3 }}>
-                    {/* <Button type="primary" htmlType="submit">
-                    Submit
-                    </Button> */}
+                  <Button type="primary" htmlType="submit">
+                    Next
+                  </Button>
                 </Form.Item>
               </Form>
             </Col>

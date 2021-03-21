@@ -6,7 +6,11 @@ import PayKlarna from './PayKlarna';
 import PaySwish from './PaySwish';
 
 const RadioGroup = Radio.Group;
-class PaymentMethod extends React.Component {
+
+interface Props {
+  next(): void;
+}
+class PaymentMethod extends React.Component<Props> {
   state = {
     value: 1,
   };
@@ -39,7 +43,8 @@ class PaymentMethod extends React.Component {
             <Radio onChange={this.klarna} value={3}>Klarna</Radio>
         </RadioGroup>
         <div>
-          <PaymentComponent/>
+          <PaymentComponent
+            next={this.props.next}/>
         </div> 
       </Content>
     )  

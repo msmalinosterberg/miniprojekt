@@ -1,4 +1,4 @@
-import { Steps, Row, Col, Button, Divider } from 'antd';
+import { Row, Col, Button, Divider, Steps, message } from 'antd';
 import { CheckCircleOutlined } from '@ant-design/icons';
 import { Component, ContextType, CSSProperties } from 'react';
 import CartItemsList from './CartItemsList';
@@ -8,33 +8,99 @@ import PaymentMethod from './PaymentMethod';
 import TotalPrice from './TotalPrice';
 import { CartContext } from '../../contexts/CartContext';
 import { Route } from 'react-router-dom';
+import CompleteOrder from './CompleteOrder';
+
+const { Step } = Steps;
+
+const steps = [
+  {
+    title: 'Your information',
+    content: 'First-content',
+  },
+  {
+    title: 'Delivery',
+    content: 'Second-content',
+  },
+  {
+    title: 'Total price',
+    content: 'Third-content',
+  },
+  {
+    title: 'Payment',
+    content: 'Fourth-content',
+  },
+  {
+    title: 'Complete order',
+    content: 'Last-content',
+  },
+];
 
 interface State {
- 
+    current: number;
 }
-
-class CartView extends Component<State> { 
+class CartView extends Component<{}, State> { 
     context!: ContextType<typeof CartContext>
     static contextType = CartContext;
-    
-    
-    onChange = (current: State) => {
-        console.log('onChange:', current);
-        this.setState({ current });
-    };
 
-    onPlaceOrderClick = (history: any) => {
-        const { handlePlaceOrder } = this.context;
-        handlePlaceOrder(history);
+    state: State = {
+        current: 0
     }
 
+    next = () => {
+        this.setState({ current: this.state.current + 1});
+    }
+
+    prev = () => {
+        this.setState({ current: this.state.current - 1});
+    }
+
+
+
     render() {
+        const { current } = this.state;
+        const stepsComponents: any = {
+            0: InformationForm,
+            1: DeliverySelection,
+            2: TotalPrice,
+            3: PaymentMethod,
+            4: CompleteOrder,
+        };
+        const StepsComponent = stepsComponents[current];
+
         return(
             <CartContext.Consumer>
                 {({ disablePlaceOrderButton }) => {
                     return (
                         <Row style={cartViewContainerStyle}>
-                            <Col span={24} style={columnStyle}>
+                            <CartItemsList/>
+                            <Steps current={this.state.current} style={{ marginTop: '7rem' }}>
+                                {steps.map(item => (
+                                <Step key={item.title} title={item.title} />
+                                ))}
+                            </Steps>
+                            <StepsComponent 
+                                next={this.next} />
+                            {/* <div className="steps-action">
+                                {this.state.current < steps.length - 1 && (
+                                    <Col span={24}>
+                                        <Button type="primary" onClick={() => this.next()}>
+                                            Next
+                                        </Button>
+                                    </Col>
+                                )}
+                                {this.state.current === steps.length - 1 && (
+                                <Button type="primary" onClick={() => message.success('Processing complete!')}>
+                                    Done
+                                </Button>
+                                )}
+                                {this.state.current > 0 && (
+                                <Button style={{ margin: '0 8px' }} onClick={() => this.prev()}>
+                                    Previous
+                                </Button>
+                                )}
+                            </div> */}
+                            
+                            {/* {/* <Col span={24} style={columnStyle}>
                                 <CartItemsList/>
                                 <Divider />
                                 <InformationForm /> 
@@ -44,20 +110,8 @@ class CartView extends Component<State> {
                                 <TotalPrice />
                                 <Divider />
                                 <PaymentMethod />
-                            </Col>
-                            <Col span={24} style={buttonContainerStyle}>
-                                <Route render={({ history }) => (
-                                    <Button
-                                        type="primary"
-                                        icon={<CheckCircleOutlined />}
-                                        size={'large'}
-                                        onClick={() => this.onPlaceOrderClick(history)}
-                                        loading={disablePlaceOrderButton}
-                                    >
-                                        <strong> Place order</strong>
-                                    </Button>
-                                )}/>
-                            </Col>
+                            </Col> */}
+                            
                         </Row>
                     );    
                 }}
@@ -70,6 +124,7 @@ export default CartView;
 
 const cartViewContainerStyle: CSSProperties = {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'space-around',
     width: '80%',
@@ -81,10 +136,3 @@ const columnStyle: CSSProperties = {
     marginBottom: '3rem',
 }
 
-const buttonContainerStyle: CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: '-3rem',
-    marginBottom: '8rem'
-}

@@ -1,12 +1,14 @@
-import { Radio } from 'antd';
+import { Button, Radio } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import React, { ContextType, CSSProperties } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 import { calculateDeliveryDay, DeliveryMethod, deliveryMethods } from '../deliveryMethods';
 
-
 const RadioGroup = Radio.Group;
-class DeliverySection extends React.Component {
+interface Props {
+  next(): void;
+}
+class DeliverySection extends React.Component<Props> {
   context!: ContextType<typeof CartContext>
   static contextType = CartContext;
 
@@ -38,6 +40,9 @@ class DeliverySection extends React.Component {
               Delivery
           </h2>
           <Radio.Group options={this.mapMethodToRadio()} onChange={this.onChange} value={value} />
+          <Button type="primary" onClick={this.props.next}>
+            Next
+          </Button>
       </Content>
     );
   }
