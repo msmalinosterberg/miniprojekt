@@ -29,7 +29,6 @@ interface State {
   products: Product[];
   product: Product | undefined;
 }
-//En produkt i statet ist för flera – fixad.
 class AdminEditDetails extends Component<Props, State> {
   state: State = {
     products: JSON.parse(localStorage.getItem('products') as string) || [],
@@ -37,17 +36,23 @@ class AdminEditDetails extends Component<Props, State> {
   };
 
   onFinish = (values: any) => {
-    console.log(values);
     const products = JSON.parse(localStorage.getItem("products") as string) || [];
     const editedProduct: Product = {...this.state.product, ...values.product};
     const updatedProducts = products.map((item: Product) => item.id === editedProduct.id ? editedProduct : item);
     localStorage.setItem('products', JSON.stringify(updatedProducts));
-  };
+  }
 
   componentDidMount() {
-    const products = JSON.parse(localStorage.getItem("products") as string) || [];
+    const products = JSON.parse(localStorage.getItem('products') as string) || [];
     const product = products.find((p: Product) => p.id == Number(this.props.match.params.id));
     this.setState({ product: product });
+  }
+
+  handleDelete = () => {
+    const products = JSON.parse(localStorage.getItem('products') as string) || [];
+    const productId = this.state.product?.id;
+    const newProducts = products.filter((item: Product) => item.id !== productId);
+    localStorage.setItem('products', JSON.stringify(newProducts));
   }
 
   //constructor som hämtar from LS och kollar om routecompProps === produktid 
@@ -112,7 +117,7 @@ class AdminEditDetails extends Component<Props, State> {
                     Save
                   </Button>
 
-                  <Button type="primary" danger htmlType="submit">
+                  <Button type="primary" danger onClick={this.handleDelete}>
                     Delete
                   </Button>
                 </div>
