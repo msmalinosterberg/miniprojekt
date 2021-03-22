@@ -1,6 +1,6 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Avatar, Button, Col, List, Row, } from "antd";
-import React, { Component, CSSProperties } from "react";
+import { Component, CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { productList } from "../ProductItemsList";
 
@@ -22,50 +22,43 @@ class GetAdminList extends Component < {}, State>{
         this.setState({ products: JSON.parse(localStorage.getItem('products') as string) || []});
     }
 
-
- 
     render() {
-    
-
         return (
             <Row style={containerStyle}>
                 <Col style={columnStyle}>
-                <div style={{display: 'flex', justifyContent: 'space-between', alignItems:'center', marginTop: '2rem'}}>
-                <h1 style={{fontWeight: 'bold'}}>ADMIN </h1>
-                
-                <Link to ={'/add-product'}> 
-                <Button type="primary" icon={<PlusOutlined />}>
-                 Add product
-                 </Button>
-                 </Link> 
-                 </div>    
+                    <div style={{display: 'flex', justifyContent: 'space-between', alignItems:'center', marginTop: '2rem', marginBottom: '3rem'}}>
+                        <h1 style={{fontWeight: 'bold'}}>ADMIN </h1>                  
+                    <Link to ={'/add-product'}> 
+                        <Button type="primary" icon={<PlusOutlined />}>
+                            Add product
+                        </Button>
+                    </Link> 
+                    </div>    
 
-                <List   grid={{
-                            gutter: 12,
-                            xs: 1,
-                            sm: 1,
-                            md: 1,
-                            lg: 1,
-                            xl: 1,
-                            xxl: 1,
+                    <List grid={{
+                        gutter: 12,
+                        xs: 1,
+                        sm: 1,
+                        md: 1,
+                        lg: 1,
+                        xl: 1,
+                        xxl: 1,
                         }}
                         dataSource={productList}
                         renderItem={item => (
                             <List.Item>
-                                <Link to={'/edit-product/' + item.id}>
-                                   
+                                <Link to={'/edit-product/' + item.id}>     
                                 <List.Item.Meta                    
-                                        avatar={<Avatar size={64} src={item.imageUrl} />} 
-                                        title={<Link to={'/edit-product/' + item.id}>{item.title}</Link>}
-                                        description={[item.description.split('.')[0],  
-                                        ]}
+                                    avatar={<Avatar size={64} src={item.imageUrl} />} 
+                                    title={<Link to={'/edit-product/' + item.id}>{item.title}</Link>}
+                                    description={[item.description.split('.')[0],  
+                                    ]}
                                 />  
-                                <p style={editStyle}>edit</p>
-                                </Link>
-                                
+                                    <p style={editStyle}>edit</p>
+                                </Link>   
                             </List.Item>
                         )}
-                     /> 
+                    /> 
                 </Col>
             </Row> 
         )
@@ -80,10 +73,8 @@ const containerStyle: CSSProperties ={
 }
 
 const columnStyle: CSSProperties = {
-   
-    
+   marginTop: '8rem',
 }
-
 
 const editStyle: CSSProperties = {
     color: 'red', 
@@ -91,10 +82,6 @@ const editStyle: CSSProperties = {
     justifyContent: 'flex-end',
     borderBottom: '1px solid lightgrey',
     alignItems: 'center'
-
-    
-
-
 }
 
 

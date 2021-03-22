@@ -1,7 +1,7 @@
 import { Component, ContextType, CSSProperties } from 'react';
 import { Card, Col, List, Row, message } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import { productList } from '../ProductItemsList';
+import { Product, productList } from '../ProductItemsList';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../contexts/CartContext';
 
@@ -15,6 +15,7 @@ class ProductCard extends Component {
         
     render() {
         const { addProductToCart } = this.context;
+        const products: Product[] = JSON.parse(localStorage.getItem("products") as string) || [];
         return(    
             <Row style={cardContainer}>
                 <Col span={24} style={columnStyle}>
@@ -28,7 +29,7 @@ class ProductCard extends Component {
                             xl: 4,
                             xxl: 4,
                         }}
-                        dataSource={productList}
+                        dataSource={products}
                         renderItem={item => (
                             <List.Item>
                                 <Link to={'/product/' + item.id}>
