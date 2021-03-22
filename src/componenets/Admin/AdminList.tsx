@@ -12,7 +12,7 @@ interface State {
     products?: Products[]; 
 }
 
-class GetAdminList extends Component <State>{
+class GetAdminList extends Component < {}, State>{
 
     state: State = {
         products: []
@@ -32,9 +32,12 @@ class GetAdminList extends Component <State>{
                 <Col style={columnStyle}>
                 <div style={{display: 'flex', justifyContent: 'space-between', alignItems:'center', marginTop: '2rem'}}>
                 <h1 style={{fontWeight: 'bold'}}>ADMIN </h1>
+                
+                <Link to ={'/add-product'}> 
                 <Button type="primary" icon={<PlusOutlined />}>
                  Add product
                  </Button>
+                 </Link> 
                  </div>    
 
                 <List   grid={{
@@ -77,7 +80,6 @@ const containerStyle: CSSProperties ={
 }
 
 const columnStyle: CSSProperties = {
-  
    
     
 }
@@ -88,6 +90,9 @@ const editStyle: CSSProperties = {
     display: 'flex', 
     justifyContent: 'flex-end',
     borderBottom: '1px solid lightgrey',
+    alignItems: 'center'
+
+    
 
 
 }

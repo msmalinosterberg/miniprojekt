@@ -27,6 +27,7 @@ interface Props extends RouteComponentProps<{ id: string }> {}
 interface State {
   products: Product[];
 }
+//En produkt i statet ist för flera 
 class AdminEditDetails extends Component<Props, State> {
   state: State = {
     products: JSON.parse(localStorage.getItem("products") as string) || [],
@@ -36,11 +37,12 @@ class AdminEditDetails extends Component<Props, State> {
     console.log(values);
   };
 
+  //constructor som hämtar from LS och kollar om routecompProps === produktid 
   render() {
     const { products } = this.state;
 
     const product = products.find(p => p.id == Number(this.props.match.params.id))
-
+    //404 sida 
     if (!product) {
       return "?????"
     }
@@ -68,18 +70,19 @@ class AdminEditDetails extends Component<Props, State> {
               </h1>
               <Form.Item name={["product", "name"]} label="Title">
                 <Input defaultValue={product.title}  />
+
               </Form.Item>
 
               <Form.Item name={["product", "description"]} label="Description">
-                <Input.TextArea />
+                <Input.TextArea defaultValue={product.description}/>
               </Form.Item>
 
               <Form.Item name={["product", "price"]} label="Price">
-                <Input />
+                <Input defaultValue={product.price}/>
               </Form.Item>
               
               <Form.Item name={["product", "imageUrl"]} label="ImageUrl">
-                <Input />
+                <Input defaultValue={product.imageUrl}/>
               </Form.Item>
 
               <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
