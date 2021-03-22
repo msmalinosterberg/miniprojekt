@@ -52,7 +52,7 @@ class DeliverySection extends React.Component<Props> {
 export default DeliverySection;
 
 const contentStyle: CSSProperties = {
-  padding: '4rem'
+  padding: '8rem 4rem'
 }
 
 const buttonStyle: CSSProperties = {

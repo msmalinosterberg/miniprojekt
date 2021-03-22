@@ -65,7 +65,7 @@ const listContainerStyle: CSSProperties = {
 }
 
 const columnStyle: CSSProperties = {
-    marginTop: '8rem',
+    marginTop: '12rem',
     marginBottom: '3rem',
 }
 
