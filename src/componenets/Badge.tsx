@@ -28,8 +28,8 @@ const badgeStyle: CSSProperties = {
     color: 'white', 
     borderColor: 'red',
     fontSize: '0.8rem',
-    marginRight:'3rem',
-    marginTop: '-1rem'
+    marginRight:'4rem',
+    marginTop: '-0.9rem'
 }
 
 export default AddToBadge;
