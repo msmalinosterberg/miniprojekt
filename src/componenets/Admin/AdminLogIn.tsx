@@ -1,9 +1,6 @@
 import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
 import React, { CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
-import AdminEditDetails from './AdminEditDetails';
-import GetAdminList from './AdminList';
-
 
 const layout = {
   labelCol: {
@@ -23,20 +20,19 @@ const tailLayout = {
 
 class AdminLogIn extends React.Component {
 
-         onFinish = (values: any) => {
-          console.log('Success:', values);
-        };
-      
-         onFinishFailed = (errorInfo: any) => {
-          console.log('Failed:', errorInfo);
-        };
+  onFinish = (values: any) => {
+  console.log('Success:', values);
+  };
+
+  onFinishFailed = (errorInfo: any) => {
+  console.log('Failed:', errorInfo);
+  };
     
-    render() {
-       
-        return (
-          <div> 
+  render() {
+    return (
+      <div> 
         <Row style={ContainerStyle}>
-            <Col span={24} style={columnStyle}>
+          <Col span={24} style={columnStyle}>
             <h1 style={{display: 'flex', justifyContent: 'center', fontWeight: 'bold'}}>LOG IN </h1>
             <Form
               {...layout}
@@ -59,7 +55,7 @@ class AdminLogIn extends React.Component {
               >
                 <Input />
               </Form.Item>
-        
+      
               <Form.Item
                 label="Password"
                 name="password"
@@ -72,31 +68,26 @@ class AdminLogIn extends React.Component {
               >
                 <Input.Password />
               </Form.Item>
-        
+      
               <Form.Item {...tailLayout} name="remember" valuePropName="checked">
                 <Checkbox>Remember me</Checkbox>
               </Form.Item>
         
               <Form.Item {...tailLayout}>
-               
+              
               <Link to={'/admin-list'}>
                 <Button type="primary" htmlType="submit">
-                 Log in 
+                  Log in 
                 </Button> 
               </Link> 
 
               </Form.Item>
             </Form>
-
-            </Col>
-           </Row>
-          
-
-</div> 
-
-          );
-        }
-       
+          </Col>
+        </Row>
+      </div> 
+    );
+  }
 }
 
 const ContainerStyle: CSSProperties = {
@@ -109,7 +100,7 @@ const ContainerStyle: CSSProperties = {
 }
 
 const columnStyle: CSSProperties = {
-  marginTop: '6rem',
+  marginTop: '14rem',
   marginBottom: '3rem',
 }
 
