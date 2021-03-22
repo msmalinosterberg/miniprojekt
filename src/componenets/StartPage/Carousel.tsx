@@ -2,7 +2,6 @@ import { Component, CSSProperties } from 'react';
 import { Carousel } from 'antd';
 
 class CarouselStart extends Component {
-
     render() {
         return (
             <Carousel autoplay>
@@ -38,12 +37,14 @@ class CarouselStart extends Component {
         )
     }
 }
+
 export default CarouselStart;
 
 const caoruselPic: CSSProperties = {
     display: 'flex',
     height: 'auto',
-    width: '100%'
+    width: '100%',
+    marginTop: '4rem',
 };
 
 

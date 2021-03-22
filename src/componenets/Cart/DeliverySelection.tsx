@@ -1,38 +1,14 @@
-import { Radio } from 'antd';
+import { Button, Radio } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import React, { ContextType, CSSProperties } from 'react';
 import { CartContext } from '../../contexts/CartContext';
-
-export interface DeliveryMethod {
-  id: number;
-  company: string;
-  time: number;
-  price: number;
-}
-
-export const deliveryMethods: DeliveryMethod[] = [
-  {
-    id: 1,
-    company: 'PostNord',
-    time: 24,
-    price: 145,
-  },
-  {
-    id: 2,
-    company: 'Bring',
-    time: 48,
-    price: 129,
-  },
-  {
-    id: 3,
-    company: 'DB Schenker',
-    time: 72,
-    price: 89,
-  }
-];
+import { calculateDeliveryDay, DeliveryMethod, deliveryMethods } from '../deliveryMethods';
 
 const RadioGroup = Radio.Group;
-class DeliverySection extends React.Component {
+interface Props {
+  next(): void;
+}
+class DeliverySection extends React.Component<Props> {
   context!: ContextType<typeof CartContext>
   static contextType = CartContext;
 
@@ -52,7 +28,7 @@ class DeliverySection extends React.Component {
   mapMethodToRadio() {
     return deliveryMethods.map(
       (item: DeliveryMethod) => (
-        {label: item.company + ' ' + item.time + 'h ' + item.price + ' kr', value: item.id}))
+        {label: item.company + ' will deliver on ' + calculateDeliveryDay(item.time) + ' – ' + item.price + ' kr ', value: item.id}))
   }
 
   render() {
@@ -64,6 +40,10 @@ class DeliverySection extends React.Component {
               Delivery
           </h2>
           <Radio.Group options={this.mapMethodToRadio()} onChange={this.onChange} value={value} />
+          <br/>
+          <Button type="primary" style={buttonStyle} onClick={this.props.next}>
+            Next
+          </Button>
       </Content>
     );
   }
@@ -72,5 +52,9 @@ class DeliverySection extends React.Component {
 export default DeliverySection;
 
 const contentStyle: CSSProperties = {
-  padding: '4rem'
+  padding: '8rem 4rem'
+}
+
+const buttonStyle: CSSProperties = {
+  marginTop: '3rem'
 }

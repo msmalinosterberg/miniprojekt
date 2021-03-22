@@ -1,31 +1,16 @@
-import { Row, Col } from 'antd';
-import Layout, { Footer } from 'antd/lib/layout/layout';
-import React, { CSSProperties } from 'react'; 
-import logo from '../assets/logga.png'; 
+import { Row, Col, Layout } from 'antd';
 
-
-
-function Footer2() {
-    
+function Footer() {
+    const { Footer } = Layout;
     return (
-        <Layout>
-            <Row style={{width: '100%'}}>
+        <Row style={{width: '100%'}}>
             <Col span={24}>
-            <Footer style = {{background: 'black', height: '6rem'}}>
-            <img src={logo} alt="logo" style={logoStyle2} />
-            </Footer>
+                <Footer style={{ background: 'black', height: '6rem', padding: '2rem 4rem' }}>
+                    <h3 style={{ color: 'white' }}>FashionStore | 2021</h3>
+                </Footer>
             </Col> 
-            </Row>
-        </Layout>
+        </Row>
     ); 
 }
 
-
-const logoStyle2: CSSProperties = {
-    display: 'flex', 
-    alignItems: 'center', 
-    justifyContent:'center',
-   
-}
-
-export default Footer2; 
+export default Footer; 
