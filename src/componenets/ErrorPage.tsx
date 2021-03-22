@@ -32,7 +32,7 @@ class ErrorPage extends Component<Props, State> {
 export default withRouter(ErrorPage);
 
 const ErrorPageStyle: CSSProperties = {
-    height: '100%',
+    height: '100vh',
 }
 
 const columnStyle: CSSProperties = {

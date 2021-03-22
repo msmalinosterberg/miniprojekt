@@ -59,14 +59,12 @@ class AdminEditDetails extends Component<Props, State> {
   render() {
     const { product } = this.state;
 
-    //404 sida 
-    if (!product) {
-      return <ErrorPage />
-    }
+  //404 sida 
+  if (!product) {
+    return <ErrorPage />
+  }
 
-    console.log(product)
-
-    return (
+  return (
       <div>
         <Row style={ContainerStyle}>
           <Col span={24} style={columnStyle}>
