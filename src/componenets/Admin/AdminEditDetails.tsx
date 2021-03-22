@@ -1,6 +1,7 @@
 import { Form, Input, Button, Col, Row } from "antd";
 import { Component, CSSProperties } from "react";
 import { RouteComponentProps } from "react-router-dom";
+import ErrorPage from "../ErrorPage";
 import { Product } from "../ProductItemsList";
 
 const layout = {
@@ -55,7 +56,7 @@ class AdminEditDetails extends Component<Props, State> {
 
     //404 sida 
     if (!product) {
-      return <div></div>;
+      return <ErrorPage />
     }
 
     console.log(product)
