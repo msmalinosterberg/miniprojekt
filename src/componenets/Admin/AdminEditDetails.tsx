@@ -1,5 +1,5 @@
-import { Form, Input, InputNumber, Button, Col, Row } from "antd";
-import React, { Component, CSSProperties } from "react";
+import { Form, Input, Button, Col, Row } from "antd";
+import { Component, CSSProperties } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
 import { Product } from "../ProductItemsList";
@@ -27,30 +27,44 @@ interface Props extends RouteComponentProps<{ id: string }> {}
 
 interface State {
   products: Product[];
+  product: Product | undefined;
 }
-//En produkt i statet ist för flera 
 class AdminEditDetails extends Component<Props, State> {
   state: State = {
-    products: JSON.parse(localStorage.getItem("products") as string) || [],
+    products: JSON.parse(localStorage.getItem('products') as string) || [],
+    product: undefined,
   };
 
   onFinish = (values: any) => {
-    console.log(values);
-  };
+    const products = JSON.parse(localStorage.getItem("products") as string) || [];
+    const editedProduct: Product = {...this.state.product, ...values.product};
+    const updatedProducts = products.map((item: Product) => item.id === editedProduct.id ? editedProduct : item);
+    localStorage.setItem('products', JSON.stringify(updatedProducts));
+  }
+
+  componentDidMount() {
+    const products = JSON.parse(localStorage.getItem('products') as string) || [];
+    const product = products.find((p: Product) => p.id == Number(this.props.match.params.id));
+    this.setState({ product: product });
+  }
+
+  handleDelete = () => {
+    const products = JSON.parse(localStorage.getItem('products') as string) || [];
+    const productId = this.state.product?.id;
+    const newProducts = products.filter((item: Product) => item.id !== productId);
+    localStorage.setItem('products', JSON.stringify(newProducts));
+  }
 
   //constructor som hämtar from LS och kollar om routecompProps === produktid 
   render() {
-    const { products } = this.state;
+    const { product } = this.state;
 
-    const product = products.find(p => p.id == Number(this.props.match.params.id))
-    //404 sida 
-    if (!product) {
-      return <ErrorPage />
-    }
+  //404 sida 
+  if (!product) {
+    return <ErrorPage />
+  }
 
-    console.log(product)
-
-    return (
+  return (
       <div>
         <Row style={ContainerStyle}>
           <Col span={24} style={columnStyle}>
@@ -59,6 +73,14 @@ class AdminEditDetails extends Component<Props, State> {
               name="nest-messages"
               onFinish={this.onFinish}
               validateMessages={validateMessages}
+              initialValues={{
+                product: {
+                    title: this.state.product?.title,
+                    description: this.state.product?.description,
+                    price: this.state.product?.price,
+                    imageUrl: this.state.product?.imageUrl,
+                }
+              }}
             >
               <h1
                 style={{
@@ -69,9 +91,8 @@ class AdminEditDetails extends Component<Props, State> {
               >
                 EDIT{" "}
               </h1>
-              <Form.Item name={["product", "name"]} label="Title">
-                <Input defaultValue={product.title}  />
-
+              <Form.Item name={["product", "title"]} label="Title">
+                <Input />
               </Form.Item>
 
               <Form.Item name={["product", "description"]} label="Description">
@@ -79,11 +100,11 @@ class AdminEditDetails extends Component<Props, State> {
               </Form.Item>
 
               <Form.Item name={["product", "price"]} label="Price">
-                <Input defaultValue={product.price}/>
+                <Input />
               </Form.Item>
               
               <Form.Item name={["product", "imageUrl"]} label="ImageUrl">
-                <Input defaultValue={product.imageUrl}/>
+                <Input />
               </Form.Item>
 
               <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
@@ -94,7 +115,7 @@ class AdminEditDetails extends Component<Props, State> {
                     Save
                   </Button>
 
-                  <Button type="primary" danger htmlType="submit">
+                  <Button type="primary" danger onClick={this.handleDelete}>
                     Delete
                   </Button>
                 </div>
@@ -117,7 +138,7 @@ const ContainerStyle: CSSProperties = {
 };
 
 const columnStyle: CSSProperties = {
-  marginTop: "6rem",
+  marginTop: "10rem",
   marginBottom: "3rem",
 };
 
