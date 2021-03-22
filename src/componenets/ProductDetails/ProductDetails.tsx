@@ -1,9 +1,10 @@
 import { Row, Col, message, Button } from 'antd';
-import { Component, ContextType, CSSProperties } from 'react'; 
+import React, { Component, ContextType, CSSProperties } from 'react'; 
 import { Image } from 'antd';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { productList} from "../ProductItemsList";
 import { CartContext } from '../../contexts/CartContext';
+import ErrorPage from '../ErrorPage';
 interface State {
     product: any
 }
@@ -28,8 +29,12 @@ class ProductDetails extends Component <Props, State> {
     }
 
     render () {
+        if (!this.state.product) {
+            return <ErrorPage />
+          }
         const { addProductToCart } = this.context;
         return (
+           
             <Row style={detailContainer}>
                 <Col lg={{span: 10}} style={columnStyle}>
                     <Image

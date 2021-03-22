@@ -1,6 +1,7 @@
 import { Form, Input, InputNumber, Button, Col, Row } from "antd";
 import React, { Component, CSSProperties } from "react";
 import { RouteComponentProps } from "react-router-dom";
+import ErrorPage from "../ErrorPage";
 import { Product } from "../ProductItemsList";
 
 const layout = {
@@ -44,7 +45,7 @@ class AdminEditDetails extends Component<Props, State> {
     const product = products.find(p => p.id == Number(this.props.match.params.id))
     //404 sida 
     if (!product) {
-      return "?????"
+      return <ErrorPage />
     }
 
     console.log(product)
