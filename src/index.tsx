@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { productList } from './componenets/ProductItemsList';
+
+
+window.onload = function () {
+  localStorage.setItem('products', JSON.stringify(productList))
+}
 
 ReactDOM.render(
   <React.StrictMode>
