@@ -28,7 +28,7 @@ const badgeStyle: CSSProperties = {
     color: 'white', 
     borderColor: 'red',
     fontSize: '0.8rem',
-    marginRight:'4rem',
+    marginRight: window.innerWidth > 768 ? '4rem' : '1.8rem',
     marginTop: '-0.9rem'
 }
 

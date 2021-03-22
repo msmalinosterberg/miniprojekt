@@ -36,7 +36,7 @@ function Navbar() {
 const layoutStyle: CSSProperties = {
     width: '100%', 
     background: 'black',
-    height: '6rem',
+    height: window.innerWidth > 768 ? '6rem' : '5rem',
     display: 'flex', 
     alignItems:'center',
     justifyItems:'center',
@@ -47,16 +47,16 @@ const layoutStyle: CSSProperties = {
 }
 
 const logoStyle: CSSProperties = {
-    marginLeft: '-1rem',
+    marginLeft: window.innerWidth > 768 ? '-1rem' : '-3rem',
     padding: '2rem',
-    width: '11.5rem',
+    width: window.innerWidth > 768 ? '11.5rem' : '9rem',
 }
 
 const iconStyle: CSSProperties = {
     color: 'white', 
     fontSize: '2.3rem',
     float: 'right', 
-    margin: '2.2rem 2.8rem', 
+    margin: window.innerWidth > 768 ? '2.2rem 2.8rem' : '2.2rem 0.5rem', 
 }
 
 const menuStyle: CSSProperties = {
@@ -66,7 +66,7 @@ const menuStyle: CSSProperties = {
   display: 'flex', 
   justifyContent: 'space-between',
   alignItems: 'center', 
-  marginTop: '1.2rem'
+  marginTop: window.innerWidth > 768 ? '1.2rem' : '0rem',
  }
 
 export default Navbar; 
