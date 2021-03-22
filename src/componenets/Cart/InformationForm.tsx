@@ -1,5 +1,6 @@
 import { Form, Input, Button, Row, Col } from 'antd';
-import { Component, CSSProperties } from 'react';
+import { Component, ContextType, CSSProperties } from 'react';
+import { CartContext } from '../../contexts/CartContext';
 
 const layout = {
   labelCol: { span: 3 },
@@ -19,16 +20,42 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
-class InformationForm extends Component {
+export interface UserInfo {
+  name: string;
+  email: string;
+  phone: string;
+  street: string;
+  zipcode: string;
+  city: string;
+}
+interface Props {
+  next(): void;
+}
+
+class InformationForm extends Component<Props> {
+  context!: ContextType<typeof CartContext>
+  static contextType = CartContext;
+
+  onValuesChange = (values: any, allValues: any) => {
+    const { updateUserInfo } = this.context;
+    updateUserInfo(allValues.user);
+  };
+
   onFinish = (values: any) => {
-    console.log(values);
+    console.log('Success:', values);
+    this.props.next();
   };
 
   render() {
       return (
           <Row style={formContainerStyle}>
             <Col span={24} style={columnStyle}>
-                <Form {...layout} name="nest-messages" onFinish={this.onFinish} validateMessages={validateMessages}>
+              <h2>Your information</h2>
+              <Form {...layout} 
+                name="nest-messages" 
+                onValuesChange={this.onValuesChange} 
+                validateMessages={validateMessages}
+                onFinish={this.onFinish}>
                 <Form.Item name={['user', 'name']} label="Name" 
                     rules={[{ required: true }]}>
                     <Input />
@@ -41,7 +68,7 @@ class InformationForm extends Component {
                     rules={[{ min: 10, max: 10, required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name={['user', 'steet']} label="Street" 
+                <Form.Item name={['user', 'street']} label="Street" 
                     rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
@@ -53,13 +80,12 @@ class InformationForm extends Component {
                     rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 3 }}>
-                    <Button type="primary" htmlType="submit">
-                    Submit
-                    </Button>
+                  <Button type="primary" htmlType="submit">
+                    Next
+                  </Button>
                 </Form.Item>
-                </Form>
+              </Form>
             </Col>
         </Row>
       );
@@ -75,6 +101,7 @@ class InformationForm extends Component {
     width: '80%',
     margin: 'auto'
 }
+
 const columnStyle: CSSProperties = {
     marginTop: '3rem',
     marginBottom: '3rem',
