@@ -1,7 +1,5 @@
+import { Component, CSSProperties } from "react";
 import { Form, Input, InputNumber, Button, Col, Row } from "antd";
-import React, { Component, CSSProperties } from "react";
-import { RouteComponentProps } from "react-router-dom";
-import ErrorPage from "../ErrorPage";
 import { Product } from "../ProductItemsList";
 
 const layout = {
@@ -12,6 +10,7 @@ const layout = {
     span: 16,
   },
 };
+
 const validateMessages = {
   required: "${label} is required!",
   types: {
@@ -23,13 +22,11 @@ const validateMessages = {
   },
 };
 
-interface Props extends RouteComponentProps<{ id: string }> {}
-
 interface State {
   products: Product[];
 }
 
-class AdminEditDetails extends Component<Props, State> {
+class AddNewProduct extends Component {
   state: State = {
     products: JSON.parse(localStorage.getItem("products") as string) || [],
   };
@@ -37,18 +34,7 @@ class AdminEditDetails extends Component<Props, State> {
   onFinish = (values: any) => {
     console.log(values);
   };
-
   render() {
-    const { products } = this.state;
-
-    const product = products.find(p => p.id == Number(this.props.match.params.id))
-
-    if (!product) {
-      return <ErrorPage />
-    }
-
-    console.log(product)
-
     return (
       <div>
         <Row style={ContainerStyle}>
@@ -69,20 +55,19 @@ class AdminEditDetails extends Component<Props, State> {
                 EDIT{" "}
               </h1>
               <Form.Item name={["product", "name"]} label="Title">
-                <Input defaultValue={product.title}  />
-
+                <Input />
               </Form.Item>
 
               <Form.Item name={["product", "description"]} label="Description">
-                <Input.TextArea defaultValue={product.description}/>
+                <Input.TextArea />
               </Form.Item>
 
               <Form.Item name={["product", "price"]} label="Price">
-                <Input defaultValue={product.price}/>
+                <Input />
               </Form.Item>
-              
+
               <Form.Item name={["product", "imageUrl"]} label="ImageUrl">
-                <Input defaultValue={product.imageUrl}/>
+                <Input />
               </Form.Item>
 
               <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
@@ -91,10 +76,6 @@ class AdminEditDetails extends Component<Props, State> {
                 >
                   <Button type="primary" htmlType="submit">
                     Save
-                  </Button>
-
-                  <Button type="primary" danger htmlType="submit">
-                    Delete
                   </Button>
                 </div>
               </Form.Item>
@@ -120,4 +101,4 @@ const columnStyle: CSSProperties = {
   marginBottom: "3rem",
 };
 
-export default AdminEditDetails;
+export default AddNewProduct;
