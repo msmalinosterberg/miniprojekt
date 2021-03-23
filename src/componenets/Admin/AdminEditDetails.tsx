@@ -62,7 +62,7 @@ class AdminEditDetails extends Component<Props, State> {
       return <ErrorPage />
     }
 
-  return (
+    return (
       <div>
         <Row style={ContainerStyle}>
           <Col span={24} style={columnStyle}>
@@ -73,10 +73,10 @@ class AdminEditDetails extends Component<Props, State> {
               validateMessages={validateMessages}
               initialValues={{
                 product: {
-                    title: this.state.product?.title,
-                    description: this.state.product?.description,
-                    price: this.state.product?.price,
-                    imageUrl: this.state.product?.imageUrl,
+                  title: this.state.product?.title,
+                  description: this.state.product?.description,
+                  price: this.state.product?.price,
+                  imageUrl: this.state.product?.imageUrl,
                 }
               }}
             >
@@ -87,7 +87,7 @@ class AdminEditDetails extends Component<Props, State> {
                   fontWeight: "bold",
                 }}
               >
-                EDIT{" "}
+                EDIT
               </h1>
               <Form.Item name={["product", "title"]} label="Title">
                 <Input />

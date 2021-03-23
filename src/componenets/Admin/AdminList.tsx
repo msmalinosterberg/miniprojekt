@@ -26,13 +26,14 @@ class GetAdminList extends Component < {}, State>{
         return (
             <Row style={containerStyle}>
                 <Col style={columnStyle}>
-                    <div style={{display: 'flex', justifyContent: 'space-between', alignItems:'center', marginTop: '2rem', marginBottom: '3rem'}}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between',
+                        alignItems:'center', marginTop: '2rem', marginBottom: '3rem' }}>
                         <h1 style={{fontWeight: 'bold'}}>ADMIN </h1>                  
-                    <Link to ={'/add-product'}> 
-                        <Button type="primary" icon={<PlusOutlined />}>
-                            Add product
-                        </Button>
-                    </Link> 
+                        <Link to ={'/add-product'}> 
+                            <Button type="primary" icon={<PlusOutlined />}>
+                                Add product
+                            </Button>
+                        </Link> 
                     </div>    
 
                     <List grid={{
@@ -70,7 +71,6 @@ const containerStyle: CSSProperties ={
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: '2rem',
-
 }
 
 const columnStyle: CSSProperties = {
@@ -85,6 +85,5 @@ const editStyle: CSSProperties = {
     borderBottom: '1px solid lightgrey',
     alignItems: 'center'
 }
-
 
 export default GetAdminList; 

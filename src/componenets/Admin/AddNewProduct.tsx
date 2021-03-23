@@ -1,55 +1,48 @@
 import { Component, CSSProperties } from "react";
-import { Form, Input, InputNumber, Button, Col, Row } from "antd";
+import { Form, Input, Button, Col, Row } from "antd";
 import { Product } from "../ProductItemsList";
 
-
-
 const layout = {
-    labelCol: {
-      span: 8,
-    },
-    wrapperCol: {
-      span: 16,
-    },
-  };
+  labelCol: {
+    span: 8,
+  },
+  wrapperCol: {
+    span: 16,
+  },
+};
   
-  const validateMessages = {
-    required: "${label} is required!",
-    types: {
-      email: "${label} is not a valid email!",
-      number: "${label} is not a valid number!",
-    },
-    number: {
-      range: "${label} must be between ${min} and ${max}",
-    },
-  };
+const validateMessages = {
+  required: "${label} is required!",
+  types: {
+    email: "${label} is not a valid email!",
+    number: "${label} is not a valid number!",
+  },
+  number: {
+    range: "${label} must be between ${min} and ${max}",
+  },
+};
 
-  interface State {
-    products: Product[];
-    product: Product | undefined;
-
-  }
-  
+interface State {
+  products: Product[];
+  product: Product | undefined;
+}
 class AddNewProduct extends Component {
-    state: State = {
-        products: JSON.parse(localStorage.getItem("products") as string) || [],
-        product: undefined,
+  state: State = {
+    products: JSON.parse(localStorage.getItem("products") as string) || [],
+    product: undefined,
+  };
+  
+  onFinish = (values: any) => {
+    const existingProducts = JSON.parse(localStorage.getItem("products") as string) || [];
+    const newProduct: Product = {...values.product};
+    newProduct.id = Math.max(...existingProducts.map((item: Product) => item.id)) + 1;
+    existingProducts.push(newProduct)
+    localStorage.setItem('products', JSON.stringify(existingProducts));
+  };
 
-      };
-    
-      onFinish = (values: any) => {
-        const existingProducts = JSON.parse(localStorage.getItem("products") as string) || [];
-        const newProduct: Product = {...values.product};
-        newProduct.id = existingProducts.map((item: Product) => item.id).length +1; 
-        existingProducts.push(newProduct)
-        localStorage.setItem('products', JSON.stringify(existingProducts));
-
-      };
-
-    render() {
-        return (
-
-    <div>
+  render() {
+    return (
+      <div>
         <Row style={ContainerStyle}>
           <Col span={24} style={columnStyle}>
             <Form
@@ -68,8 +61,7 @@ class AddNewProduct extends Component {
                 ADD NEW PRODUCT {" "}
               </h1>
               <Form.Item name={["product", "title"]} label="Title">
-                <Input  />
-
+                <Input />
               </Form.Item>
 
               <Form.Item name={["product", "description"]} label="Description">
@@ -91,36 +83,28 @@ class AddNewProduct extends Component {
                   <Button type="primary" htmlType="submit">
                     Save
                   </Button>
-
-                
                 </div>
               </Form.Item>
             </Form>
           </Col>
         </Row>
       </div>
-
-
-
-        )
-
-        
-    }
+    )
+  }
 }
 
-
 const ContainerStyle: CSSProperties = {
-    display: "flex",
-    justifyContent: "space-around",
-    alignItems: "space-around",
-    width: "60%",
-    margin: "auto",
-    height: "100vh",
-  };
+  display: "flex",
+  justifyContent: "space-around",
+  alignItems: "space-around",
+  width: "60%",
+  margin: "auto",
+  height: "100vh",
+};
   
-  const columnStyle: CSSProperties = {
-    marginTop: "6rem",
-    marginBottom: "3rem",
-  };
+const columnStyle: CSSProperties = {
+  marginTop: "10rem",
+  marginBottom: "3rem",
+};
 
 export default AddNewProduct; 
