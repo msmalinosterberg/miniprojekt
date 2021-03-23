@@ -68,12 +68,14 @@ class GetAdminList extends Component < {}, State>{
 const containerStyle: CSSProperties ={
     display: 'flex', 
     justifyContent: 'center',
-    marginBottom: '2rem'
+    alignItems: 'center',
+    marginBottom: '2rem',
 
 }
 
 const columnStyle: CSSProperties = {
    marginTop: '8rem',
+   width: '80%'
 }
 
 const editStyle: CSSProperties = {

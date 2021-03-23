@@ -70,12 +70,13 @@ const columnStyle: CSSProperties = {
 }
 
 const numberInputStyle: CSSProperties = {
-    margin: '0 8rem'
+    marginTop: window.innerWidth > 768 ? '0' : '1rem',
+    marginRight: window.innerWidth > 768 ? '8rem' : '1rem',
+    marginLeft: window.innerWidth > 768 ? '8rem' : '0',
 }
 
 const deleteStyle: CSSProperties = {
     color: 'red',
-    marginTop: '1rem'
 }
 
 export default CartItemsList;
