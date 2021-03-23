@@ -64,10 +64,7 @@ class AdminEditDetails extends Component<Props, State> {
       return <ErrorPage />
     }
 
-  //404 sida 
-  if (!product) {
-    return <ErrorPage />
-  }
+  
 
   return (
       <div>
