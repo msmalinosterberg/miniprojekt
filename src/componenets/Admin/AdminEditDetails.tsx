@@ -56,15 +56,11 @@ class AdminEditDetails extends Component<Props, State> {
   }
 
   render() {
-    const { products } = this.state;
-
-    const product = products.find(p => p.id == Number(this.props.match.params.id))
+    const { product } = this.state;
 
     if (!product) {
       return <ErrorPage />
     }
-
-  
 
   return (
       <div>
