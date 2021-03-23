@@ -1,4 +1,4 @@
-import { Form, Input, Button, Col, Row } from "antd";
+import { Form, Input, Button, Col, Row, message } from "antd";
 import { Component, CSSProperties } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
@@ -29,6 +29,11 @@ interface State {
   products: Product[];
   product: Product | undefined;
 }
+
+const success = () => {
+  message.success('The product has been updated', 5);
+};
+
 class AdminEditDetails extends Component<Props, State> {
   state: State = {
     products: JSON.parse(localStorage.getItem('products') as string) || [],
@@ -109,7 +114,7 @@ class AdminEditDetails extends Component<Props, State> {
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <Button type="primary" htmlType="submit">
+                  <Button type="primary" onClick={(e) => { success();}} htmlType="submit">
                     Save
                   </Button>
 
