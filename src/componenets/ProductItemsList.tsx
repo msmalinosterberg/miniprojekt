@@ -16,7 +16,7 @@ export const productList: Product[] = [{
 {
     id: 2,
     title: 'BASIC TEE IVORY WITH PRINT',
-    description: 'Basic Tee is a round neck, short sleeve tee in jersey rib.  It has a short sleeve that ends in elbow length. The fabric is the softest modal rib blended with elastane for good recovery.',
+    description: 'Basic Tee is a round neck, short sleeve tee in jersey rib. It has a short sleeve that ends in elbow length. The fabric is the softest modal rib blended with elastane for good recovery.',
     price: 299,
     imageUrl: 'https://github.com/msmalinosterberg/miniprojekt/blob/master/src/assets/prod5.png?raw=true',
 },
@@ -37,7 +37,7 @@ export const productList: Product[] = [{
 {
     id: 5,
     title: 'BREEZY JUMPSUIT PALE INDIGO',
-    description: 'The breezy jumpsuit is designed with a slightly cropped and wide leg with curved slits.  At side seams there are hidden pockets. The elastic waistband is wide and soft for a comfy and stylish look. The lyocell fabric is silky smooth with a slightly shiny surface. It makes for a perfect choice for any occasion.',
+    description: 'The breezy jumpsuit is designed with a slightly cropped and wide leg with curved slits. At side seams there are hidden pockets. The elastic waistband is wide and soft for a comfy and stylish look. The lyocell fabric is silky smooth with a slightly shiny surface. It makes for a perfect choice for any occasion.',
     price: 839,
     imageUrl: 'https://github.com/msmalinosterberg/miniprojekt/blob/master/src/assets/prod2.png?raw=true',
 },
@@ -51,21 +51,21 @@ export const productList: Product[] = [{
 {
     id: 7,
     title: 'TAILORED BELTED HIGH WAIST TROUSERS',
-    description: 'Tailored trousers featuring a high waist, a tonal belt, press creases and a flared silhouette.Hook and bar closure.',
+    description: 'Tailored trousers featuring a high waist, a tonal belt, press creases and a flared silhouette. Hook and bar closure.',
     price: 639,
     imageUrl: 'https://github.com/msmalinosterberg/miniprojekt/blob/master/src/assets/prod11.png?raw=true',
 },
 {
     id: 8,
     title: 'PINNY PANTS MIDWEIGHT',
-    description: 'Pinny pant is the optimal pull on pant for a comfortable and versatile wardrobe. It is designed with a zip, a straight leg and perfect high waist for maximal comfort.This is the pant that is just as timeless as it is contemporary.',
+    description: 'Pinny pant is the optimal pull on pant for a comfortable and versatile wardrobe. It is designed with a zip, a straight leg and perfect high waist for maximal comfort. This is the pant that is just as timeless as it is contemporary.',
     price: 569,
     imageUrl: 'https://github.com/msmalinosterberg/miniprojekt/blob/master/src/assets/prod10.png?raw=true',
 },
 {
     id: 9,
     title: 'EVERYDAY KNIT SWEATER',
-    description: 'Everyday sweater is an relaxed sweater made in a wool cashmere blend yarn. Perfect for everyday. 5 % Cashmere, 30 % Wool, 35 % Polyamid, 30 % Viscose',
+    description: 'Everyday sweater is an relaxed sweater made in a wool cashmere blend yarn. Perfect for everyday. 5% Cashmere, 30% Wool, 35% Polyamid, 30% Viscose.',
     price: 399,
     imageUrl: 'https://github.com/msmalinosterberg/miniprojekt/blob/master/src/assets/prod7.png?raw=true',
 },
@@ -86,7 +86,7 @@ export const productList: Product[] = [{
 {
     id: 12,
     title: 'PRINTED CHIFFON MIDI SKIRT',
-    description: 'Printed midi chiffon skirt with a gently pleated finish.Concealed zipper at the side.Length of skirt: 83.5cm / 33.3"',
+    description: 'Printed midi chiffon skirt with a gently pleated finish. Concealed zipper at the side. Length of skirt: 83.5cm / 33.3"',
     price: 429,
     imageUrl: 'https://github.com/msmalinosterberg/miniprojekt/blob/master/src/assets/prod8.png?raw=true',
 },

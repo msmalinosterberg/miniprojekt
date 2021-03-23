@@ -40,7 +40,7 @@ class CartItemsList extends Component {
                                         <List.Item.Meta                    
                                             avatar={<Avatar src={item.product.imageUrl} />}
                                             title={<Link to={'/product/' + item.product.id}>{item.product.title}</Link>}
-                                            description={[item.product.description.split('.')[0], 
+                                            description={[<span style={descriptionStyle}>{item.product.description.substring(0, 35) + '...'}</span>,
                                             <InputNumber min={1} max={10} defaultValue={item.quantity} onChange={(value) => this.onChangeQuantity(value, item.product)} style={numberInputStyle} />,
                                             item.product.price * item.quantity + ' kr']}
                                         />
@@ -77,6 +77,10 @@ const numberInputStyle: CSSProperties = {
 
 const deleteStyle: CSSProperties = {
     color: 'red',
+}
+
+const descriptionStyle: CSSProperties = {
+    fontFamily: 'Roboto Mono'
 }
 
 export default CartItemsList;

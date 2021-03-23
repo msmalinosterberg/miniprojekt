@@ -56,17 +56,13 @@ class AdminEditDetails extends Component<Props, State> {
   }
 
   render() {
-    const { products } = this.state;
-
-    const product = products.find(p => p.id == Number(this.props.match.params.id))
+    const { product } = this.state;
 
     if (!product) {
       return <ErrorPage />
     }
 
-  
-
-  return (
+    return (
       <div>
         <Row style={ContainerStyle}>
           <Col span={24} style={columnStyle}>
@@ -77,10 +73,10 @@ class AdminEditDetails extends Component<Props, State> {
               validateMessages={validateMessages}
               initialValues={{
                 product: {
-                    title: this.state.product?.title,
-                    description: this.state.product?.description,
-                    price: this.state.product?.price,
-                    imageUrl: this.state.product?.imageUrl,
+                  title: this.state.product?.title,
+                  description: this.state.product?.description,
+                  price: this.state.product?.price,
+                  imageUrl: this.state.product?.imageUrl,
                 }
               }}
             >
@@ -91,7 +87,7 @@ class AdminEditDetails extends Component<Props, State> {
                   fontWeight: "bold",
                 }}
               >
-                EDIT{" "}
+                EDIT
               </h1>
               <Form.Item name={["product", "title"]} label="Title">
                 <Input />
