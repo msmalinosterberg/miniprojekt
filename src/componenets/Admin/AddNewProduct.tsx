@@ -38,10 +38,11 @@ class AddNewProduct extends Component {
       };
     
       onFinish = (values: any) => {
-        const products = JSON.parse(localStorage.getItem("products") as string) || [];
-        const newProduct: Product = {...this.state.product, ...values.product};
-        const addedProduct = products.map((item: Product) => item.id === newProduct.id ? newProduct : item);
-        localStorage.setItem('products', JSON.stringify(addedProduct));
+        const existingProducts = JSON.parse(localStorage.getItem("products") as string) || [];
+        const newProduct: Product = {...values.product};
+        newProduct.id = existingProducts.map((item: Product) => item.id).length +1; 
+        existingProducts.push(newProduct)
+        localStorage.setItem('products', JSON.stringify(existingProducts));
 
       };
 
@@ -66,7 +67,7 @@ class AddNewProduct extends Component {
               >
                 ADD NEW PRODUCT {" "}
               </h1>
-              <Form.Item name={["product", "name"]} label="Title">
+              <Form.Item name={["product", "title"]} label="Title">
                 <Input  />
 
               </Form.Item>
