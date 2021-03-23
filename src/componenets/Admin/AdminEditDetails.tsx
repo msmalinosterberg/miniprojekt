@@ -55,14 +55,16 @@ class AdminEditDetails extends Component<Props, State> {
     localStorage.setItem('products', JSON.stringify(newProducts));
   }
 
-  //constructor som hämtar from LS och kollar om routecompProps === produktid 
   render() {
-    const { product } = this.state;
+    const { products } = this.state;
 
-  //404 sida 
-  if (!product) {
-    return <ErrorPage />
-  }
+    const product = products.find(p => p.id == Number(this.props.match.params.id))
+
+    if (!product) {
+      return <ErrorPage />
+    }
+
+  
 
   return (
       <div>

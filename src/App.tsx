@@ -11,6 +11,8 @@ import ProductDetails from './componenets/ProductDetails/ProductDetails';
 import StartPageView from './componenets/StartPage/StartPageView';
 import CartProvider from './contexts/CartContext';
 import ScrollToTop from './componenets/ScrollToTop'
+import React from 'react';
+import AddNewProduct from './componenets/Admin/AddNewProduct';
 
 function App() {
   return (
@@ -36,8 +38,8 @@ function App() {
         <Route path='/admin-list'>
           <AdminList />
         </Route>
-        <Route path='/add-product' component={AdminEditDetails}>
-          
+        <Route path='/add-product'>
+          <AddNewProduct /> 
         </Route>
         <Switch> 
         <Route path = '/edit-product/:id' component={AdminEditDetails} />
