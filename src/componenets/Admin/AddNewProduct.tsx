@@ -1,5 +1,5 @@
 import { Component, CSSProperties } from "react";
-import { Form, Input, Button, Col, Row } from "antd";
+import { Form, Input, Button, Col, Row, message } from "antd";
 import { Product } from "../ProductItemsList";
 
 const layout = {
@@ -26,12 +26,16 @@ interface State {
   products: Product[];
   product: Product | undefined;
 }
+const success = () => {
+  message.success('The product has been published', 5);
+};
+
 class AddNewProduct extends Component {
   state: State = {
     products: JSON.parse(localStorage.getItem("products") as string) || [],
     product: undefined,
   };
-  
+
   onFinish = (values: any) => {
     const existingProducts = JSON.parse(localStorage.getItem("products") as string) || [];
     const newProduct: Product = {...values.product};
@@ -80,7 +84,7 @@ class AddNewProduct extends Component {
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <Button type="primary" htmlType="submit">
+                  <Button type="primary" onClick={(e) => { success();}} htmlType="submit">
                     Save
                   </Button>
                 </div>
