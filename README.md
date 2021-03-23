@@ -6,7 +6,7 @@ Webbshop, slutprojekt i kursen JavaScript fördjupning på Medieinstitutet. Bygg
 
 I projektet kör du:
 
-### `npm start`
+### `npm i`
 ### `npm start`
 
 Kör appen i utvecklingsläge.\
