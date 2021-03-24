@@ -1,6 +1,6 @@
 import { Form, Input, Button, Col, Row } from "antd";
 import { Component, CSSProperties } from "react";
-import { RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
 import { Product } from "../ProductItemsList";
 
@@ -28,18 +28,31 @@ interface Props extends RouteComponentProps<{ id: string }> {}
 interface State {
   products: Product[];
   product: Product | undefined;
+  buttonSaveLoading: boolean;
+  buttonDeleteLoading: boolean;
 }
 class AdminEditDetails extends Component<Props, State> {
   state: State = {
     products: JSON.parse(localStorage.getItem('products') as string) || [],
     product: undefined,
+    buttonSaveLoading: false,
+    buttonDeleteLoading: false,
   };
 
-  onFinish = (values: any) => {
+  onFinish = async (values: any) => {
+    this.setState({ buttonSaveLoading: true });
+    try {
+      await saveDeleteProductMockApi();
+    } catch (error) {
+        console.log(error);
+        return;
+    }
     const products = JSON.parse(localStorage.getItem("products") as string) || [];
     const editedProduct: Product = {...this.state.product, ...values.product};
     const updatedProducts = products.map((item: Product) => item.id === editedProduct.id ? editedProduct : item);
     localStorage.setItem('products', JSON.stringify(updatedProducts));
+    this.props.history.push('/admin-list');
+    this.setState({ buttonSaveLoading: false });
   }
 
   componentDidMount() {
@@ -48,11 +61,20 @@ class AdminEditDetails extends Component<Props, State> {
     this.setState({ product: product });
   }
 
-  handleDelete = () => {
+  handleDelete = async () => {
+    this.setState({ buttonDeleteLoading: true });
+    try {
+      await saveDeleteProductMockApi();
+    } catch (error) {
+        console.log(error);
+        return;
+    }
     const products = JSON.parse(localStorage.getItem('products') as string) || [];
     const productId = this.state.product?.id;
     const newProducts = products.filter((item: Product) => item.id !== productId);
     localStorage.setItem('products', JSON.stringify(newProducts));
+    this.props.history.push('/admin-list');
+    this.setState({ buttonDeleteLoading: false });
   }
 
   render() {
@@ -109,11 +131,20 @@ class AdminEditDetails extends Component<Props, State> {
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <Button type="primary" htmlType="submit">
+                  <Button 
+                    type="primary" 
+                    htmlType="submit" 
+                    loading={this.state.buttonSaveLoading}
+                  >
                     Save
                   </Button>
 
-                  <Button type="primary" danger onClick={this.handleDelete}>
+                  <Button 
+                    type="primary" 
+                    danger 
+                    onClick={(e) => {this.handleDelete(); e.preventDefault()}} 
+                    loading={this.state.buttonDeleteLoading}
+                  >
                     Delete
                   </Button>
                 </div>
@@ -140,4 +171,8 @@ const columnStyle: CSSProperties = {
   marginBottom: "3rem",
 };
 
-export default AdminEditDetails;
+export default withRouter(AdminEditDetails);
+
+async function saveDeleteProductMockApi() {
+  return new Promise((res) => setTimeout(() => res("success"), 2000));
+}
