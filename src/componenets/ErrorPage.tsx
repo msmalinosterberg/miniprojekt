@@ -6,7 +6,6 @@ interface Props extends RouteComponentProps {}
 interface State {
     hasError: boolean;
 }
-
 class ErrorPage extends Component<Props, State> {
     state: State = {
         hasError: false

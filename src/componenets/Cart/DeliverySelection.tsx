@@ -1,6 +1,6 @@
 import { Button, Radio } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
-import React, { ContextType, CSSProperties } from 'react';
+import { Component, ContextType, CSSProperties } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 import { calculateDeliveryDay, DeliveryMethod, deliveryMethods } from '../deliveryMethods';
 
@@ -8,7 +8,7 @@ const RadioGroup = Radio.Group;
 interface Props {
   next(): void;
 }
-class DeliverySection extends React.Component<Props> {
+class DeliverySection extends Component<Props> {
   context!: ContextType<typeof CartContext>
   static contextType = CartContext;
 

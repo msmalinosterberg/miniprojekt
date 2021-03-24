@@ -1,6 +1,6 @@
 import { Radio } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
-import React, { CSSProperties } from 'react';
+import { Component, CSSProperties } from 'react';
 import PayCard from './PayCard';
 import PayKlarna from './PayKlarna';
 import PaySwish from './PaySwish';
@@ -10,7 +10,7 @@ const RadioGroup = Radio.Group;
 interface Props {
   next(): void;
 }
-class PaymentMethod extends React.Component<Props> {
+class PaymentMethod extends Component<Props> {
   state = {
     value: 1,
   };

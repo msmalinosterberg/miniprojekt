@@ -1,5 +1,5 @@
 import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
-import React, { CSSProperties } from 'react';
+import { CSSProperties, Component } from 'react';
 import { Link } from 'react-router-dom';
 
 const layout = {
@@ -18,14 +18,14 @@ const tailLayout = {
   },
 };
 
-class AdminLogIn extends React.Component {
+class AdminLogIn extends Component {
 
   onFinish = (values: any) => {
-  console.log('Success:', values);
+    console.log('Success:', values);
   };
 
   onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
+    console.log('Failed:', errorInfo);
   };
     
   render() {
@@ -73,14 +73,12 @@ class AdminLogIn extends React.Component {
                 <Checkbox>Remember me</Checkbox>
               </Form.Item>
         
-              <Form.Item {...tailLayout}>
-              
-              <Link to={'/admin-list'}>
-                <Button type="primary" htmlType="submit">
-                  Log in 
-                </Button> 
-              </Link> 
-
+              <Form.Item {...tailLayout}>        
+                <Link to={'/admin-list'}>
+                  <Button type="primary" htmlType="submit">
+                    Log in 
+                  </Button> 
+                </Link> 
               </Form.Item>
             </Form>
           </Col>
@@ -103,6 +101,5 @@ const columnStyle: CSSProperties = {
   marginTop: '14rem',
   marginBottom: '3rem',
 }
-
 
 export default AdminLogIn; 

@@ -1,12 +1,12 @@
 import { Row, Col, message, Button } from 'antd';
-import React, { Component, ContextType, CSSProperties } from 'react'; 
+import { Component, ContextType, CSSProperties } from 'react'; 
 import { Image } from 'antd';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { productList} from "../ProductItemsList";
+import { Product } from "../ProductItemsList";
 import { CartContext } from '../../contexts/CartContext';
 import ErrorPage from '../ErrorPage';
 interface State {
-    product: any
+    product?: Product | undefined;
 }
 interface Props extends RouteComponentProps {
     id: number
@@ -19,34 +19,47 @@ class ProductDetails extends Component <Props, State> {
     static contextType = CartContext;
 
     state: State = {
-        product: {}
+        product: undefined,
     }
     
     componentDidMount() {   
+        const products = JSON.parse(localStorage.getItem('products') as string) || [];
         const productId = (this.props.match.params as any).id
-        const product = productList.find((p) => p.id == productId);
+        const product = products.find((p: Product) => p.id == productId);
         this.setState({product: product})
+    }
+
+    handleAddClick = () => {
+        const { addProductToCart } = this.context;
+        if (!this.state.product) {
+            return;
+        }
+        success();
+        addProductToCart(this.state.product, undefined)
     }
 
     render () {
         if (!this.state.product) {
             return <ErrorPage />
-          }
-        const { addProductToCart } = this.context;
+        }
+       
         return (
-           
             <Row style={detailContainer}>
                 <Col lg={{span: 10}} style={columnStyle}>
-                    <Image
-                        src={this.state.product.imageUrl}
-                    />          
+                    <Image src={this.state.product.imageUrl} />          
                 </Col>
 
                 <Col lg={{span: 10}} style={columnStyle}>
                     <h2 style={titleStyle}>{this.state.product.title}</h2>
                     <h4>{this.state.product.description} </h4>
                     <h2 style={price}>{this.state.product.price + ' kr'} </h2>
-                    <Button type="primary" style={{ marginTop: '1rem', width: '8rem', marginBottom: '6rem' }} onClick={(e) => { success(); addProductToCart(this.state.product, undefined)}} >Add to cart </Button>
+                    <Button 
+                        type="primary" 
+                        style={{ marginTop: '1rem', width: '8rem', marginBottom: '6rem' }} 
+                        onClick={this.handleAddClick}
+                    >
+                        Add to cart 
+                    </Button>
                 </Col>
             </Row>
         ); 
@@ -76,13 +89,3 @@ const titleStyle: CSSProperties = {
 const price: CSSProperties = {
     fontWeight: 'bold'
 }
-
-
-function item(item: any): void {
-    throw new Error('Function not implemented.');
-}
-
-function product(product: any): void {
-    throw new Error('Function not implemented.');
-}
-
