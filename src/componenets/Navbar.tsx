@@ -19,8 +19,8 @@ function Navbar() {
           <Menu mode="horizontal" style={menuStyle}>
             <Menu.Item key="1"><Link to='/cart' style={{ color: 'white' }} >
             <ShoppingCartOutlined style={iconStyle}/> </Link>  
+              <AddToBadge />
             </Menu.Item> 
-            <AddToBadge />
             <Menu.Item key="2">
               <Link to='/admin'>
                 <h3 style={{ color: 'white', marginTop: '1.5rem' }}>Admin</h3>
@@ -55,8 +55,9 @@ const logoStyle: CSSProperties = {
 const iconStyle: CSSProperties = {
     color: 'white', 
     fontSize: '2.3rem',
-    float: 'right', 
-    margin: window.innerWidth > 768 ? '2.2rem 2.8rem' : '2.2rem 0.5rem', 
+    float: 'right',
+    position: 'absolute',
+    margin: window.innerWidth > 768 ? '2.3rem -1.6rem' : '2.3rem -1.8rem', 
 }
 
 const menuStyle: CSSProperties = {
@@ -65,7 +66,7 @@ const menuStyle: CSSProperties = {
   color: 'white', 
   display: 'flex', 
   justifyContent: 'space-between',
-  alignItems: 'center', 
+  alignItems: 'center',
   marginTop: window.innerWidth > 768 ? '1.2rem' : '0rem',
  }
 

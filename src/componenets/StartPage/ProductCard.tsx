@@ -35,7 +35,7 @@ class ProductCard extends Component {
                                 <Link to={'/product/' + item.id}>
                                     <Card
                                         hoverable
-                                        cover={<img src={item.imageUrl} />}
+                                        cover={<img src={item.imageUrl} alt='product' />}
                                         actions={[
                                             <ShoppingCartOutlined 
                                                 style={{ fontSize: '2rem' }}

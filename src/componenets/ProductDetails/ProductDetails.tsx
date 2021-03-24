@@ -25,7 +25,7 @@ class ProductDetails extends Component <Props, State> {
     componentDidMount() {   
         const products = JSON.parse(localStorage.getItem('products') as string) || [];
         const productId = (this.props.match.params as any).id
-        const product = products.find((p: Product) => p.id == productId);
+        const product = products.find((p: Product) => p.id === productId);
         this.setState({product: product})
     }
 

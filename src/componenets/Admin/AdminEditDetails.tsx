@@ -12,6 +12,8 @@ const layout = {
     span: 16,
   },
 };
+
+/* eslint-disable no-template-curly-in-string */
 const validateMessages = {
   required: "${label} is required!",
   types: {
@@ -66,7 +68,7 @@ class AdminEditDetails extends Component<Props, State> {
 
   componentDidMount() {
     const products = JSON.parse(localStorage.getItem('products') as string) || [];
-    const product = products.find((p: Product) => p.id == Number(this.props.match.params.id));
+    const product = products.find((p: Product) => p.id === Number(this.props.match.params.id));
     this.setState({ product: product });
   }
 
