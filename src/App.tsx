@@ -11,7 +11,6 @@ import ProductDetails from './componenets/ProductDetails/ProductDetails';
 import StartPageView from './componenets/StartPage/StartPageView';
 import CartProvider from './contexts/CartContext';
 import ScrollToTop from './componenets/ScrollToTop'
-import React from 'react';
 import AddNewProduct from './componenets/Admin/AddNewProduct';
 
 function App() {
@@ -21,10 +20,10 @@ function App() {
       <ScrollToTop />
         <Navbar /> 
         <Switch> 
-          <Route path = '/product/:id' component={ProductDetails} />
+          <Route path='/product/:id' component={ProductDetails} />
         </Switch>
         <Switch> 
-          <Route path = '/ordersuccess' component={OrderSuccessMessage} />
+          <Route path='/ordersuccess' component={OrderSuccessMessage} />
         </Switch>
         <Route exact path='/'>  
           <StartPageView />

@@ -2,16 +2,11 @@ import { PlusOutlined } from "@ant-design/icons";
 import { Avatar, Button, Col, List, Row, } from "antd";
 import { Component, CSSProperties } from "react";
 import { Link } from "react-router-dom";
-import { productList } from "../ProductItemsList";
-
-interface Products {
-    product: Products; 
-}
+import { Product, productList } from "../ProductItemsList";
 
 interface State {
-    products?: Products[]; 
+    products?: Product[]; 
 }
-
 class GetAdminList extends Component < {}, State>{
 
     state: State = {
@@ -28,7 +23,7 @@ class GetAdminList extends Component < {}, State>{
                 <Col style={columnStyle}>
                     <div style={{ display: 'flex', justifyContent: 'space-between',
                         alignItems:'center', marginTop: '2rem', marginBottom: '3rem' }}>
-                        <h1 style={{fontWeight: 'bold'}}>ADMIN </h1>                  
+                        <h1 style={{fontWeight: 'bold'}}>ADMIN</h1>                  
                         <Link to ={'/add-product'}> 
                             <Button type="primary" icon={<PlusOutlined />}>
                                 Add product
@@ -45,7 +40,7 @@ class GetAdminList extends Component < {}, State>{
                         xl: 1,
                         xxl: 1,
                         }}
-                        dataSource={productList}
+                        dataSource={this.state.products}
                         renderItem={item => (
                             <List.Item>
                                 <Link to={'/edit-product/' + item.id}>     
