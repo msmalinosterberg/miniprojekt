@@ -7,11 +7,13 @@ function OrderSuccessMessage() {
     return (
         <Row style={containerStyle}>
             <Result
-                    status="success"
-                    title="You successfully purchased from FashionStore"
-                    subTitle={'Your order number is: ' + Math.floor(Math.random() * 1000000000000)}
-                    extra={[
-                    <Link to='/'><Button type="primary" key="console">Continue shopping </Button></Link>
+                status="success"
+                title="You successfully purchased from FashionStore"
+                subTitle={'Your order number is: ' + Math.floor(Math.random() * 1000000000000)}
+                extra={[
+                <Link to='/'>
+                    <Button type="primary" key="console">Continue shopping</Button>
+                </Link>
                 ]}
             />
             <Reciept />

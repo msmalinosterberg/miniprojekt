@@ -1,7 +1,7 @@
 import { Component, ContextType, CSSProperties } from 'react';
 import { Card, Col, List, Row, message } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import { Product, productList } from '../ProductItemsList';
+import { Product } from '../ProductItemsList';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../contexts/CartContext';
 
@@ -39,7 +39,8 @@ class ProductCard extends Component {
                                         actions={[
                                             <ShoppingCartOutlined 
                                                 style={{ fontSize: '2rem' }}
-                                                onClick={(e) => {success(); e.preventDefault(); addProductToCart(item, undefined)}} />
+                                                onClick={(e) => {success(); e.preventDefault(); addProductToCart(item, undefined)}} 
+                                            />
                                         ]}
                                     >
                                         <Meta title={item.title} description={item.price + ' kr'} />

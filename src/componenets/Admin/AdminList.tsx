@@ -2,7 +2,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import { Avatar, Button, Col, List, Row, } from "antd";
 import { Component, CSSProperties } from "react";
 import { Link } from "react-router-dom";
-import { Product, productList } from "../ProductItemsList";
+import { Product } from "../ProductItemsList";
 
 interface State {
     products?: Product[]; 

@@ -120,19 +120,19 @@ class AdminEditDetails extends Component<Props, State> {
               >
                 EDIT
               </h1>
-              <Form.Item name={["product", "title"]} label="Title">
+              <Form.Item name={["product", "title"]} label="Title" rules={[{ required: true }]}>
                 <Input />
               </Form.Item>
 
-              <Form.Item name={["product", "description"]} label="Description">
+              <Form.Item name={["product", "description"]} label="Description" rules={[{ required: true }]}>
                 <Input.TextArea defaultValue={product.description}/>
               </Form.Item>
 
-              <Form.Item name={["product", "price"]} label="Price">
+              <Form.Item name={["product", "price"]} label="Price" rules={[{ required: true }]}>
                 <Input />
               </Form.Item>
               
-              <Form.Item name={["product", "imageUrl"]} label="ImageUrl">
+              <Form.Item name={["product", "imageUrl"]} label="ImageUrl" rules={[{ required: true }]}>
                 <Input />
               </Form.Item>
 

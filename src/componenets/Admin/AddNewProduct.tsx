@@ -76,19 +76,19 @@ class AddNewProduct extends Component<Props, State> {
               >
                 ADD NEW PRODUCT {" "}
               </h1>
-              <Form.Item name={["product", "title"]} label="Title" required>
+              <Form.Item name={["product", "title"]} label="Title" rules={[{ required: true }]}>
                 <Input />
               </Form.Item>
 
-              <Form.Item name={["product", "description"]} label="Description" required>
+              <Form.Item name={["product", "description"]} label="Description" rules={[{ required: true }]}>
                 <Input.TextArea />
               </Form.Item>
 
-              <Form.Item name={["product", "price"]} label="Price" required>
+              <Form.Item name={["product", "price"]} label="Price" rules={[{ required: true }]}>
                 <InputNumber />
               </Form.Item>
               
-              <Form.Item name={["product", "imageUrl"]} label="ImageUrl" required>
+              <Form.Item name={["product", "imageUrl"]} label="ImageUrl" rules={[{ required: true }]}>
                 <Input />
               </Form.Item>
 
