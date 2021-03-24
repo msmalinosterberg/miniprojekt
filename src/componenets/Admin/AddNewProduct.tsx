@@ -1,5 +1,5 @@
 import { Component, CSSProperties } from "react";
-import { Form, Input, InputNumber, Button, Col, Row } from "antd";
+import { Form, Input, InputNumber, Button, Col, Row, message } from "antd";
 import { Product } from "../ProductItemsList";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 
@@ -28,7 +28,12 @@ interface State {
   product: Product | undefined;
   buttonSaveLoading: boolean;
 }
+
+const success = () => {
+  message.success('The product has been published', 3);
+};
 class AddNewProduct extends Component<Props, State> {
+  
   state: State = {
     product: undefined,
     buttonSaveLoading: false,
@@ -92,7 +97,8 @@ class AddNewProduct extends Component<Props, State> {
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   <Button 
-                    type="primary" 
+                    type="primary"
+                    onClick={() => {success();}}
                     htmlType="submit"
                     loading={this.state.buttonSaveLoading}
                   >

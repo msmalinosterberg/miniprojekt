@@ -1,4 +1,4 @@
-import { Form, Input, Button, Col, Row } from "antd";
+import { Form, Input, Button, Col, Row, message } from "antd";
 import { Component, CSSProperties } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
@@ -31,6 +31,15 @@ interface State {
   buttonSaveLoading: boolean;
   buttonDeleteLoading: boolean;
 }
+
+const successSave = () => {
+  message.success('The product has been updated', 3);
+};
+
+const successDelete = () => {
+  message.success('The product has been deleted', 3);
+};
+
 class AdminEditDetails extends Component<Props, State> {
   state: State = {
     products: JSON.parse(localStorage.getItem('products') as string) || [],
@@ -132,7 +141,8 @@ class AdminEditDetails extends Component<Props, State> {
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   <Button 
-                    type="primary" 
+                    type="primary"
+                    onClick={() => {successSave();}} 
                     htmlType="submit" 
                     loading={this.state.buttonSaveLoading}
                   >
@@ -142,7 +152,7 @@ class AdminEditDetails extends Component<Props, State> {
                   <Button 
                     type="primary" 
                     danger 
-                    onClick={(e) => {this.handleDelete(); e.preventDefault()}} 
+                    onClick={() => {this.handleDelete(); successDelete();}} 
                     loading={this.state.buttonDeleteLoading}
                   >
                     Delete
