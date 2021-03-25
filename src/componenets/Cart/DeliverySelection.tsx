@@ -3,8 +3,6 @@ import { Content } from 'antd/lib/layout/layout';
 import { Component, ContextType, CSSProperties } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 import { calculateDeliveryDay, DeliveryMethod, deliveryMethods } from '../deliveryMethods';
-
-const RadioGroup = Radio.Group;
 interface Props {
   next(): void;
 }

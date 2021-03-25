@@ -9,7 +9,7 @@ const { Meta } = Card;
 const success = () => {
     message.success('The product was added to the cart', 5);
 };
-class ProductCard extends Component {
+class ProductCardGrid extends Component {
     context!: ContextType<typeof CartContext>
     static contextType = CartContext;
         
@@ -35,7 +35,7 @@ class ProductCard extends Component {
                                 <Link to={'/product/' + item.id}>
                                     <Card
                                         hoverable
-                                        cover={<img src={item.imageUrl} />}
+                                        cover={<img src={item.imageUrl} alt='product' />}
                                         actions={[
                                             <ShoppingCartOutlined 
                                                 style={{ fontSize: '2rem' }}
@@ -55,7 +55,7 @@ class ProductCard extends Component {
     }
 }
 
-export default ProductCard;
+export default ProductCardGrid;
 
 const cardContainer: CSSProperties = {
     display: 'flex',

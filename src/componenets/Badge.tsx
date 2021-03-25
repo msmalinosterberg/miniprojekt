@@ -12,9 +12,7 @@ class AddToBadge extends Component  {
                 {({ getBadgeQuantity }) => {
                     return (
                         <div>
-                            <Badge count={getBadgeQuantity()} style={badgeStyle}>
-                                <a href="#" className="head-example" />
-                            </Badge>
+                            <Badge count={getBadgeQuantity()} style={badgeStyle} />
                         </div>
                     )
                 }}
@@ -28,8 +26,8 @@ const badgeStyle: CSSProperties = {
     color: 'white', 
     borderColor: 'red',
     fontSize: '0.8rem',
-    marginRight: window.innerWidth > 768 ? '4rem' : '1.8rem',
-    marginTop: '-0.9rem'
+    marginRight: '2rem',
+    marginTop: '1.1rem'
 }
 
 export default AddToBadge;

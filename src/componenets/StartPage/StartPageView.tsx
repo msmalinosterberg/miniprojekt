@@ -1,13 +1,13 @@
 import { Component } from 'react';
 import CarouselStart from './Carousel';
-import ProductCard from './ProductCard';
+import ProductCardGrid from './ProductCardGrid';
 
 class StartPageView extends Component {
     render() {
         return(
             <div>
                 <CarouselStart />
-                <ProductCard />
+                <ProductCardGrid />
             </div>
         )
     }

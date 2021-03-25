@@ -34,9 +34,9 @@ class CartItemsList extends Component {
                                     dataSource={cart}
                                     renderItem={item => (
                                     <List.Item
-                                        actions={[<a key="delete-item" 
+                                        actions={[<button key="delete-item" 
                                         style={deleteStyle}
-                                        onClick={() => this.handleDelete(item.product.id)}>delete</a>]}>
+                                        onClick={() => this.handleDelete(item.product.id)}>delete</button>]}>
                                         <List.Item.Meta                    
                                             avatar={<Avatar src={item.product.imageUrl} />}
                                             title={<Link to={'/product/' + item.product.id}>{item.product.title}</Link>}
@@ -77,6 +77,10 @@ const numberInputStyle: CSSProperties = {
 
 const deleteStyle: CSSProperties = {
     color: 'red',
+    backgroundColor: 'white',
+    border: 'none',
+    cursor: 'pointer',
+    marginTop: '1.2rem'
 }
 
 const descriptionStyle: CSSProperties = {

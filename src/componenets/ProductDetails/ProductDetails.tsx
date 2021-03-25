@@ -6,7 +6,7 @@ import { Product } from "../ProductItemsList";
 import { CartContext } from '../../contexts/CartContext';
 import ErrorPage from '../ErrorPage';
 interface State {
-    product?: Product | undefined;
+    product?: Product;
 }
 interface Props extends RouteComponentProps {
     id: number
@@ -17,25 +17,22 @@ const success = () => {
 class ProductDetails extends Component <Props, State> {
     context!: ContextType<typeof CartContext>
     static contextType = CartContext;
-
+   
     state: State = {
         product: undefined,
     }
-    
+
     componentDidMount() {   
         const products = JSON.parse(localStorage.getItem('products') as string) || [];
-        const productId = (this.props.match.params as any).id
-        const product = products.find((p: Product) => p.id == productId);
+        const productId = Number((this.props.match.params as any).id)
+        const product = products.find((p: Product) => p.id === productId);
         this.setState({product: product})
     }
 
     handleAddClick = () => {
         const { addProductToCart } = this.context;
-        if (!this.state.product) {
-            return;
-        }
         success();
-        addProductToCart(this.state.product, undefined)
+        addProductToCart(this.state.product!, undefined)
     }
 
     render () {

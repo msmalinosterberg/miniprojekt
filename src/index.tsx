@@ -5,9 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { productList } from './componenets/ProductItemsList';
 
-
-window.onload = function () {
-  localStorage.setItem('products', JSON.stringify(productList))
+if (localStorage.getItem('products') === null) {
+  window.onload = function () {
+    localStorage.setItem('products', JSON.stringify(productList))
+  }
 }
 
 ReactDOM.render(
