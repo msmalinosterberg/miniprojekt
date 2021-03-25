@@ -21,7 +21,7 @@ class ProductCardGrid extends Component {
                 <Col span={24} style={columnStyle}>
                     <List
                         grid={{
-                            gutter: 25,
+                            gutter: window.innerWidth > 768 ? 25 : 0,
                             xs: 1,
                             sm: 2,
                             md: 2,
@@ -43,7 +43,7 @@ class ProductCardGrid extends Component {
                                             />
                                         ]}
                                     >
-                                        <Meta title={item.title} description={item.price + ' kr'} />
+                                    <Meta title={item.title} description={item.price + ' kr'} />
                                     </Card>
                                 </Link>
                             </List.Item>
