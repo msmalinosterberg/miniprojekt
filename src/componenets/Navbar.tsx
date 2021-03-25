@@ -34,30 +34,31 @@ function Navbar() {
 }
 
 const layoutStyle: CSSProperties = {
-    width: '100%', 
-    background: 'black',
-    height: window.innerWidth > 768 ? '6rem' : '5rem',
-    display: 'flex', 
-    alignItems:'center',
-    justifyItems:'center',
-    textDecoration: 'none',
-    zIndex: 100,
-    borderBottom: 'none',
-    position: 'fixed',
+  width: '100%', 
+  background: 'black',
+  height: window.innerWidth > 768 ? '6rem' : '5rem',
+  display: 'flex', 
+  alignItems:'center',
+  justifyItems:'center',
+  textDecoration: 'none',
+  zIndex: 100,
+  borderBottom: 'none',
+  position: 'fixed',
 }
 
 const logoStyle: CSSProperties = {
-    marginLeft: window.innerWidth > 768 ? '-1rem' : '-3rem',
-    padding: '2rem',
-    width: window.innerWidth > 768 ? '11.5rem' : '9rem',
+  marginLeft: window.innerWidth > 768 ? '-1rem' : '-3rem',
+  padding: '2rem',
+  width: window.innerWidth > 768 ? '11.5rem' : '9rem',
 }
 
 const iconStyle: CSSProperties = {
-    color: 'white', 
-    fontSize: '2.3rem',
-    float: 'right',
-    position: 'absolute',
-    margin: window.innerWidth > 768 ? '2.3rem -1.6rem' : '2.3rem -1.8rem', 
+  color: 'white', 
+  fontSize: '2.3rem',
+  float: 'right',
+  position: 'absolute',
+  margin: window.innerWidth > 768 ? '2.3rem -1.6rem' : '2.3rem -1.8rem', 
+  boxSizing: 'border-box'
 }
 
 const menuStyle: CSSProperties = {
@@ -68,6 +69,6 @@ const menuStyle: CSSProperties = {
   justifyContent: 'space-between',
   alignItems: 'center',
   marginTop: window.innerWidth > 768 ? '1.2rem' : '0rem',
- }
+}
 
 export default Navbar; 

@@ -1,5 +1,4 @@
-import { Button, Radio } from 'antd';
-import { Content } from 'antd/lib/layout/layout';
+import { Button, Radio, Row } from 'antd';
 import { Component, ContextType, CSSProperties } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 import { calculateDeliveryDay, DeliveryMethod, deliveryMethods } from '../deliveryMethods';
@@ -33,7 +32,7 @@ class DeliverySection extends Component<Props> {
     const { value } = this.state;
     
     return (
-      <Content style={contentStyle}>
+      <Row style={deliveryContainer}>
           <h2>
               Delivery
           </h2>
@@ -42,17 +41,23 @@ class DeliverySection extends Component<Props> {
           <Button type="primary" style={buttonStyle} onClick={this.props.next}>
             Next
           </Button>
-      </Content>
+      </Row>
     );
   }
 }
 
 export default DeliverySection;
 
-const contentStyle: CSSProperties = {
-  padding: '8rem 4rem'
+const deliveryContainer: CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  width: '90%',
+  margin: 'auto',
+  paddingTop: '3rem',
+  paddingBottom: '3rem'
 }
 
 const buttonStyle: CSSProperties = {
-  marginTop: '3rem'
+  marginTop: '3rem',
+  width: '4rem'
 }

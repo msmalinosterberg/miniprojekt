@@ -173,7 +173,7 @@ const ContainerStyle: CSSProperties = {
   display: "flex",
   justifyContent: "space-around",
   alignItems: "space-around",
-  width: "60%",
+  width: "70%",
   margin: "auto",
   height: "100vh",
 };

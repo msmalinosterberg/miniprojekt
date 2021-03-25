@@ -1,5 +1,4 @@
-import { Radio } from 'antd';
-import { Content } from 'antd/lib/layout/layout';
+import { Radio, Row } from 'antd';
 import { Component, CSSProperties } from 'react';
 import PayCard from './PayCard';
 import PayKlarna from './PayKlarna';
@@ -36,7 +35,7 @@ class PaymentMethod extends Component<Props> {
     const PaymentComponent = paymentComponents[value];
     
     return(
-      <Content style={paymentContainerStyle}>
+      <Row style={paymentContainerStyle}>
         <h2>Payment</h2>
         <RadioGroup onChange={this.onChange} value={value}>
             <Radio onChange={this.creditCard} value={1}>Credit card</Radio>
@@ -47,7 +46,7 @@ class PaymentMethod extends Component<Props> {
           <PaymentComponent
             next={this.props.next}/>
         </div> 
-      </Content>
+      </Row>
     )  
   }
 }
@@ -55,5 +54,10 @@ class PaymentMethod extends Component<Props> {
 export default PaymentMethod;
 
 const paymentContainerStyle: CSSProperties = {
-  padding: '4rem',
+  display: 'flex',
+  flexDirection: 'column',
+  width: '90%',
+  margin: 'auto',
+  paddingTop: '3rem',
+  paddingBottom: '3rem'
 }

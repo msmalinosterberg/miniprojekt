@@ -65,8 +65,7 @@ class CartView extends Component<{}, State> {
                                 <Step key={item.title} title={item.title} />
                                 ))}
                             </Steps>
-                            <StepsComponent 
-                                next={this.next} />
+                            <StepsComponent next={this.next} />
                         </Row>
                     );    
                 }}
