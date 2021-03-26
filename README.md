@@ -10,12 +10,12 @@ I projektet kör du:
 ### `npm start`
 
 Kör appen i utvecklingsläge.\
-Öppna [http://localhost:3000](http://localhost:3000) för att se den i din browser.\
+Öppna [http://localhost:3000](http://localhost:3000) för att se den i din browser.
 ## Länkar
 [GitHub-repot](https://github.com/msmalinosterberg/miniprojekt)\
 [Ant Design](https://ant.design/docs/react/introduce)\
-[Se sidan här](#)\
+[Se sidan här](https://fashionstore-webshop.netlify.app/)
 ## Skapat av
 [Malin Österberg](https://github.com/msmalinosterberg)\
 [Amanda Samuelsson](https://github.com/amandasamuelsson)\
-[Moa Stenqvist](https://github.com/stonetwix)\
+[Moa Stenqvist](https://github.com/stonetwix)
