@@ -49,7 +49,7 @@ const layoutStyle: CSSProperties = {
 const logoStyle: CSSProperties = {
   marginLeft: window.innerWidth > 768 ? '-1rem' : '-3rem',
   padding: '2rem',
-  width: window.innerWidth > 768 ? '11.5rem' : '9rem',
+  width: window.innerWidth > 768 ? '11.5rem' : '8rem',
 }
 
 const iconStyle: CSSProperties = {
@@ -57,7 +57,7 @@ const iconStyle: CSSProperties = {
   fontSize: '2.3rem',
   float: 'right',
   position: 'absolute',
-  margin: window.innerWidth > 768 ? '2.3rem -1.6rem' : '2.3rem -1.8rem', 
+  margin: window.innerWidth > 768 ? '2.3rem -1.6rem' : '2.3rem -1.5rem', 
   boxSizing: 'border-box'
 }
 
@@ -68,7 +68,8 @@ const menuStyle: CSSProperties = {
   display: 'flex', 
   justifyContent: 'space-between',
   alignItems: 'center',
-  marginTop: window.innerWidth > 768 ? '1.2rem' : '0rem',
+  marginTop: window.innerWidth > 768 ? '1.2rem' : '-0.3rem',
+  marginRight: window.innerWidth > 768 ? '0' : '-2rem',
 }
 
 export default Navbar; 

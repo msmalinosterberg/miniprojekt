@@ -6,7 +6,7 @@ function Footer() {
     return (
         <Row style={footerStyle}>
             <Col span={24}>
-                <Footer style={{ background: 'black', height: '3rem', padding: '0.8rem 4rem' }}>
+                <Footer style={{ background: 'black', height: '3rem', padding: '0.8rem 2rem' }}>
                     <h3 style={{ color: 'white' }}>FashionStore | 2021</h3>
                 </Footer>
             </Col> 
