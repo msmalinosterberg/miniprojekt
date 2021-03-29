@@ -21,7 +21,7 @@ class ProductCardGrid extends Component {
                 <Col span={24} style={columnStyle}>
                     <List
                         grid={{
-                            gutter: window.innerWidth > 768 ? 25 : 0,
+                            gutter: 25,
                             xs: 1,
                             sm: 2,
                             md: 2,
@@ -62,7 +62,8 @@ const cardContainer: CSSProperties = {
     justifyContent: 'space-around',
     alignItems: 'space-around',
     width: '80%',
-    margin: 'auto'
+    margin: 'auto',
+    paddingBottom: '8rem',
 }
 
 const columnStyle: CSSProperties = {
@@ -70,5 +71,4 @@ const columnStyle: CSSProperties = {
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: '3rem',
-    marginBottom: '3rem',
 }

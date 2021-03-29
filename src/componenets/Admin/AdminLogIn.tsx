@@ -75,7 +75,7 @@ class AdminLogIn extends Component {
         
               <Form.Item {...tailLayout}>        
                 <Link to={'/admin-list'}>
-                  <Button type="primary" htmlType="submit">
+                  <Button type="primary" htmlType="submit" style={buttonStyle}>
                     Log in 
                   </Button> 
                 </Link> 
@@ -94,12 +94,15 @@ const ContainerStyle: CSSProperties = {
   alignItems: 'space-around',
   width: '60%',
   margin: 'auto',
-  height: '100vh'
 }
 
 const columnStyle: CSSProperties = {
   marginTop: '14rem',
   marginBottom: '3rem',
+}
+
+const buttonStyle: CSSProperties = {
+  marginBottom: '10rem'
 }
 
 export default AdminLogIn; 

@@ -20,7 +20,7 @@ class CompleteOrder extends Component {
                     return (
                         <>
                         <Col span={24} style={buttonContainerStyle}>
-                            <Card title="Order summary" style={{ width: '60%', marginTop: '7rem' }}>
+                            <Card title="Order summary" style={{ width: '80%', marginTop: '7rem' }}>
                                 <p>Products: {cart.map((item) => item.quantity + ' ' + item.product.title.concat(', '))}</p>
                                 <p>Delivery: {deliveryMethod.company}</p>
                                 <p>Total price: {getTotalPrice() + ' kr, incl delivery and VAT'}</p>
@@ -51,6 +51,7 @@ export default CompleteOrder;
 
 const buttonContainerStyle: CSSProperties = {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: '-3rem',

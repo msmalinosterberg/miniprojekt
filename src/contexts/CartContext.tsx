@@ -99,8 +99,7 @@ class CartProvider extends Component<{}, State> {
             cartItems = cartItems.map((item: CartItem) => item.product.id === product.id ? cartItem : item);
         } else {
             const cartItem = {product: product, quantity: existingCartItem[0].quantity + 1};
-            cartItems = cartItems.filter((item: CartItem) => item.product.id !== product.id);
-            cartItems.push(cartItem);
+            cartItems = cartItems.map((item: CartItem) => item.product.id === product.id ? cartItem : item);
         }
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
         this.setState({ cart: cartItems });

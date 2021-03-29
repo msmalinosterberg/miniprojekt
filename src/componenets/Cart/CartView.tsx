@@ -82,7 +82,8 @@ const cartViewContainerStyle: CSSProperties = {
     justifyContent: 'space-around',
     alignItems: 'space-around',
     width: '80%',
-    margin: 'auto'
+    margin: 'auto',
+    paddingBottom: "8rem",
 }
 
 const priceTextStyle: CSSProperties = {

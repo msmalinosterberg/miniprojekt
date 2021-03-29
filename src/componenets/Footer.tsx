@@ -1,11 +1,12 @@
 import { Row, Col, Layout } from 'antd';
+import { CSSProperties } from 'react';
 
 function Footer() {
     const { Footer } = Layout;
     return (
-        <Row style={{width: '100%'}}>
+        <Row style={footerStyle}>
             <Col span={24}>
-                <Footer style={{ background: 'black', height: '6rem', padding: '2rem 4rem' }}>
+                <Footer style={{ background: 'black', height: '3rem', padding: '0.8rem 4rem' }}>
                     <h3 style={{ color: 'white' }}>FashionStore | 2021</h3>
                 </Footer>
             </Col> 
@@ -14,3 +15,9 @@ function Footer() {
 }
 
 export default Footer; 
+
+const footerStyle: CSSProperties = {
+    position: 'fixed',
+    bottom: 0,
+    width: '100%',
+}
