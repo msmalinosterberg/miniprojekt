@@ -1,4 +1,4 @@
-import { Button, Radio, Row, Col } from 'antd';
+import { Button, Radio, Row } from 'antd';
 import { Component, ContextType, CSSProperties } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 import { calculateDeliveryDay, DeliveryMethod, deliveryMethods } from '../deliveryMethods';
