@@ -65,7 +65,7 @@ const containerStyle: CSSProperties ={
     display: 'flex', 
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: '2rem',
+    paddingBottom: '8rem',
 }
 
 const columnStyle: CSSProperties = {

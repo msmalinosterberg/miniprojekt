@@ -3,7 +3,7 @@ import { Component, ContextType, CSSProperties } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 
 const layout = {
-  labelCol: { span: 3 },
+  labelCol: { span: 5 },
   wrapperCol: { span: 16 },
 };
 
@@ -79,7 +79,7 @@ class InformationForm extends Component<Props> {
                     rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 3 }}>
+                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 5 }}>
                   <Button type="primary" htmlType="submit">
                     Next
                   </Button>
@@ -97,7 +97,7 @@ class InformationForm extends Component<Props> {
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'space-around',
-    width: '80%',
+    width: '100%',
     margin: 'auto'
 }
 

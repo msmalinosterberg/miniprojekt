@@ -121,12 +121,11 @@ const ContainerStyle: CSSProperties = {
   alignItems: "space-around",
   width: "70%",
   margin: "auto",
-  height: "100vh",
 };
   
 const columnStyle: CSSProperties = {
   marginTop: "10rem",
-  marginBottom: "3rem",
+  paddingBottom: "8rem",
 };
 
 export default withRouter(AddNewProduct); 

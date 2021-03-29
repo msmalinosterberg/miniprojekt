@@ -3,7 +3,7 @@ import { Form, Input, Button, Row, Col } from 'antd';
 import { CartContext } from '../../contexts/CartContext';
 
 const layout = {
-    labelCol: { span: 4 },
+    labelCol: { span: 7 },
     wrapperCol: { span: 16 },
 };
 
@@ -52,23 +52,23 @@ class PayCard extends Component<Props> {
             onValuesChange={this.onValuesChange} 
             validateMessages={validateMessages}
             onFinish={this.onFinish}>
-            <Form.Item style={formStyle} name={['card', 'cardno']} label="Card number"  
+            <Form.Item name={['card', 'cardno']} label="Card number"  
                 rules={[{ min: 13, max: 19, required: true }]}>
                 <Input placeholder="XXXX XXXX XXXX XXXX"/>
             </Form.Item>
-            <Form.Item style={formStyle} name={['card', 'expdate']} label="Expiry date" 
+            <Form.Item name={['card', 'expdate']} label="Expiry date" 
                 rules={[{ required: true }]}>
                 <Input placeholder="MM/YY"/>
             </Form.Item>
-            <Form.Item style={formStyle} name={['card', 'name']} label="Name on card" 
+            <Form.Item name={['card', 'name']} label="Name on card" 
                 rules={[{ required: true }]}>
                 <Input />
             </Form.Item>
-            <Form.Item style={formStyle} name={['card', 'cvc']} label="CVC/CCV" 
+            <Form.Item name={['card', 'cvc']} label="CVC/CCV" 
                 rules={[{ required: true }]}>
                 <Input placeholder="e.g. 123"/>
             </Form.Item>
-            <Form.Item style={formStyle} wrapperCol={{ ...layout.wrapperCol, offset: 2}}>
+            <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 7 }}>
               <Button type="primary" htmlType="submit">
                 Next
               </Button>
@@ -84,17 +84,13 @@ export default PayCard;
 
 const formContainerStyle: CSSProperties = {
     display: 'flex',
-    justifyContent: 'space-around',
-    alignItems: 'space-around',
-    width: '80%',
-    margin: 'auto'
+    // justifyContent: 'space-around',
+    // alignItems: 'space-around',
+    width: '100%',
+    //margin: 'auto'
 }
 
 const columnStyle: CSSProperties = {
     marginTop: '3rem',
     marginBottom: '3rem',
-}
-
-const formStyle: CSSProperties = {
-    display: 'flex',
 }

@@ -26,7 +26,6 @@ const badgeStyle: CSSProperties = {
     color: 'white', 
     borderColor: 'red',
     fontSize: '0.8rem',
-    marginRight: '2rem',
     marginTop: '1.1rem'
 }
 
