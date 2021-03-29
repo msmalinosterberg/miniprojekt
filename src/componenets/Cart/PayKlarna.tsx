@@ -3,7 +3,7 @@ import { Form, Input, Button, Row, Col } from 'antd';
 import { CartContext } from '../../contexts/CartContext';
 
 const layout = {
-    labelCol: { span: 4 },
+    labelCol: { span: 7 },
     wrapperCol: { span: 16 },
 };
 
@@ -98,7 +98,7 @@ class PayKlarna extends Component<Props> {
                                     <Input />
                                 </Form.Item>
 
-                                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 2}}>
+                                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 7}}>
                                     <Button type="primary" htmlType="submit">
                                         Next
                                     </Button>
@@ -117,9 +117,7 @@ export default PayKlarna;
 
 const formContainerStyle: CSSProperties = {
     display: 'flex',
-    justifyContent: 'space-around',
-    alignItems: 'space-around',
-    width: '80%',
+    width: '100%',
     margin: 'auto'
 }
 
