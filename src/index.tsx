@@ -5,10 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { productList } from './componenets/ProductItemsList';
 
-if (localStorage.getItem('products') === null) {
+if (!localStorage.getItem('products')) {
   window.onload = function () {
     localStorage.setItem('products', JSON.stringify(productList))
   }
+  setTimeout(function(){
+    window.location.reload();
+  }, 500);
 }
 
 ReactDOM.render(
